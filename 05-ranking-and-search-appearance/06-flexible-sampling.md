@@ -1,0 +1,34 @@
+# Flexible Sampling general guidance
+
+> Source: https://developers.google.com/search/docs/appearance/flexible-sampling
+> Last updated: 2025-12-10 UTC
+
+In order to better understand the potential impact of sampling changes on Google users and publishers' subscription models, we developed a series of experiments in cooperation with our publishing partners. From these experiments we learned that even minor changes to the current sampling levels could degrade user experience and, as user access is restricted, unintentionally impact article ranking in Google Search.
+
+There are two types of sampling we advise: **metering**, which provides users with a quota of articles to consume before requiring users to subscribe or log in, after which paywalls will start appearing; and **lead-in**, which offers a portion of an article's content without it being shown in full.
+
+We encourage publishers to experiment cautiously with different amounts of sampling. Here is some general guidance for implementing flexible sampling.
+
+## Metering
+
+In general, we think that monthly, rather than daily metering provides more flexibility and a safer environment for testing. The user impact of changing from one integer value to the next is less significant at, say, 10 monthly samples than at 3 daily samples. Monthly metering also has the advantage of focusing paywall views on your most engaged users, who are those most likely to subscribe, while allowing your newer and less engaged users to become acquainted with the value of your content before experiencing a paywall.
+
+### How much content?
+
+There is no single value for optimal sampling across different businesses. However, for most daily news publishers, we expect the value to fall between 6 and 10 articles per user per month. We think most publishers will find a number in that range that preserves a good user experience for new potential subscribers while driving conversion opportunities among the most engaged users.
+
+As a starting point for your explorations, we encourage you to provide 10 articles per month to Google search users and iterate from there. We leave the exact number to the discretion of individual publishers, who are best positioned to understand the particular demands of their businesses.
+
+## Lead-in
+
+In addition to metering, some publishers show the first few sentences of an article "above the fold" of their paywall after the meter has run out. We think this is a good practice. By exposing the article lead, publishers can let users experience the value of the content and so provide more value to the user than a page with completely blocked content. Lead-in also generates user curiosity about how article continues, which may assist in conversion.
+
+## Making Changes
+
+Publishers will want to experiment with different sampling values to determine their effect on referral traffic and conversion.
+
+Bear in mind that our user studies have shown that when users who have experienced only a small amount of content are required to subscribe, their interest in the product diminishes greatly. Our analysis shows that general user satisfaction starts to degrade significantly when paywalls are shown more than 10% of the time (which generally means that about 3% of the audience has been exposed to the paywall). We recommend caution in approaching that limit, because you may start to alienate users who have not yet become convinced of the value of your content.
+
+## How to indicate paywalled content
+
+Enclose paywalled content with structured data in order to help Google differentiate paywalled content from the practice of cloaking, where the content served to Googlebot is different from the content served to users. If you don't want the content to be accessible to the browser at the time of serving, choose a paywall implementation that doesn't supply the paywalled content to the browser.

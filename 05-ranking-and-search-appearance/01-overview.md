@@ -1,0 +1,71 @@
+# Overview of Search appearance topics
+
+> Source: https://developers.google.com/search/docs/appearance
+> Last updated: 2026-01-30 UTC
+
+The topics in this section describe how you can influence how your website appears in Google Search.
+
+## Search appearance topics
+
+- AI features
+- Business details
+- Byline dates
+- Favicons
+- Featured snippets
+- Flexible Sampling general guidance
+- Google Discover
+- Images
+- Preferred sources
+- Site names
+- Sitelinks
+- Snippets
+- Title links
+- Top Places List
+- Translated results
+- Videos
+- Visual Elements gallery
+- Web stories
+
+## Using structured data
+
+Google uses structured data to understand the content on the page. You can help us by providing specific information about your site, which can help your site display in richer features in search results.
+
+- List of structured data markup that Google Search supports
+- Understand how structured data works
+- Generate structured data with JavaScript
+- General structured data guidelines
+- Enriched search results
+
+### Features that use structured data
+
+- Article
+- Breadcrumb
+- Carousel
+- Course list
+- Dataset
+- Discussion forum
+- Education Q&A
+- Employer aggregate rating
+- Event
+- FAQ
+- Image metadata
+- Job posting
+- Local business
+- Math solver
+- Movie carousel
+- Organization
+- Product (Product snippet, Merchant listing, Variants, Merchant return policy, Merchant shipping policy, Loyalty program)
+- Profile page
+- Q&A
+- Recipe
+- Review snippet
+- Software app
+- Speakable
+- Subscription and paywalled content
+- Vacation rental
+- Video
+
+## Early Adopters Program
+
+- Package tracking
+- Structured data carousels (beta)

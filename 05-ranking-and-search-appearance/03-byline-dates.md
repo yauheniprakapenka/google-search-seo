@@ -1,0 +1,45 @@
+# Influence your byline dates in Google Search
+
+> Source: https://developers.google.com/search/docs/appearance/publication-dates
+> Last updated: 2025-12-10 UTC
+
+A *byline date* is the date that Google estimates that the web page was updated or published. When Google can determine the byline date of your page or video, it can expose this information in Search results, if this information is considered to be useful to the user. You can provide information to help Google determine the byline date.
+
+Google doesn't depend on a single date factor because all factors can be prone to issues. That's why our systems look at several factors to determine our best estimate of when a page was published or significantly updated.
+
+## How to provide date information to Google
+
+To provide date information to Google, follow these steps:
+
+1. Follow the best practices for influencing byline dates.
+2. Add a user-visible date to the page and feature it prominently. Label your dates appropriately with text like "Publish" or "Last updated". Here are some examples:
+   - **Posted Feb 4, 2019**
+   - **Published February 4, 2019**
+   - **Last updated: Feb 14, 2018**
+   - **Updated Feb 14, 2019 8pm ET**
+
+   You can provide a publication date and/or a last updated date.
+
+3. Specify dates with structured data. We recommend that you add a subtype of `CreativeWork` (such as `Article`, `BlogPosting`, or `VideoObject`), and specify the `datePublished` and/or `dateModified` fields. Be sure to follow Google's structured data guidelines to help our crawlers understand your article dates.
+
+   Example JSON-LD:
+   ```json
+   {
+     "@context": "https://schema.org",
+     "@type": "NewsArticle",
+     "headline": "Analyzing Google Search traffic drops",
+     "datePublished": "2021-07-20T08:00:00+08:00",
+     "dateModified": "2021-07-20T09:20:00+08:00"
+   }
+   ```
+
+## Best practices for influencing byline dates
+
+While Google doesn't guarantee that a byline date, whether visible or in structured data, will be shown in search results, following these guidelines does help our algorithms find and process the information.
+
+- **The date is required; the time is not:** However, we recommend you provide a time and timezone in markup for added precision.
+- **If you choose to specify the timezone,** provide the correct timezone, taking into account daylight saving time as appropriate.
+- **Make your dates and times consistent.** Ensure that the date (and optional time and timezone) match between the equivalent user-visible and structured values. Time and timezone are optional in user-visible data even if provided in structured data.
+- **Don't specify future dates, or the date of the action described on the page.** The dates must describe the publication or update date of the page, not the stories or events described therein. You can add Event markup to the page to describe the activities listed on the page, if you like.
+- **Minimize the presence of other dates on the page:** If you've followed the best practices and find incorrect dates are being selected, consider removing some or all other dates that appear on the page.
+- **If your page is intended to show up in Google News search**, follow these additional guidelines.
