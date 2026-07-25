@@ -1,11 +1,11 @@
-# Video Sitemaps and Alternatives
+# Video sitemaps and alternatives
 
 > Source: https://developers.google.com/search/docs/crawling-indexing/sitemaps/video-sitemaps
-> Last updated: 2025-12-10
+> Last updated: 2026-05-20 UTC.
 
 A video sitemap is a [sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview) with additional information about videos hosted on your pages. Creating a video sitemap is a good way to help Google find and understand the video content on your site, especially content that was recently added or that we might not otherwise discover with our usual crawling mechanisms.
 
-Google recommends using video sitemaps, however we also support [mRSS feeds](#sitemap-alternative-mrss).
+Google recommends using video sitemaps, however we also support [mRSS feeds](#sitemap_alternatives).
 
 ## Video sitemap best practices
 
@@ -52,12 +52,15 @@ The following example shows a regular sitemap with video extension. It includes 
       <video:publication_date>2007-11-05T19:20:30+08:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
       <video:restriction relationship="allow">IE GB US CA</video:restriction>
-      <video:price currency="EUR">1.99</video:price>
+      <video:platform relationship="allow">web tv</video:platform>
       <video:requires_subscription>yes</video:requires_subscription>
       <video:uploader
         info="https://www.example.com/users/grillymcgrillerson">GrillyMcGrillerson
       </video:uploader>
       <video:live>no</video:live>
+      <video:tag>steak</video:tag>
+      <video:tag>meat</video:tag>
+      <video:tag>summer</video:tag>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://www.example.com/thumbs/345.jpg</video:thumbnail_loc>
@@ -76,7 +79,7 @@ The following example shows a regular sitemap with video extension. It includes 
 </urlset>
 ```
 
-### More examples
+#### More examples
 
 The following example demonstrates how to add a Vimeo video embed to a video sitemap:
 

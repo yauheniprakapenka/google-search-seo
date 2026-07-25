@@ -1,7 +1,7 @@
 # Build and submit a sitemap
 
 > Source: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
-> Last updated: 2025-12-10
+> Last updated: 2026-07-08 UTC.
 
 This page describes how to build a sitemap and make it available to Google. If you're new to sitemaps, [read our introduction first](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview).
 
@@ -56,7 +56,7 @@ The best practices for sitemaps are defined by the [sitemaps protocol](https://w
 
 **Sitemap size limits:** All formats limit a single sitemap to 50MB (uncompressed) or 50,000 URLs. If you have a larger file or more URLs, you must break your sitemap into multiple sitemaps. You can optionally create a [sitemap index](https://developers.google.com/search/docs/crawling-indexing/sitemaps/large-sitemaps) file and submit that single index file to Google. You can submit multiple sitemaps and sitemap index files to Google. This may be useful if you want to track the search performance of each individual sitemap in Search Console.
 
-**Sitemap file encoding and location:** The sitemap file must be UTF-8 encoded. You can host your sitemaps anywhere on your site, but unless you submit your sitemap through [Search Console](#submit-your-sitemap-to-google), a sitemap affects only descendants of the parent directory. Therefore, a sitemap posted at the site root can affect all files on the site, which is where we recommend posting your sitemaps.
+**Sitemap file encoding and location:** The sitemap file must be UTF-8 encoded. You can host your sitemaps anywhere on your site, but unless you submit your sitemap through [Search Console](#addsitemap), a sitemap affects only descendants of the parent directory. Therefore, a sitemap posted at the site root can affect all files on the site, which is where we recommend posting your sitemaps.
 
 **Referenced URLs' properties:** Use fully-qualified, absolute URLs in your sitemaps. Google will attempt to crawl your URLs exactly as listed. For example, if your site is at `https://www.example.com/`, don't specify a URL such as `/mypage.html` (a relative URL), use the complete, absolute URL: `https://www.example.com/mypage.html`.
 
@@ -120,9 +120,9 @@ When creating a sitemap, you're telling search engines about which URLs you pref
 
 Once you've decided which URLs to include in the sitemap, pick one of the following ways to create a sitemap, depending on your site architecture and size:
 
-- [Let your CMS generate a sitemap for you](#let-your-cms-generate-a-sitemap-for-you).
-- For sitemaps with less than a few dozen URLs, you can [manually create a sitemap](#manually-create-a-sitemap).
-- For sitemaps with more than a few dozen URLs, [automatically generate a sitemap](#automatically-generate-a-sitemap-with-tools).
+- [Let your CMS generate a sitemap for you](#cmssitemap).
+- For sitemaps with less than a few dozen URLs, you can [manually create a sitemap](#manualsitemap).
+- For sitemaps with more than a few dozen URLs, [automatically generate a sitemap](#autositemap).
 
 ### Let your CMS generate a sitemap for you
 
@@ -130,7 +130,7 @@ If you're using a CMS such as WordPress, Wix, or Blogger, it's likely that your 
 
 ### Manually create a sitemap
 
-For sitemaps with less than a few dozen URLs, you may be able to manually create a sitemap. For this, open a text editor such as [Windows Notepad](https://www.microsoft.com/en-us/search?q=windows+notepad) or [Nano (Linux, MacOS)](https://www.nano-editor.org/), and follow a syntax described in the [Sitemap Formats](#sitemaps-comparison) section. You can name the file anything you like as long as [the characters are allowed in a URL](https://developers.google.com/maps/url-encoding).
+For sitemaps with less than a few dozen URLs, you may be able to manually create a sitemap. For this, open a text editor such as [Windows Notepad](https://www.microsoft.com/en-us/search?q=windows+notepad) or [Nano (Linux, MacOS)](https://www.nano-editor.org/), and follow a syntax described in the [Sitemap Formats](#sitemapformat) section. You can name the file anything you like as long as [the characters are allowed in a URL](https://developers.google.com/maps/url-encoding).
 
 You can manually create larger sitemaps, but it's a tedious process and hard to maintain long term.
 
@@ -138,7 +138,7 @@ You can manually create larger sitemaps, but it's a tedious process and hard to 
 
 For sitemaps with more than a few dozen URLs, you will need to generate the sitemap. There are various tools that can [generate a sitemap](https://www.google.com/search?q=generate+sitemap). However, the best way is to have your website software generate it for you. For example, you can extract your site's URLs from your website's database and then export the URLs to either the screen or actual file on your web server. Talk to your developers or server manager about this solution. If you need inspiration for the code, check out our old, unmaintained collection of [third-party sitemap generators](http://code.google.com/p/sitemap-generators/wiki/SitemapGenerators).
 
-You don't have to worry about the order of the URLs in your sitemap, it doesn't matter to Google. Note the [size requirements for sitemaps](#sitemap-best-practices); if the sitemap becomes too large, you must split it into smaller sitemaps. Learn more about [managing large sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/large-sitemaps).
+You don't have to worry about the order of the URLs in your sitemap, it doesn't matter to Google. Note the [size requirements for sitemaps](#general-guidelines); if the sitemap becomes too large, you must split it into smaller sitemaps. Learn more about [managing large sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/large-sitemaps).
 
 ## Submit your sitemap to Google
 
@@ -176,12 +176,12 @@ To submit cross-site sitemaps that are hosted in a single location, you can eith
 ### Sitemap cross-submission with Search Console
 
 1. Make sure that you have [verified ownership](https://support.google.com/webmasters/answer/35181) of all the sites that you will add in the sitemap.
-2. [Create a sitemap](#how-to-create-a-sitemap) (or more if you prefer) that includes URLs from all the sites that you want to cover. You can include the sitemaps in a [sitemap index](https://developers.google.com/search/docs/crawling-indexing/sitemaps/large-sitemaps) file if you prefer and work with that sitemap index from here on.
+2. [Create a sitemap](#createsitemap) (or more if you prefer) that includes URLs from all the sites that you want to cover. You can include the sitemaps in a [sitemap index](https://developers.google.com/search/docs/crawling-indexing/sitemaps/large-sitemaps) file if you prefer and work with that sitemap index from here on.
 3. Using Google Search Console, [submit your sitemaps or sitemap index file](https://support.google.com/webmasters/answer/7451001).
 
 ### Sitemap cross-submission with robots.txt
 
-1. [Create one or more sitemaps](#how-to-create-a-sitemap) for each individual site. For each individual sitemap file, make sure you include only URLs from that particular site.
+1. [Create one or more sitemaps](#createsitemap) for each individual site. For each individual sitemap file, make sure you include only URLs from that particular site.
 2. Upload all sitemaps to a single site you have control over, for example `https://sitemaps.example.com`.
 3. For each individual site, make sure that the robots.txt file references the sitemap for that individual site. For example, if you created a sitemap for `https://example.com/` and you're hosting the sitemap at `https://sitemaps.example.com/sitemap-example-com.xml`, reference the sitemap in the robots.txt file at `https://example.com/robots.txt`.
 

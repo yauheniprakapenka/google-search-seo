@@ -1,13 +1,11 @@
-# Structured Data Markup that Google Search Supports
+# Structured data markup that Google Search supports
 
 > Source: https://developers.google.com/search/docs/appearance/structured-data/search-gallery
-> Last updated: 2026-01-06 UTC
+> Last updated: 2026-06-15 UTC.
 
-Google uses structured data to understand the content on the page and show that content in a richer appearance in search results, which is called a *rich result*. To make your site eligible for appearance as one of these rich results, follow the guide to learn how to implement structured data on your site.
+Google uses structured data to understand the content on the page and show that content in a richer appearance in search results, which is called a *rich result*. To make your site eligible for appearance as one of these rich results, follow the guide to learn how to implement structured data on your site. If you're just getting started, visit [Understand how structured data works](/search/docs/appearance/structured-data/intro-structured-data).
 
 **Note**: The actual appearance in search results might be different. You can preview most features with the [Rich Results Test](https://support.google.com/webmasters/answer/7445569).
-
-## All Structured Data Features
 
 ### Article
 A news, sports, or blog article displayed in various rich result features, such as the title of the article and larger-than-thumbnail images.
@@ -18,11 +16,11 @@ Navigation that indicates the page's position in the site hierarchy.
 - **Categories:** Generic
 
 ### Carousel
-Rich results that display in a sequential list or gallery from a single site. This feature must be combined with one of: Recipe, Course list, Restaurant, Movie.
+Rich results that display in a sequential list or gallery from a single site. This feature must be combined with one of the following features: [Recipe](/search/docs/appearance/structured-data/recipe), [Course list](/search/docs/appearance/structured-data/course), [Restaurant](/search/docs/appearance/structured-data/local-business#carousel), [Movie](/search/docs/appearance/structured-data/movie).
 - **Categories:** Food and Drink, Education and Science, Entertainment
 
 ### Course list
-A list of educational courses from the same course provider. Courses can include the course title, provider, and a short description.
+A list of educational course from the same course provider. Courses can include the course title, provider, and a short description.
 - **Categories:** Education and Science
 
 ### Dataset
@@ -44,9 +42,6 @@ An evaluation of a hiring organization compiled from many users that's displayed
 An interactive rich result that shows a list of organized events, such as concerts or art festivals, that people may attend at a particular time and place.
 - **Categories:** Entertainment
 
-### FAQ
-A Frequently Asked Question (FAQ) page contains a list of questions and answers pertaining to a particular topic.
-
 ### Image metadata
 When you specify image metadata, Google Images can show more details about the image, such as who the creator is, how people can use an image, and credit information.
 
@@ -67,7 +62,7 @@ The movie carousel helps users explore lists of movies on Google Search (for exa
 - **Categories:** Entertainment
 
 ### Organization
-Information about your organization, such as your logo, legal name of the organization, address, contact information, and company identifiers. This information can show up in knowledge panels and other visual elements (such as attribution).
+Information about your organization, such as your logo, legal name of the organization, address, contact information, and company identifiers. This information can show up in knowledge panels and other visual elements (such as [attribution](/search/docs/appearance/visual-elements-gallery#attribution)).
 - **Categories:** Organizations
 
 ### Product
@@ -85,7 +80,7 @@ Recipes that display as an individual rich result or part of a host carousel.
 - **Categories:** Food and Drink
 
 ### Review snippet
-A short excerpt of a review or a rating from a review website, usually an average of the combined rating scores from reviewers. A review snippet can be about Book, Recipe, Movie, Product, Software App, and Local business.
+A short excerpt of a review or a rating from a review website, usually an average of the combined rating scores from reviewers. A review snippet can be about [Book](/search/docs/appearance/structured-data/book), [Recipe](/search/docs/appearance/structured-data/recipe), [Movie](/search/docs/appearance/structured-data/movie), [Product](/search/docs/appearance/structured-data/product), [Software App](/search/docs/appearance/structured-data/software-app), and [Local business](/search/docs/appearance/structured-data/local-business).
 - **Categories:** Organizations, Ecommerce, Food and Drink, Entertainment
 
 ### Software app
@@ -96,7 +91,7 @@ Allow search engines and other applications to identify news content to read alo
 - **Categories:** News
 
 ### Subscription and paywalled content
-Indicate paywalled content on your site to help Google differentiate paywalled content from the practice of cloaking, which violates spam policies.
+Indicate paywalled content on your site to help Google differentiate paywalled content from the practice of [cloaking](/search/docs/essentials/spam-policies#cloaking), which violates [our spam policies](/search/docs/essentials/spam-policies).
 - **Categories:** News
 
 ### Vacation rental

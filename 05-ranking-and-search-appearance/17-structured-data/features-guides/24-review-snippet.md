@@ -2,7 +2,7 @@
 
 > Source: <https://developers.google.com/search/docs/appearance/structured-data/review-snippet>
 
-> Last updated: 2025-12-10 UTC.
+> Last updated: 2026-07-24 UTC.
 
 
 A review snippet is a short excerpt of a review or a rating from a review website, usually an average of the combined rating scores from many reviewers. When Google finds valid reviews or ratings markup, we may show a rich snippet that includes stars and other summary info from reviews or ratings. In addition to the text of the review, a rating is an evaluation described on a numeric scale (such as 1 to 5). Review snippets may appear in rich results or Google Knowledge Panels. You can supply ratings for the following features:
@@ -592,6 +592,9 @@ Your content must follow these guidelines to be eligible to appear as a rich res
 -   Provide review information about a specific item, not about a category or a list of items.
 -   If you include multiple individual reviews, also include an aggregate rating of the individual reviews.
 -   Don't aggregate reviews or ratings from other websites.
+-   Don't include fake or undisclosed incentivized reviews on your page or in your structured data markup. Examples include:
+    -   Reviews that aren't based on a genuine experience of a product or service
+    -   Reviews written in exchange for a benefit (such as money, discounts, vouchers, or free products) that don't clearly and prominently disclose the incentivization
 -   If the review snippet is for a local business or an organization, you must follow these additional guidelines:
     -   If the entity that's being reviewed controls the reviews about itself, their pages that use `LocalBusiness` or any other type of `Organization` structured data are ineligible for star review feature. For example, a review about entity A is placed on the website of entity A, either directly in their structured data or through an embedded third-party widget (for example, Google Business reviews or Facebook reviews widget).
         

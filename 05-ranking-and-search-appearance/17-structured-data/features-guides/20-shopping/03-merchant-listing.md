@@ -1,7 +1,7 @@
 # Merchant listing (`Product`, `Offer`) structured data
 
 > Source: https://developers.google.com/search/docs/appearance/structured-data/merchant-listing
-> Last updated: 2025-12-10
+> Last updated: 2026-07-07 UTC.
 
 ![shopping knowledge panel presentation in search results](/static/search/docs/images/shopping-knowledge-panel.png)
 
@@ -297,6 +297,72 @@ Alternatively, you can use two `UnitPriceSpecification` objects to specify the s
         "priceCurrency": "GBP"
       }
     \]**
+  }
+}
+
+### Sale duration
+
+To specify the period when a sale price is active, use the following schema.org properties in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format (for example, `2025-12-31T23:59:59+01:00`):
+
+-   **Start date and time:** Use the `[validFrom](#validFrom)` property.
+-   **End date and time:** Use *either* the `[validThrough](#validThrough)` property *or* the `[priceValidUntil](#priceValidUntil)` property.
+
+#### Best practices:
+
+-   Provide both a start and an end date/time to clearly define the sale period.
+-   Ensure the start date/time (from the `validFrom` property) is earlier than or equal to the end date/time (from the `validThrough` property or the `priceValidUntil` property).
+-   We recommend including the time and timezone in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format for accuracy in Google systems.
+
+#### Where to place the properties:
+
+-   **On the `Offer` node:** You can add the `validFrom` property and (the `validThrough` property or the `priceValidUntil` property) directly to the `Offer` node. These dates apply when the `price` property on the `Offer` node represents the current active sale price.
+-   **On a `PriceSpecification` node:** If the sale price is defined within a `PriceSpecification` node (typically one without the `priceType` property when a `StrikethroughPrice` value is also present), add the `validFrom` property and the `validThrough` property to that specific `PriceSpecification` node. Note that the `priceValidUntil` property isn't applicable to the `PriceSpecification` type.
+
+The following example shows a product with a sale price. The duration properties are added to the `Offer` node, as the `price` property on the `Offer` node holds the sale price.
+
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "Nice trinket",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.example.com/trinket\_offer",
+    "price": 10.00,
+    "priceCurrency": "GBP",
+    **"validFrom": "2025-11-20T08:00:00+00:00",
+    "priceValidUntil": "2025-11-30T23:59:59+00:00",**
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "priceType": "https://schema.org/StrikethroughPrice",
+      "price": 15.00,
+      "priceCurrency": "GBP"
+    }
+  }
+}
+
+Alternatively, you can use two `UnitPriceSpecification` objects to specify the sale price and the strikethrough price. The duration properties are added to the `UnitPriceSpecification` object that contains the sale price:
+
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "Nice trinket",
+  "offers": {
+    "@type": "Offer",
+    "priceSpecification": \[
+      {
+        "@type": "UnitPriceSpecification",
+        "price": 10.00,
+        "priceCurrency": "GBP",
+        **"validFrom": "2025-11-20T08:00:00+00:00",
+        "validThrough": "2025-11-30T23:59:59+00:00"**
+      },
+      {
+        "@type": "UnitPriceSpecification",
+        "priceType": "https://schema.org/StrikethroughPrice",
+        "price": 15.00,
+        "priceCurrency": "GBP"
+      }
+    \]
   }
 }
 
@@ -958,6 +1024,37 @@ Optional information about the suggested audience for the product, such as the s
 
 Include the brand of the product in the `[name](https://schema.org/PeopleAudience)` property of the `[Brand](https://schema.org/Brand)` type if known. Include at most one brand name.
 
+`category`
+
+`[Text](https://schema.org/Text)` or `[CategoryCode](https://schema.org/CategoryCode)`
+
+Specifies the product's categories. This property can accept an array of values, mixing plain text strings and `CategoryCode` objects.
+
+-   **Custom product types:** Plain `Text` values represent your custom product category, similar to the [`product_type` attribute](https://support.google.com/merchants/answer/6324406) in product feeds. We recommend keeping custom product types under the 750-character limit.
+-   **Google Product Category (GPC):** To specify a GPC, similar to the [`google_product_category` attribute](https://support.google.com/merchants/answer/6324436) in product feeds, use the `CategoryCode` type.
+    -   Set `@type` to `CategoryCode`.
+    -   Set `inCodeSet` to a Google Product Taxonomy URL (for example, `"https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt"`).
+    -   Set `codeValue` to the GPC ID (for example, `"2271"`) or the full category path (for example, `"Apparel & Accessories > Clothing > Dresses"`).
+    -   When using the path format, use `>` as the separator between levels. Each segment in the path must contain at least one letter. Numeric IDs are also accepted.
+
+You can provide multiple category values. For example, you can include several GPC codes or paths and several custom product type strings.
+
+"category": \[
+  {
+    "@type": "CategoryCode",
+    "inCodeSet": "https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt",
+    "codeValue": "2271"
+  },
+  {
+    "@type": "CategoryCode",
+    "inCodeSet": "https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt",
+    "codeValue": "Apparel & Accessories > Clothing > Dresses"
+  },
+  "Dresses",
+  "Special Occasion > Wedding & Bridal Party Dresses"
+\]
+              
+
 `color`
 
 `[Text](https://schema.org/Text)`
@@ -984,6 +1081,12 @@ Include all applicable global identifiers; these are described at [schema.org/Pr
   ...
 }
               
+
+`hasAdultConsideration`
+
+`[AdultOrientedEnumeration](https://schema.org/AdultOrientedEnumeration)`
+
+Indicates that the product is designated as adult-oriented for example, because it contains nudity or sexual content. If you sell products that are considered adult-oriented according to Google's [adult-oriented content policy](https://support.google.com/merchants/answer/12073010#res), you must use this property to label them as adult-oriented. While these products are eligible to be shown in Shopping ads and free listings, they are subject to age- and country-based restrictions. Labelling them ensures that Google can apply these restrictions and show appropriate and legally compliant content to people shopping online. While schema.org defines multiple values for `AdultOrientedEnumeration`, Google Search only supports the value `https://schema.org/SexualContentConsideration` for this property.
 
 `hasCertification`
 
@@ -1182,6 +1285,12 @@ Condition of the item offered for sale. The short names without the URL prefix a
 
 Don't specify more than one value.
 
+`priceValidUntil`
+
+`[Date](https://schema.org/Date)`
+
+The date and time after which the price will no longer be available, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. Your listing may not display if the `priceValidUntil` property indicates a past date. For details and markup examples, see [Sale duration](#sale-duration).
+
 `shippingDetails`
 
 `[OfferShippingDetails](https://schema.org/OfferShippingDetails)`
@@ -1208,6 +1317,18 @@ We recommend you provide a global shipping policy for your business under `Organ
 A URL of the product web page from which a shopper can purchase the product. This URL may be the preferred URL for the current page with all variant options appropriately selected. The URL can be omitted. Don't provide multiple URLs.
 
 For details on how to add markup for product variants, refer to [product variant structured data documentation](/search/docs/appearance/structured-data/product-variants).
+
+`validFrom`
+
+`[DateTime](https://schema.org/DateTime)` or `[Date](https://schema.org/Date)`
+
+The start date and time when the price is valid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. For details and markup examples, see [Sale duration](#sale-duration).
+
+`validThrough`
+
+`[DateTime](https://schema.org/DateTime)` or `[Date](https://schema.org/Date)`
+
+The end date and time when the price is valid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. For details and markup examples, see [Sale duration](#sale-duration).
 
 #### `UnitPriceSpecification`
 
@@ -1282,6 +1403,18 @@ Here's an example of the `validForMemberTier` property referencing `MemberProgra
 }
 
 This property is still in Beta. Off-page `MemberProgramTier` structured data might not show up in Google Search right away.
+
+`validFrom`
+
+`[DateTime](https://schema.org/DateTime)` or `[Date](https://schema.org/Date)`
+
+The start date and time when the price is valid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. For details and markup examples, see [Sale duration](#sale-duration).
+
+`validThrough`
+
+`[DateTime](https://schema.org/DateTime)` or `[Date](https://schema.org/Date)`
+
+The end date and time when the price is valid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. For details and markup examples, see [Sale duration](#sale-duration).
 
 If both `priceType` and `validForMemberTier` are used, the price specification is ignored.
 

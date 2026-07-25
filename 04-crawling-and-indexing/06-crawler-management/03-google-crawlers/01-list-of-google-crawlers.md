@@ -1,7 +1,7 @@
-# Overview of Google Crawlers and Fetchers (User Agents)
+# Overview of Google crawlers and fetchers (user agents)
 
 > Source: https://developers.google.com/crawling/docs/crawlers-fetchers/overview-google-crawlers
-> Last updated: 2026-02-09
+> Last updated: 2026-06-12 UTC.
 
 Google uses crawlers and fetchers to perform actions for its products, either automatically or triggered by user request. Crawler (sometimes also called a "robot" or "spider") is a generic term for any program that is used to [automatically discover and scan websites](/search/docs/fundamentals/how-search-works#crawling). Fetchers act as a program like [wget](https://www.gnu.org/software/wget/) that typically make a single request on behalf of a user. Google's clients fall into three categories:
 
@@ -19,25 +19,25 @@ Special-case crawlers are similar to common crawlers, however are used by specif
 
 User-triggered fetchers are part of tools and product functions where the end user triggers a fetch. For example, [Google Site Verifier](https://support.google.com/webmasters/answer/9008080) acts on the request of a user.
 
-## Technical Properties of Google's Crawlers and Fetchers
+## Technical properties of Google's crawlers and fetchers
 
 Google's crawlers and fetchers are designed to be run simultaneously by thousands of machines to improve performance and scale as the web grows. To optimize bandwidth usage, these clients are distributed across many datacenters across the world so they're located near the sites that they might access. Therefore, your logs may show visits from several IP addresses. Google egresses primarily from IP addresses in the United States. In case Google detects that a site is blocking requests from the United States, it may attempt to crawl from IP addresses located in other countries.
 
-### Supported Transfer Protocols
+### Supported transfer protocols
 
 Google's crawlers and fetchers support HTTP/1.1 and [HTTP/2](https://en.wikipedia.org/wiki/HTTP/2). The crawlers will use the protocol version that provides the best crawling performance and may switch protocols between crawling sessions depending on previous crawling statistics. The default protocol version used by Google's crawlers is HTTP/1.1; crawling over HTTP/2 may save computing resources (for example, CPU, RAM) for your site and Googlebot, but otherwise there's no Google-product specific benefit to the site (for example, no ranking boost in Google Search). To opt out from crawling over HTTP/2, instruct the server that's hosting your site to respond with a `421` HTTP status code when Google attempts to access your site over HTTP/2. If that's not feasible, you [can send a message to the Crawling team](https://www.google.com/webmasters/tools/googlebot-report) (however this solution is temporary).
 
 Google's crawler infrastructure also supports crawling through FTP (as defined by [RFC959](https://datatracker.ietf.org/doc/html/rfc959) and its updates) and FTPS (as defined by [RFC4217](https://datatracker.ietf.org/doc/html/rfc4217) and its updates), however crawling through these protocols is rare.
 
-### Supported Content Encodings
+### Supported content encodings
 
 Google's crawlers and fetchers support the following content encodings (compressions): [gzip](https://en.wikipedia.org/wiki/Gzip), [deflate](https://en.wikipedia.org/wiki/Deflate), and [Brotli (br)](https://en.wikipedia.org/wiki/Brotli). The content encodings supported by each Google user agent is advertised in the `Accept-Encoding` header of each request they make. For example, `Accept-Encoding: gzip, deflate, br`.
 
-### File Size Limits
+### File size limits
 
 By default, Google's crawlers and fetchers only crawl the first 15MB of a file, and any content beyond this limit is ignored. However, individual projects may set different limits for their crawlers and fetchers, and also for different file types. For example, a Google crawler [like Googlebot](/search/docs/crawling-indexing/googlebot) may have a smaller size limit (for example, 2MB), or specify a larger file size limit for a PDF than for HTML.
 
-### Crawl Rate and Host Load
+### Crawl rate and host load
 
 Our goal is to crawl as many pages from your site as we can on each visit without overwhelming your server. If your site is having trouble keeping up with Google's crawling requests, you can [reduce the crawl rate](/crawling/docs/crawlers-fetchers/reduce-crawl-rate). Note that sending the inappropriate [HTTP response code](/search/docs/crawling-indexing/http-network-errors) to Google's crawlers may affect how your site appears in Google products.
 
@@ -68,7 +68,7 @@ Google's crawling infrastructure supports `Last-Modified` and `If-Modified-Since
 
 Learn more about the [`Last-Modified`](https://www.rfc-editor.org/rfc/rfc9110#name-last-modified) response header and its request header counterpart, [`If-Modified-Since`](https://www.rfc-editor.org/rfc/rfc9110#name-if-modified-since).
 
-## Verify Google's Crawlers and Fetchers
+## Verify Google's crawlers and fetchers
 
 Google's crawlers identify themselves in three ways:
 

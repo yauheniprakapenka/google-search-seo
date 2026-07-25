@@ -1,15 +1,22 @@
 # Fix canonicalization issues
 
 > Source: https://developers.google.com/search/docs/crawling-indexing/canonicalization-troubleshooting
-> Last updated: 2025-12-18
+> Last updated: 2026-07-10 UTC.
 
-Use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289#google-selected-canonical) to check [which page Google considers canonical](https://developers.google.com/search/docs/crawling-indexing/canonicalization). Even if you explicitly designate a canonical page, Google might choose a different canonical for various reasons, such as the quality of the content. Before troubleshooting, think about whether the Google-selected canonical makes more sense than your preferred canonical URL for your users coming from Google Search.
+Use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289#google-selected-canonical) to check [which page Google considers canonical](/search/docs/crawling-indexing/canonicalization). Even if you explicitly designate a canonical page, Google might choose a different canonical for various reasons, such as the quality of the content. Before troubleshooting, think about whether the Google-selected canonical makes more sense than your preferred canonical URL for your users coming from Google Search.
+
+Fixing canonicalization issues, such as those detailed in the [common canonicalization issues](#common-canonicalization-issues) section, technically boils down to ensuring that the pages that are [clustered together](/search/docs/crawling-indexing/canonicalization#canonical-how) are sufficiently different. Things to keep in mind:
+
+- **Re-evaluation takes time:** Even after fixing content issues, Google might hold pages in a duplicate cluster for **up to two weeks**.
+- **Content difference matters:** Pages will generally split out faster if the difference between the new content and the other clustered pages is clear and significant.
+
+Once you fix the content issues, you can use the [Request Indexing feature in the Search Console URL Testing Tool](https://support.google.com/webmasters/answer/9012289#zippy=%2Crequest-indexing) to ask Google to re-evaluate the pages that are clustered. However, because this feature is subject to quotas, reserve it for your most important URLs.
 
 There are various reasons why the selected canonical URL differs from the canonical URL you'd prefer to see in Search. The most common issues are:
 
 ## Language variants without localized annotations
 
-If you have multiple websites that serve substantially the same content localized to different users around the world, be sure to [follow the guidelines for localized sites](https://developers.google.com/search/docs/specialty/international). For example, if you have different sites for your English-speaking users in the United States, United Kingdom, and Australia respectively, but the content is the same, adding `hreflang` annotations to your pages can help the right pages surface for users in different regions.
+If you have multiple websites that serve substantially the same content localized to different users around the world, be sure to [follow our guidelines for localized sites](/search/docs/specialty/international). For example, if you have different sites for your English-speaking users in the United States, United Kingdom, and Australia respectively, but the content is the same, adding `hreflang` annotations to your pages can help the right pages surface for users in different regions.
 
 ## Incorrect canonical elements
 
@@ -20,11 +27,11 @@ Some content management systems (CMS) or CMS plugins can make incorrect use of c
 Some hosting misconfigurations may cause unexpected cross-domain URL selection. For example:
 
 - A server may be misconfigured to return content from `example.com` in response to a request for a URL on `other.example`
-- Two unrelated web servers may return identical `soft 404` pages that Google fails to identify as error pages. If you notice this is the case, get in touch with your hosting provider.
+- Two unrelated web servers may return identical [`soft 404` pages](/search/docs/crawling-indexing/troubleshoot-crawling-errors#soft-404-errors) that Google fails to identify as error pages. If you notice this is the case, get in touch with your hosting provider.
 
 ## Malicious hacking
 
-Some attacks on websites introduce code that returns an HTTP `3xx` redirect or inserts a cross-domain `rel="canonical"` `link` annotation into the HTML `<head>` or HTTP header, usually pointing to a URL hosting malicious or spammy content. In these cases, our algorithms may choose the malicious or spammy URL instead of the URL on the [compromised website](https://web.dev/articles/hacked).
+Some attacks on websites introduce code that returns an HTTP [`3xx` redirect](/search/docs/crawling-indexing/301-redirects) or inserts a cross-domain `rel="canonical"` `link` annotation into the HTML `<head>` or HTTP header, usually pointing to a URL hosting malicious or spammy content. In these cases, our algorithms may choose the malicious or spammy URL instead of the URL on the [compromised website](https://web.dev/articles/hacked).
 
 ## Syndicated content
 

@@ -1,9 +1,9 @@
-# How Google Interprets the robots.txt Specification
+# How Google interprets the robots.txt specification
 
 > Source: https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec
-> Last updated: 2026-04-14
+> Last updated: 2026-07-08 UTC.
 
-Google's automated crawlers support the [Robots Exclusion Protocol (REP)](https://www.rfc-editor.org/rfc/rfc9309.html). This means that before crawling a site, Google's crawlers download and parse the site's robots.txt file to extract information about which parts of the site may be crawled. The REP isn't applicable to Google's crawlers that are controlled by users (for example, feed subscriptions), or crawlers that are used to increase user safety (for example, malware analysis).
+Google's automated [crawlers](/crawling/docs/crawlers-fetchers/overview-google-crawlers) support the [Robots Exclusion Protocol (REP)](https://www.rfc-editor.org/rfc/rfc9309.html). This means that before crawling a site, Google's crawlers download and parse the site's robots.txt file to extract information about which parts of the site may be crawled. The REP isn't applicable to Google's crawlers that are controlled by users (for example, feed subscriptions), or crawlers that are used to increase user safety (for example, malware analysis).
 
 This page describes Google's interpretation of the REP. For the original standard, check [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html).
 
@@ -144,7 +144,7 @@ If Google finds a robots.txt file but can't fetch it, Google follows this behavi
 
 ### Other errors
 
-A robots.txt file which cannot be fetched due to DNS or networking issues, such as timeouts, invalid responses, reset or interrupted connections, and HTTP chunking errors, is treated as a server error.
+A robots.txt file which cannot be fetched due to DNS or networking issues, such as timeouts, invalid responses, reset or interrupted connections, and HTTP chunking errors, is treated as a [server error](#server-error).
 
 ## Caching
 
@@ -219,7 +219,7 @@ Usage:
 sitemap: [absoluteURL]
 ```
 
-The `[absoluteURL]` line points to the location of a sitemap or sitemap index file. It must be a fully qualified URL, including the protocol and host, and doesn't have to be URL-encoded. The URL doesn't have to be on the same host as the robots.txt file. You can specify multiple `sitemap` fields. The sitemap field isn't tied to any specific user agent and may be followed by all crawlers, provided it isn't disallowed for crawling.
+The `[absoluteURL]` line points to the location of a sitemap or sitemap index file. It must be a fully qualified URL, including the protocol and host, and doesn't have to be URL-encoded. The URL doesn't have to be on the same host as the robots.txt file. You can specify multiple `sitemap` fields, with no limit to the number of sitemaps you can include. The sitemap field isn't tied to any specific user agent and may be followed by all crawlers, provided it isn't disallowed for crawling.
 
 For example:
 

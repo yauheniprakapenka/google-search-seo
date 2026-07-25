@@ -1,11 +1,9 @@
 # Overview of Search appearance topics
 
 > Source: https://developers.google.com/search/docs/appearance
-> Last updated: 2026-01-30 UTC
+> Last updated: 2026-06-15 UTC
 
 The topics in this section describe how you can influence how your website appears in Google Search.
-
-## Search appearance topics
 
 - AI features
 - Business details
@@ -47,13 +45,13 @@ Google uses structured data to understand the content on the page. You can help 
 - Education Q&A
 - Employer aggregate rating
 - Event
-- FAQ
 - Image metadata
 - Job posting
 - Local business
 - Math solver
 - Movie carousel
 - Organization
+- Practice problem
 - Product (Product snippet, Merchant listing, Variants, Merchant return policy, Merchant shipping policy, Loyalty program)
 - Profile page
 - Q&A
@@ -66,6 +64,8 @@ Google uses structured data to understand the content on the page. You can help 
 - Video
 
 ## Early Adopters Program
+
+To ensure the best experience for users, Google pilots some features with a limited number of organizations. Here are the features that are in the Early Adopters Program:
 
 - Package tracking
 - Structured data carousels (beta)

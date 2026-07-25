@@ -1,7 +1,7 @@
 # Product variant structured data (`ProductGroup`, `Product`)
 
 > Source: https://developers.google.com/search/docs/appearance/structured-data/product-variants
-> Last updated: 2025-12-10
+> Last updated: 2026-05-20 UTC.
 
 ![product variants in search results](/static/search/docs/images/product-variants.png)
 
@@ -771,6 +771,12 @@ The name of the brand of the `ProductGroup` (same across all variants). If you'r
 The description of the `ProductGroup`. For example, "Wool winter coat for cold weather climates". Make sure that the variant description is more specific and ideally uses words that identify the variant (such as color, size, material).
 
 In addition to the description of the `ProductGroup`, we recommend also adding a description of each variant at the `Product` level. See the [Product documentation](/search/docs/appearance/structured-data/merchant-listing#description) for details.
+
+`hasAdultConsideration`
+
+`[AdultOrientedEnumeration](https://schema.org/AdultOrientedEnumeration)`
+
+Indicates that the product is designated as adult-oriented for example, because it contains nudity or sexual content. If you sell products that are considered adult-oriented according to Google's [adult-oriented content policy](https://support.google.com/merchants/answer/12073010#res), you must use this property to label them as adult-oriented. While these products are eligible to be shown in Shopping ads and free listings, they are subject to age- and country-based restrictions. Labelling them ensures that Google can apply these restrictions and show appropriate and legally compliant content to people shopping online. While schema.org defines multiple values for `AdultOrientedEnumeration`, Google Search only supports the value `https://schema.org/SexualContentConsideration` for this property.
 
 `hasVariant`
 

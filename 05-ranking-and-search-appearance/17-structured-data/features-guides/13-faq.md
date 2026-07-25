@@ -1,7 +1,7 @@
 # FAQ (`FAQPage`, `Question`, `Answer`) structured data
 
 > Source: https://developers.google.com/search/docs/appearance/structured-data/faqpage
-> Last updated: 2026-05-08 UTC
+> Last updated: 2026-07-24 UTC.
 
 **Upcoming deprecation:** As of May 7, 2026, FAQ rich results are no longer appearing in Google Search. We will be dropping the FAQ search appearance, rich result report, and support in the Rich results test in June 2026.
 

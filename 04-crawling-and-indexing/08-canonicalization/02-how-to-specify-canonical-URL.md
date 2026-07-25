@@ -1,9 +1,9 @@
 # How to specify a canonical URL with rel="canonical" and other methods
 
 > Source: https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls
-> Last updated: 2026-03-27
+> Last updated: 2026-07-10 UTC.
 
-To specify a [canonical URL](https://developers.google.com/search/docs/crawling-indexing/canonicalization) for duplicate or very similar pages to Google Search, you can indicate your preference using a number of methods. These are, in order of how strongly they can influence canonicalization:
+To specify a [canonical URL](/search/docs/crawling-indexing/canonicalization) for duplicate or very similar pages to Google Search, you can indicate your preference using a number of methods. These are, in order of how strongly they can influence canonicalization:
 
 - [**Redirects**](#redirects-method): A strong signal that the target of the redirect should become canonical.
 - [**`rel="canonical"` `link` annotations**](#rel-canonical-link-method): A strong signal that the specified URL should become canonical.
@@ -11,7 +11,7 @@ To specify a [canonical URL](https://developers.google.com/search/docs/crawling-
 
 Keep in mind that these methods can stack and thus become more effective when combined. This means that when you use two or more of the methods, that will increase the chance of your preferred canonical URL appearing in search results.
 
-While we encourage you to use these methods, none of them are required; your site will likely do just fine without specifying a canonical preference. That's because if you don't specify a canonical URL, Google will identify which version of the URL is objectively the best version to show to users in Search.
+While we encourage you to use these methods, none of them are required; your site will likely do just fine without specifying a canonical preference. That's because if you don't specify a canonical URL, [Google will identify which version of the URL is objectively the best version to show to users in Search](/search/docs/crawling-indexing/canonicalization#canonical-how).
 
 **If you use a CMS, such as WordPress, Wix, or Blogger**, you might not be able to edit your HTML directly. Instead, your CMS might have a search engine settings page or some other mechanism to tell search engines about the canonical URL. Search for instructions about modifying the `<head>` of your page on your CMS (for example, search for "wordpress set the canonical element").
 
@@ -31,9 +31,10 @@ For all canonicalization methods, follow these best practices:
 - **Don't** use the robots.txt file for canonicalization purposes. Google may still index URLs that are disallowed in robots.txt without their content.
 - **Don't** use the URL removal tool for canonicalization. It hides *all* versions of a URL from Search.
 - **Don't** specify different URLs as canonical for the same page using different canonicalization techniques (for example, don't specify one URL in a sitemap, but a different URL for that same page using `rel="canonical"`).
-- **Don't** specify a URL fragment as canonical, as Google generally doesn't support URL fragments.
-- **We don't recommend** using `noindex` to prevent selection of a canonical page within a single site, because it will completely block the page from Search. `rel="canonical"` `link` annotations are the preferred solution.
-- If you're using `hreflang` elements, make sure to specify a canonical page in the same language, or the best possible substitute language if a canonical page doesn't exist for the same language.
+- **Don't** specify a URL fragment as canonical, as [Google generally doesn't support URL fragments](/search/docs/crawling-indexing/url-structure#fragments).
+- **Do** include a `rel="canonical"` link on the canonical page itself (also known as a self-referential canonical).
+- **We don't recommend** using [`noindex`](/search/docs/crawling-indexing/block-indexing) to prevent selection of a canonical page within a single site, because it will completely block the page from Search. `rel="canonical"` `link` annotations are the preferred solution.
+- If you're using [`hreflang` elements](/search/docs/specialty/international/localized-versions), make sure to specify a canonical page in the same language, or the best possible substitute language if a canonical page doesn't exist for the same language.
 - When linking within your site, link to the canonical URL rather than a duplicate URL. Linking consistently to the URL that you consider to be canonical helps Google understand your preference.
 - If you're using client-side rendering with JavaScript, it's important to make sure that the information about the canonical URL is as clear as possible. The best way to do this is to specify the canonical URL in the HTML source code and make sure that JavaScript doesn't change the canonical link element. If you can't set the canonical URL in the HTML source code, leave it out and only set it with JavaScript. This ensures that the information about the canonical URL is as clear as possible.
 
@@ -51,7 +52,7 @@ The following table compares the different canonicalization methods, highlightin
 
 ## Use `rel="canonical"` `link` annotations
 
-Google supports explicit `rel` canonical `link` annotations as described in [RFC 6596](https://www.rfc-editor.org/rfc/rfc6596). `rel="canonical"` annotations that suggest alternate versions of a page are ignored; specifically, `rel="canonical"` annotations with `hreflang`, `lang`, `media`, and `type` attributes are not used for canonicalization. Instead, use the appropriate `link` annotations to specify alternate versions of a page; for example, `link` `rel="alternate"` `hreflang` for language and country annotations.
+Google supports explicit `rel` canonical `link` annotations as described in [RFC 6596](https://www.rfc-editor.org/rfc/rfc6596). `rel="canonical"` annotations that suggest alternate versions of a page are ignored; specifically, `rel="canonical"` annotations with `hreflang`, `lang`, `media`, and `type` attributes are not used for canonicalization. Instead, use the appropriate `link` annotations to specify alternate versions of a page; for example, `link` `rel="alternate"` [`hreflang`](/search/docs/specialty/international/localized-versions) for language and country annotations.
 
 You can provide the `rel="canonical"` `link` annotations in two ways:
 
@@ -78,6 +79,8 @@ Suppose you want `https://example.com/dresses/green-dresses` to be the canonical
 <!-- rest of the HTML -->
 ```
 
+We recommend adding this same self-referential `rel="canonical"` link element to the canonical page itself as well.
+
 2. If the canonical page has a mobile variant on a separate URL, add a `rel="alternate"` `link` element to it, pointing to the mobile version of the page:
 
 ```html
@@ -99,13 +102,13 @@ Use absolute paths rather than relative paths with the `rel="canonical"` `link` 
 
 **Bad example**: `/dresses/green/green-dress.html`
 
-The `rel="canonical"` `link element` is only accepted if it appears in the `<head>` section of the HTML, so make sure at least the `<head>` section is valid HTML.
+The `rel="canonical"` `link element` is only accepted if it appears in the `<head>` section of the HTML, so make sure at least the [`<head>` section is valid HTML](/search/docs/crawling-indexing/valid-page-metadata).
 
-If you use JavaScript to add the `rel="canonical"` `link` element, make sure to inject the canonical link element properly.
+If you use JavaScript to add the `rel="canonical"` `link` element, make sure to [inject the canonical link element properly](/search/docs/crawling-indexing/javascript/javascript-seo-basics#properly-inject-canonical-links).
 
 ### The `rel="canonical"` HTTP header
 
-If you can change the configuration of your server, you can use a `link` HTTP response header with a `rel="canonical"` target attribute as defined by [RFC5988](https://www.rfc-editor.org/rfc/rfc5988.html#section-5.1) rather than an HTML element to indicate the canonical URL for a document supported by Search, including non-HTML documents such as PDF files.
+If you can change the configuration of your server, you can use a `link` [HTTP response header](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields) with a `rel="canonical"` target attribute as defined by [RFC5988](https://www.rfc-editor.org/rfc/rfc5988.html#section-5.1) rather than an HTML element to indicate the canonical URL for a document supported by Search, including non-HTML documents such as PDF files.
 
 Google supports this method for web search results only.
 
@@ -123,13 +126,13 @@ As with the `rel="canonical"` `link` element, use absolute URLs in the `rel="can
 
 ## Use a sitemap
 
-Pick a canonical URL for each of your pages and submit them in a [sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview). All pages listed in a sitemap are suggested as canonicals; Google will decide which pages (if any) are duplicates, based on similarity of content.
+Pick a canonical URL for each of your pages and submit them in a [sitemap](/search/docs/crawling-indexing/sitemaps/overview). All pages listed in a sitemap are suggested as canonicals; Google will decide which pages (if any) are duplicates, based on similarity of content.
 
 Supplying the preferred canonical URLs in the sitemaps is a straightforward way of defining canonicals for a large site, and sitemaps are a useful way to tell Google which pages you consider most important on your site.
 
 ## Use redirects
 
-Use this method when you want to get rid of existing duplicate pages. All permanent redirection methods have the same effect on Google Search, however the time it takes for search engines to notice the different redirect methods may differ.
+Use this method when you want to get rid of existing duplicate pages. All [permanent redirection methods](/search/docs/crawling-indexing/301-redirects) have the same effect on Google Search, however the time it takes for search engines to notice the different redirect methods may differ.
 
 For the quickest effect, use HTTP (also known as *server-side*) redirects.
 
@@ -163,11 +166,11 @@ Although our systems prefer HTTPS pages over HTTP pages by default, you can ensu
 To prevent Google from incorrectly making the HTTP page canonical, **avoid** the following practices:
 
 - Avoid bad TLS/SSL certificates and HTTPS-to-HTTP redirects because they cause Google to prefer HTTP very strongly. Implementing HSTS cannot override this strong preference.
-- Don't include the HTTP version of your pages in your sitemap or `hreflang` annotations rather than the HTTPS version.
+- Don't include the HTTP version of your pages in your sitemap or [`hreflang` annotations](/search/docs/specialty/international/localized-versions) rather than the HTTPS version.
 - Avoid implementing your SSL/TLS certificate for the wrong host-variant. For example, `example.com` serving the certificate for `subdomain.example.com`. The certificate must match your complete site URL, or be a wildcard certificate that can be used for multiple subdomains on a domain.
 
 ### Prefer URLs in `hreflang` clusters
 
 To help with sites' localization efforts, for canonicalization purposes Google prefers URLs that are part of `hreflang` clusters. For example, if `https://example.com/de-de/cats` and `https://example.com/de-ch/cats` reciprocally point to each other with `hreflang` annotations, but not to `https://example.com/de-at/cats`, the pages for `de-de` and `de-ch` will be preferred as canonicals instead of the `/de-at/` page that doesn't appear in the `hreflang` cluster.
 
-Read more about [troubleshooting and fixing canonicalization issues](https://developers.google.com/search/docs/crawling-indexing/canonicalization-troubleshooting).
+Read more about [troubleshooting and fixing canonicalization issues](/search/docs/crawling-indexing/canonicalization-troubleshooting).
