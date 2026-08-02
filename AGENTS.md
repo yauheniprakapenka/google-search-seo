@@ -16,12 +16,12 @@ google-search-seo/
 ├── 02-search-essentials/                       # Обязательные требования Google Search
 │   ├── 01-google-search-essentials.md          #   Общий обзор essentials
 │   ├── 02-technical-requirements.md            #   Технические требования (HTTP 200, Googlebot не заблокирован, индексируемый контент)
-│   └── 03-spam-policies.md                     #   Политики против спама (cloaking, doorway, скрытый текст,-link spam и др.)
+│   └── 03-spam-policies.md                     #   Политики против спама (cloaking, doorway, скрытый текст, link spam и др.)
 ├── 03-seo-fundamentals/                        # Базовые принципы SEO
 │   ├── 01-seo-starter-guide.md                 #   SEO Starter Guide — полный гайд для начинающих
 │   ├── 02-how-google-search-works.md           #   Как работает поиск Google
 │   ├── 03-creating-helpful-content.md          #   Создание полезного контента (E-E-A-T)
-│   ├── 04-generative-ai-fundamentals/          #   SEO и генеративный ИИ
+│   ├── 04-generative-ai-fundamentals/          #   Оптимизация для генеративного ИИ и рекомендации по использованию AI-контента
 │   ├── 05-maintaining-your-site-seo.md         #   Поддержание SEO сайта
 │   ├── 06-developers-guide-to-search.md        #   Гайд для разработчиков
 │   └── 07-do-you-need-an-seo.md                #   Нужен ли вам SEO-специалист
@@ -31,7 +31,7 @@ google-search-seo/
 │   ├── 03-url-structure.md                     #   Структура URL
 │   ├── 04-links.md                             #   Ссылки и перелинковка
 │   ├── 05-sitemaps/                            #   Sitemap: создание, отправка, расширения (image, news, video)
-│   ├── 06-crawler-management/                  #   Управление краулером, список Googlebot'ов
+│   ├── 06-crawler-management/                  #   Повторный обход URL и устранение ошибок сканирования
 │   ├── 07-robots.txt/                          #   robots.txt: синтаксис и интерпретация Google
 │   ├── 08-canonicalization/                    #   Канонизация URL: указание, исправление проблем
 │   ├── 09-mobile-sites-mobile-first-indexing.md #  Мобильная индексация (mobile-first)
@@ -52,8 +52,8 @@ google-search-seo/
 │   ├── 09-local-features/                      #   Локальные функции (Business details, Top places)
 │   ├── 10-page-experience/                     #   Page Experience: Core Web Vitals, интерстициалы
 │   ├── 11-preferred-sources.md                 #   Предпочитаемые источники
-│   ├── 12-ranking-systems/                     #   Системы ранжирования (Core updates, Reviews system)
-│   ├── 13-ranking-updates/                     #   Обновления ранжирования
+│   ├── 12-ranking-systems/                     #   Системы ранжирования и Reviews system
+│   ├── 13-ranking-updates/                     #   Core updates и spam updates
 │   ├── 14-site-names.md                        #   Названия сайтов в выдаче
 │   ├── 15-sitelinks.md                         #   Сителинки
 │   ├── 16-snippet.md                           #   Сниппеты (meta description)
@@ -71,14 +71,17 @@ google-search-seo/
 │   └── 23-early-adopters-program/              #   Early adopters: package tracking, carousels
 ├── 06-monitoring-and-debugging/                # Мониторинг и отладка
 │   ├── 01-debugging-drops-in-search-traffic.md #   Отладка падения трафика
-│   ├── 02-monitor-with-search-console/         #   Search Console: начало, bubble chart, аналитика
-│   ├── 03-debug-with-search-operators/         #   Операторы поиска для отладки
-│   ├── 04-preventing-and-monitoring-abuse/     #   Защита от злоупотреблений: malware, спам, social engineering
+│   ├── 02-monitor-with-search-console/         #   Search Console: начало работы, аналитика, данные соцсетей и видеоплатформ
+│   ├── 03-debug-with-search-operators/         #   Операторы веб-поиска и поиска по изображениям
+│   ├── 04-preventing-and-monitoring-abuse/     #   Спам, malware, social engineering и Safe Browsing
 │   └── 05-Get-started-with-Google-Trends.md    #   Google Trends
-└── 07-site-specific-guides/                    # Руководства для конкретных типов сайтов
-    ├── 01-ecommerce/                           #   E-commerce: обзор, структурированные данные, URL, структура сайта
-    ├── 02-International-and-multilingual/      #   Международные и мультиязычные сайты: hreflang, locale
-    └── 03-explicit-content/                    #   Контент для взрослых: гайдлайны, обжалование флага
+├── 07-site-specific-guides/                    # Руководства для конкретных типов сайтов
+│   ├── 01-ecommerce/                           #   E-commerce: данные о товарах, отзывы, URL, структура сайта
+│   ├── 02-International-and-multilingual/      #   Международные и мультиязычные сайты: hreflang, locale
+│   └── 03-explicit-content/                    #   Контент для взрослых: гайдлайны, обжалование флага
+└── experts/                                    # Дополнительные мнения и материалы экспертов
+    ├── Google Search Central/                  #   Выпуски Search Off the Record и Google Search News
+    └── *.md                                    #   Тематические экспертные материалы
 ```
 
 ## Алгоритм работы агента при аудите страницы
