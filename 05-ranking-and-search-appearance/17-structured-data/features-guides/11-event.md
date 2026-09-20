@@ -1,43 +1,20 @@
-# Video (`VideoObject`, `Clip`, `BroadcastEvent`) structured data
+# Event (`Event`) structured data
 
 > Source: https://developers.google.com/search/docs/appearance/structured-data/event
+> Last updated: 2026-09-08 UTC
 
-> Last updated: 2026-02-13 UTC
+The event experience on Google makes it easier for people to discover and attend events through Google Search results and other Google products, like Google Maps. This feature brings many benefits:
 
+- **More interactive results**: Your events can be eligible to be displayed in the event experience on Google, featuring your logo, description of the event, and more.
+- **Increased chances of discovery and conversion**: People have a new way to interact with your event posting and click through to your site. Learn how [Eventbrite saw a 100% increase](/search/case-studies/eventbrite-case-study) in the typical year-over-year growth of traffic from Google Search.
 
-# Video (`VideoObject`, `Clip`, `BroadcastEvent`) structured data
+![How the event experience looks on Google Search](/static/search/docs/images/event-rich-result.png) ![Event details in Google Search, after clicking a specific event](/static/search/docs/images/event-details.png)
 
-While Google tries to automatically understand details about your video, you can influence the information that's shown in video results, such as the description, thumbnail URL, upload date, and duration, by marking up your video with [`VideoObject`](#video-object). Adding video structured data to your [watch pages](/search/docs/appearance/video#watch-page) can also make it easier for Google to find your video. Videos can appear in several different places on Google, including the main search results page, Video mode, Google Images, and [Google Discover](/search/docs/appearance/google-discover).
+There are three options to make your events eligible to appear on Google:
 
-![Video content in Google search results, the video tab, and Discover](/static/search/docs/images/video-on-google.png)
-
-Based on how you mark up your watch page, your videos may also be eligible for the following specific video features:
-
-**Video features**
-
-**LIVE badge**: Get a LIVE badge added to your video by marking your video with [`BroadcastEvent`](#broadcast-event). The LIVE badge can be applied to any public video that is live-streamed for any length of time. Here are a few examples:
-
--   Sporting events
--   Awards shows
--   Influencer videos
--   Live streaming video games
-
-Make sure you follow the [LIVE badge guidelines](#livestream-guidelines) and use the [Indexing API](/search/apis/indexing-api/v3/quickstart) to make sure Google crawls your page at the right time.
-
-![Video with a LIVE badge in search results](/static/search/docs/images/video-livestream.png)
-
-**Key moments**
-
-The key moments feature is a way for users to navigate video segments like chapters in a book, which can help users engage more deeply with your content. Google Search tries to automatically detect the segments in your video and show key moments to users, without any effort on your part. Alternatively, you can tell Google about the important points of your video. We will prioritize key moments set by you, either through structured data or the YouTube description.
-
--   **If your video is embedded on your web page or you're running a video platform**, there are two ways that you can enable key moments:
-    -   [`Clip` structured data](/search/docs/appearance/structured-data/video#clip): Specify the exact start and end time to each segment, and what label to display for each segment. This is supported in all languages where Google Search is available.
-    -   [`SeekToAction` structured data](/search/docs/appearance/structured-data/video#seek): Tell Google where timestamps typically go in your URL structure, so that Google can automatically identify key moments and link users to those points within the video. This is supported for the following languages: English, Spanish, Portuguese, Italian, Chinese, French, Japanese, German, Turkish, Korean, Dutch, and Russian.
--   **If your video is hosted on YouTube**, you can specify the exact timestamps and labels in the video description on YouTube. Check out the [best practices for marking timestamps in YouTube descriptions](/search/docs/appearance/structured-data/video#best-practices-youtube). This is supported in all languages where Google Search is available. If you want to enable Video Chapters on YouTube, follow these [additional guidelines](https://support.google.com/youtube/answer/9884579).
-
-To opt out of the key moments feature completely (including any efforts Google may make to show key moments automatically for your video), use the [`nosnippet`](/search/docs/appearance/snippet#nosnippet) `meta` tag.
-
-![Video with key moments in search results](/static/search/docs/images/video-key-moments.png)
+- **If you use a third-party website to post events** (for example, you post events on ticketing websites or social platforms), check to see if your event publisher is already participating in the event search experience on Google. If your event publisher is integrated with Google, continue to post your events on the third-party website. You can stop reading here.
+- **If you use a CMS (for example, WordPress) and you don't have access to your HTML**, check with your CMS to see if there's a plugin that can add structured data to your site for you. Alternatively, you can use the [Data Highlighter](https://support.google.com/webmasters/answer/2774099) to tell Google about your events without editing the HTML of your site.
+- **If you're comfortable editing your HTML**, [use structured data to directly integrate](#add-structured-data) with Google. You'll need to edit the HTML of the event pages.
 
 ## How to add structured data
 
@@ -45,680 +22,510 @@ Structured data is a standardized format for providing information about a page 
 
 Here's an overview of how to build, test, and release structured data.
 
-1.  Add the [required properties](#structured-data-type-definitions). Based on the format you're using, learn where to [insert structured data on the page](/search/docs/appearance/structured-data/intro-structured-data#format-placement).
-    
-    **Using a CMS?** It may be easier to use a plugin that's integrated into your CMS.  
-    **Using JavaScript?** Learn how to [generate structured data with JavaScript](/search/docs/appearance/structured-data/generate-structured-data-with-javascript).
-    
-2.  Follow the [guidelines](#guidelines).
-3.  Validate your code using the [Rich Results Test](https://search.google.com/test/rich-results) and fix any critical errors. Consider also fixing any non-critical issues that may be flagged in the tool, as they can help improve the quality of your structured data (however, this isn't necessary to be eligible for rich results).
-4.  Deploy a few pages that include your structured data and use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289) to test how Google sees the page. Be sure that your page is accessible to Google and not blocked by a robots.txt file, the `noindex` tag, or login requirements. If the page looks okay, you can [ask Google to recrawl your URLs](/search/docs/crawling-indexing/ask-google-to-recrawl).
-    
-    **Note**: Allow time for re-crawling and re-indexing. Remember that it may take several days after publishing a page for Google to find and crawl it.
-    
-5.  To keep Google informed of future changes, we recommend that you [submit a sitemap](/search/docs/crawling-indexing/sitemaps/build-sitemap). You can automate this with the [Search Console Sitemap API](/webmaster-tools/v1/sitemaps).
+1. Add the [required properties](#structured-data-type-definitions). Based on the format you're using, learn where to [insert structured data on the page](/search/docs/appearance/structured-data/intro-structured-data#format-placement). **Using a CMS?** It may be easier to use a plugin that's integrated into your CMS.
+
+   **Using JavaScript?** Learn how to [generate structured data with JavaScript](/search/docs/appearance/structured-data/generate-structured-data-with-javascript).
+2. Follow the [guidelines](#guidelines).
+3. Validate your code using the [Rich Results Test](https://search.google.com/test/rich-results) and fix any critical errors. Consider also fixing any non-critical issues that may be flagged in the tool, as they can help improve the quality of your structured data (however, this isn't necessary to be eligible for rich results).
+4. Deploy a few pages that include your structured data and use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289) to test how Google sees the page. Be sure that your page is accessible to Google and not blocked by a robots.txt file, the `noindex` tag, or login requirements. If the page looks okay, you can [ask Google to recrawl your URLs](/search/docs/crawling-indexing/ask-google-to-recrawl). **Note**: Allow time for re-crawling and re-indexing. Remember that it may take several days after publishing a page for Google to find and crawl it.
+5. To keep Google informed of future changes, we recommend that you [submit a sitemap](/search/docs/crawling-indexing/sitemaps/build-sitemap). You can automate this with the [Search Console Sitemap API](/webmaster-tools/v1/sitemaps).
 
 ## Examples
 
-### Standard video result
+### Standard event
 
-![Example of standard video search results](/static/search/docs/images/video-search-results.png)
+Here's an example of standard `Event` in JSON-LD. A standard event means that the event is happening at a physical location only and the event is happened as scheduled. You can also use Microdata or RDFa syntax.
 
-Here's an example of a single [`VideoObject`](#video-object).
-
-JSON-LD
-
-<html> <head> <title>Introducing the self-driving bicycle in the Netherlands</title> <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "VideoObject", "name": "Introducing the self-driving bicycle in the Netherlands", "description": "This spring, Google is introducing the self-driving bicycle in Amsterdam, the world's premier cycling city. The Dutch cycle more than any other nation in the world, almost 900 kilometres per year per person, amounting to over 15 billion kilometres annually. The self-driving bicycle enables safe navigation through the city for Amsterdam residents, and furthers Google's ambition to improve urban mobility with technology. Google Netherlands takes enormous pride in the fact that a Dutch team worked on this innovation that will have great impact in their home country.", "thumbnailUrl": \[ "https://example.com/photos/1x1/photo.jpg", "https://example.com/photos/4x3/photo.jpg", "https://example.com/photos/16x9/photo.jpg" \], "uploadDate": "2024-03-31T08:00:00+08:00", "duration": "PT1M54S", "contentUrl": "https://www.example.com/video/123/file.mp4", "embedUrl": "https://www.example.com/embed/123", "interactionStatistic": { "@type": "InteractionCounter", "interactionType": { "@type": "WatchAction" }, "userInteractionCount": 5647018 }, "regionsAllowed": \["US", "NL"\] } </script> </head> <body> </body> </html>
-
-  
-
+```html
 <html>
   <head>
-    <title>Introducing the self-driving bicycle in the Netherlands</title>
+    <title>The Adventures of Kira and Morrison</title>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "name": "Introducing the self-driving bicycle in the Netherlands",
-      "description": "This spring, Google is introducing the self-driving bicycle in Amsterdam, the world's premier cycling city. The Dutch cycle more than any other nation in the world, almost 900 kilometres per year per person, amounting to over 15 billion kilometres annually. The self-driving bicycle enables safe navigation through the city for Amsterdam residents, and furthers Google's ambition to improve urban mobility with technology. Google Netherlands takes enormous pride in the fact that a Dutch team worked on this innovation that will have great impact in their home country.",
-      "thumbnailUrl": \[
+      "@type": "Event",
+      "name": "The Adventures of Kira and Morrison",
+      "startDate": "2025-07-21T19:00-05:00",
+      "endDate": "2025-07-21T23:00-05:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "Place",
+        "name": "Snickerpark Stadium",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "100 West Snickerpark Dr",
+          "addressLocality": "Snickertown",
+          "postalCode": "19019",
+          "addressRegion": "PA",
+          "addressCountry": "US"
+        }
+      },
+      "image": [
         "https://example.com/photos/1x1/photo.jpg",
         "https://example.com/photos/4x3/photo.jpg",
         "https://example.com/photos/16x9/photo.jpg"
-       \],
-      "uploadDate": "2024-03-31T08:00:00+08:00",
-      "duration": "PT1M54S",
-      "contentUrl": "https://www.example.com/video/123/file.mp4",
-      "embedUrl": "https://www.example.com/embed/123",
-      "interactionStatistic": {
-        "@type": "InteractionCounter",
-        "interactionType": { "@type": "WatchAction" },
-        "userInteractionCount": 5647018
+       ],
+      "description": "The Adventures of Kira and Morrison is coming to Snickertown in a can't miss performance.",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.example.com/event_offer/12345_202403180430",
+        "price": 30,
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2024-05-21T12:00"
       },
-      "regionsAllowed": \["US", "NL"\]
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "Kira and Morrison"
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kira and Morrison Music",
+        "url": "https://kiraandmorrisonmusic.com"
+      }
     }
     </script>
   </head>
   <body>
   </body>
 </html>
+```
 
-Microdata
+### Event with an updated status
 
-<html itemscope itemprop="VideoObject" itemtype="https://schema.org/VideoObject"> <head> <title itemprop="name">Introducing the self-driving bicycle in the Netherlands</title> </head> <body> <meta itemprop="uploadDate" content="2024-03-31T08:00:00+08:00" /> <meta itemprop="duration" content="PT1M54S" /> <p itemprop="description">This spring, Google is introducing the self-driving bicycle in Amsterdam, the world's premier cycling city. The Dutch cycle more than any other nation in the world, almost 900 kilometres per year per person, amounting to over 15 billion kilometres annually. The self-driving bicycle enables safe navigation through the city for Amsterdam residents, and furthers Google's ambition to improve urban mobility with technology. Google Netherlands takes enormous pride in the fact that a Dutch team worked on this innovation that will have great impact in their home country.</p> <div itemprop="interactionStatistic" itemtype="https://schema.org/InteractionCounter" itemscope> <meta itemprop="userInteractionCount" content="5647018" /> <meta itemprop="interactionType" itemtype="https://schema.org/WatchAction" /> </div> <link itemprop="embedUrl" href="https://www.example.com/embed/123" /> <meta itemprop="contentUrl" content="https://www.example.com/video/123/file.mp4" /> <meta itemprop="regionsAllowed" content="US" /> <meta itemprop="regionsAllowed" content="NL" /> <meta itemprop="thumbnailUrl" content="https://example.com/photos/1x1/photo.jpg" /> </body> </html>
+There are multiple ways to set the status of an event. Here are some common examples of events that have an updated status. For more information, refer to the [`eventStatus`](#eventstatus) property.
 
-  
+### Canceled
 
-<html itemscope itemprop="VideoObject" itemtype="https://schema.org/VideoObject">
-<head>
-  <title itemprop="name">Introducing the self-driving bicycle in the Netherlands</title>
-</head>
-<body>
-  <meta itemprop="uploadDate" content="2024-03-31T08:00:00+08:00" />
-  <meta itemprop="duration" content="PT1M54S" />
-  <p itemprop="description">This spring, Google is introducing the self-driving bicycle in Amsterdam, the world's premier cycling city. The Dutch cycle more than any other nation in the world, almost 900 kilometres per year per person, amounting to over 15 billion kilometres annually. The self-driving bicycle enables safe navigation through the city for Amsterdam residents, and furthers Google's ambition to improve urban mobility with technology. Google Netherlands takes enormous pride in the fact that a Dutch team worked on this innovation that will have great impact in their home country.</p>
-  <div itemprop="interactionStatistic" itemtype="https://schema.org/InteractionCounter" itemscope>
-    <meta itemprop="userInteractionCount" content="5647018" />
-    <meta itemprop="interactionType" itemtype="https://schema.org/WatchAction" />
-  </div>
-  <link itemprop="embedUrl" href="https://www.example.com/embed/123" />
-  <meta itemprop="contentUrl" content="https://www.example.com/video/123/file.mp4" />
-  <meta itemprop="regionsAllowed" content="US" />
-  <meta itemprop="regionsAllowed" content="NL" />
-  <meta itemprop="thumbnailUrl" content="https://example.com/photos/1x1/photo.jpg" />
-</body>
-</html>
+Here's an example of an event that's been canceled.
 
-### LIVE badge
-
-![Example of a video in search results with a LIVE badge](/static/search/docs/images/video-livestream.png)
-
-Here's an example of [`VideoObject`](#video-object) and [`BroadcastEvent`](#broadcast-event).
-
-JSON-LD
-
-<html> <head> <title>Bald Eagle at the Park - Livestream</title> <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "VideoObject", "contentURL": "https://example.com/bald-eagle-at-the-park.mp4", "description": "Bald eagle at the park livestream.", "duration": "PT37M14S", "embedUrl": "https://example.com/bald-eagle-at-the-park", "expires": "2024-10-30T14:37:14+00:00", "regionsAllowed": "US", "interactionStatistic": { "@type": "InteractionCounter", "interactionType": { "@type": "WatchAction" }, "userInteractionCount": 4756 }, "name": "Bald eagle nest livestream!", "thumbnailUrl": "https://example.com/bald-eagle-at-the-park", "uploadDate": "2024-10-27T14:00:00+00:00", "publication": \[ { "@type": "BroadcastEvent", "isLiveBroadcast": true, "startDate": "2024-10-27T14:00:00+00:00", "endDate": "2024-10-27T14:37:14+00:00" }, { "@type": "BroadcastEvent", "isLiveBroadcast": true, "startDate": "2024-10-27T18:00:00+00:00", "endDate": "2024-10-27T18:37:14+00:00" } \] } </script> </head> <body> </body> </html>
-
-  
-
+```html
 <html>
   <head>
-    <title>Bald Eagle at the Park - Livestream</title>
+    <title>The Adventures of Kira and Morrison</title>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "contentURL": "https://example.com/bald-eagle-at-the-park.mp4",
-      "description": "Bald eagle at the park livestream.",
-      "duration": "PT37M14S",
-      "embedUrl": "https://example.com/bald-eagle-at-the-park",
-      "expires": "2024-10-30T14:37:14+00:00",
-      "regionsAllowed": "US",
-      "interactionStatistic": {
-        "@type": "InteractionCounter",
-        "interactionType": { "@type": "WatchAction" },
-        "userInteractionCount": 4756
-      },
-      "name": "Bald eagle nest livestream!",
-      "thumbnailUrl": "https://example.com/bald-eagle-at-the-park",
-      "uploadDate": "2024-10-27T14:00:00+00:00",
-      "publication": \[
-        {
-          "@type": "BroadcastEvent",
-          "isLiveBroadcast": true,
-          "startDate": "2024-10-27T14:00:00+00:00",
-          "endDate": "2024-10-27T14:37:14+00:00"
-        },
-        {
-          "@type": "BroadcastEvent",
-          "isLiveBroadcast": true,
-          "startDate": "2024-10-27T18:00:00+00:00",
-          "endDate": "2024-10-27T18:37:14+00:00"
+      "@type": "Event",
+      "name": "The Adventures of Kira and Morrison",
+      "startDate": "2025-07-21T19:00-05:00",
+      "endDate": "2025-07-21T23:00-05:00",
+      "eventStatus": "https://schema.org/EventCancelled",
+      "location": {
+        "@type": "Place",
+        "name": "Snickerpark Stadium",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "100 West Snickerpark Dr",
+          "addressLocality": "Snickertown",
+          "postalCode": "19019",
+          "addressRegion": "PA",
+          "addressCountry": "US"
         }
-      \]
-    }
-    </script>
-  </head>
-  <body>
-  </body>
-</html>
-
-Microdata
-
-<html itemscope itemprop="VideoObject" itemtype="https://schema.org/VideoObject"> <head> <title itemprop="name">Bald Eagle at the Park - Livestream</title> </head> <body> <meta itemprop="uploadDate" content="2024-10-27T14:00:00+00:00" /> <meta itemprop="duration" content="PT37M14S" /> <p itemprop="description">Bald eagle at the park livestream.</p> <div itemprop="interactionStatistic" itemtype="https://schema.org/InteractionCounter" itemscope> <meta itemprop="userInteractionCount" content="4756" /> <meta itemprop="interactionType" itemtype="https://schema.org/WatchAction" /> </div> <link itemprop="embedUrl" href="https://example.com/bald-eagle-at-the-park" /> <meta itemprop="expires" content="2024-10-30T14:37:14+00:00" /> <meta itemprop="contentUrl" content="https://example.com/bald-eagle-at-the-park.mp4" /> <meta itemprop="regionsAllowed" content="US" /> <meta itemprop="thumbnailUrl" content="https://example.com/bald-eagle-at-the-park" /> <div itemprop="publication" itemtype="https://schema.org/BroadcastEvent" itemscope> <meta itemprop="isLiveBroadcast" content="true" /> <meta itemprop="startDate" content="2024-10-27T14:00:00+00:00" /> <meta itemprop="endDate" content="2024-10-27T14:37:14+00:00" /> </div> <div itemprop="publication" itemtype="https://schema.org/BroadcastEvent" itemscope> <meta itemprop="isLiveBroadcast" content="true" /> <meta itemprop="startDate" content="2024-10-27T18:00:00+00:00" /> <meta itemprop="endDate" content="2024-10-27T18:37:14+00:00" /> </div> </body> </html>
-
-  
-
-<html itemscope itemprop="VideoObject" itemtype="https://schema.org/VideoObject">
-<head>
-  <title itemprop="name">Bald Eagle at the Park - Livestream</title>
-</head>
-<body>
-  <meta itemprop="uploadDate" content="2024-10-27T14:00:00+00:00" />
-  <meta itemprop="duration" content="PT37M14S" />
-  <p itemprop="description">Bald eagle at the park livestream.</p>
-  <div itemprop="interactionStatistic" itemtype="https://schema.org/InteractionCounter" itemscope>
-    <meta itemprop="userInteractionCount" content="4756" />
-    <meta itemprop="interactionType" itemtype="https://schema.org/WatchAction" />
-  </div>
-  <link itemprop="embedUrl" href="https://example.com/bald-eagle-at-the-park" />
-  <meta itemprop="expires" content="2024-10-30T14:37:14+00:00" />
-  <meta itemprop="contentUrl" content="https://example.com/bald-eagle-at-the-park.mp4" />
-  <meta itemprop="regionsAllowed" content="US" />
-  <meta itemprop="thumbnailUrl" content="https://example.com/bald-eagle-at-the-park" />
-  <div itemprop="publication" itemtype="https://schema.org/BroadcastEvent" itemscope>
-    <meta itemprop="isLiveBroadcast" content="true" />
-    <meta itemprop="startDate" content="2024-10-27T14:00:00+00:00" />
-    <meta itemprop="endDate" content="2024-10-27T14:37:14+00:00" />
-  </div>
-  <div itemprop="publication" itemtype="https://schema.org/BroadcastEvent" itemscope>
-    <meta itemprop="isLiveBroadcast" content="true" />
-    <meta itemprop="startDate" content="2024-10-27T18:00:00+00:00" />
-    <meta itemprop="endDate" content="2024-10-27T18:37:14+00:00" />
-  </div>
-</body>
-</html>
-
-### `Clip`
-
-![Example of a video in search results with key moments](/static/search/docs/images/video-key-moments.png)
-
-Here's an example of [`VideoObject`](#video-object) and [`Clip`](#clip).
-
-JSON-LD
-
-<html> <head> <title>Cat jumps over the fence</title> <script type="application/ld+json"> { "@context": "https://schema.org/", "@type": "VideoObject", "name": "Cat video", "duration": "PT10M", "uploadDate": "2024-07-19T08:00:00+08:00", "thumbnailUrl": "https://www.example.com/cat.jpg", "description": "Watch this cat jump over a fence!", "contentUrl": "https://www.example.com/cat\_video\_full.mp4", "ineligibleRegion": "US", "hasPart": \[{ "@type": "Clip", "name": "Cat jumps", "startOffset": 30, "endOffset": 45, "url": "https://www.example.com/example?t=30" }, { "@type": "Clip", "name": "Cat misses the fence", "startOffset": 111, "endOffset": 150, "url": "https://www.example.com/example?t=111" }\] } </script> </head> <body> </body> </html>
-
-  
-
-<html>
-  <head>
-    <title>Cat jumps over the fence</title>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "VideoObject",
-      "name": "Cat video",
-      "duration": "PT10M",
-      "uploadDate": "2024-07-19T08:00:00+08:00",
-      "thumbnailUrl": "https://www.example.com/cat.jpg",
-      "description": "Watch this cat jump over a fence!",
-      "contentUrl": "https://www.example.com/cat\_video\_full.mp4",
-      "ineligibleRegion": "US",
-      "hasPart": \[{
-        "@type": "Clip",
-        "name": "Cat jumps",
-        "startOffset": 30,
-        "endOffset": 45,
-        "url": "https://www.example.com/example?t=30"
       },
-      {
-        "@type": "Clip",
-        "name": "Cat misses the fence",
-        "startOffset": 111,
-        "endOffset": 150,
-        "url": "https://www.example.com/example?t=111"
-      }\]
+      "image": [
+        "https://example.com/photos/1x1/photo.jpg",
+        "https://example.com/photos/4x3/photo.jpg",
+        "https://example.com/photos/16x9/photo.jpg"
+       ],
+      "description": "The Adventures of Kira and Morrison is coming to Snickertown in a can't miss performance.",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.example.com/event_offer/12345_202403180430",
+        "price": 30,
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2024-05-21T12:00"
+      },
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "Kira and Morrison"
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kira and Morrison Music",
+        "url": "https://kiraandmorrisonmusic.com"
+      }
     }
     </script>
   </head>
   <body>
   </body>
 </html>
+```
 
-Microdata
+### Rescheduled
 
-<html itemscope itemprop="VideoObject" itemtype="https://schema.org/VideoObject"> <head> <title itemprop="name">Cat jumps over the fence</title> </head> <body> <meta itemprop="uploadDate" content="2024-07-19" /> <meta itemprop="duration" content="P10M" /> <p itemprop="description">Watch this cat jump over a fence!</p> <div itemprop="interactionStatistic" itemtype="https://schema.org/InteractionCounter" itemscope> <meta itemprop="userInteractionCount" content="5647018" /> <meta itemprop="interactionType" itemtype="https://schema.org/WatchAction" /> </div> <div itemprop="hasPart" itemtype="https://schema.org/Clip" itemscope> <meta itemprop="name" content="Cat jumps" /> <meta itemprop="startOffset" content="30" /> <meta itemprop="endOffset" content="45" /> <meta itemprop="url" content="https://www.example.com/example?t=30" /> </div> <div itemprop="hasPart" itemtype="https://schema.org/Clip" itemscope> <meta itemprop="name" content="Cat misses the fence" /> <meta itemprop="startOffset" content="111" /> <meta itemprop="endOffset" content="150" /> <meta itemprop="url" content="https://www.example.com/example?t=111" /> </div> <link itemprop="embedUrl" href="https://www.example.com/embed/123" /> <meta itemprop="contentUrl" content="https://www.example.com/cat\_video\_full.mp4" /> <meta itemprop="ineligibleRegion" content="US" /> <meta itemprop="thumbnailUrl" content="https://www.example.com/cat.jpg" /> </body> </html>
+Here's an example of an event that's been rescheduled.
 
-  
-
-<html itemscope itemprop="VideoObject" itemtype="https://schema.org/VideoObject">
-<head>
-  <title itemprop="name">Cat jumps over the fence</title>
-</head>
-<body>
-  <meta itemprop="uploadDate" content="2024-07-19" />
-  <meta itemprop="duration" content="P10M" />
-  <p itemprop="description">Watch this cat jump over a fence!</p>
-  <div itemprop="interactionStatistic" itemtype="https://schema.org/InteractionCounter" itemscope>
-    <meta itemprop="userInteractionCount" content="5647018" />
-    <meta itemprop="interactionType" itemtype="https://schema.org/WatchAction" />
-  </div>
-  <div itemprop="hasPart" itemtype="https://schema.org/Clip" itemscope>
-    <meta itemprop="name" content="Cat jumps" />
-    <meta itemprop="startOffset" content="30" />
-    <meta itemprop="endOffset" content="45" />
-    <meta itemprop="url" content="https://www.example.com/example?t=30" />
-  </div>
-  <div itemprop="hasPart" itemtype="https://schema.org/Clip" itemscope>
-    <meta itemprop="name" content="Cat misses the fence" />
-    <meta itemprop="startOffset" content="111" />
-    <meta itemprop="endOffset" content="150" />
-    <meta itemprop="url" content="https://www.example.com/example?t=111" />
-  </div>
-  <link itemprop="embedUrl" href="https://www.example.com/embed/123" />
-  <meta itemprop="contentUrl" content="https://www.example.com/cat\_video\_full.mp4" />
-  <meta itemprop="ineligibleRegion" content="US" />
-  <meta itemprop="thumbnailUrl" content="https://www.example.com/cat.jpg" />
-</body>
-</html>
-
-### `SeekToAction`
-
-Here's an example of a single [`VideoObject`](#video-object) that includes the [additional properties](#seek) needed for `SeekToAction` markup.
-
-JSON-LD
-
-<html> <head> <title>John Smith (@johnsmith123) on VideoApp: My daily workout! #stayingfit</title> <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "VideoObject", "potentialAction" : { "@type": "SeekToAction", "target": "https://video.example.com/watch/videoID?t={seek\_to\_second\_number}", "startOffset-input": "required name=seek\_to\_second\_number" }, "name": "My daily workout!", "uploadDate": "2024-07-19T08:00:00+08:00", "thumbnailUrl": "https://www.example.com/daily-workout.jpg", "description": "My daily workout!", "embedUrl": "https://example.com/daily-workout" } </script> </head> <body> </body> </html>
-
-  
-
+```html
 <html>
   <head>
-    <title>John Smith (@johnsmith123) on VideoApp: My daily workout! #stayingfit</title>
+    <title>The Adventures of Kira and Morrison</title>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "VideoObject",
-      "potentialAction" : {
-        "@type": "SeekToAction",
-        "target": "https://video.example.com/watch/videoID?t={seek\_to\_second\_number}",
-        "startOffset-input": "required name=seek\_to\_second\_number"
+      "@type": "Event",
+      "name": "The Adventures of Kira and Morrison",
+      "startDate": "2025-07-21T19:00-05:00",
+      "endDate": "2025-07-21T23:00-05:00",
+      "eventStatus": "https://schema.org/EventRescheduled",
+      "previousStartDate": "2025-03-21T19:00-05:00",
+      "location": {
+        "@type": "Place",
+        "name": "Snickerpark Stadium",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "100 West Snickerpark Dr",
+          "addressLocality": "Snickertown",
+          "postalCode": "19019",
+          "addressRegion": "PA",
+          "addressCountry": "US"
+        }
       },
-      "name": "My daily workout!",
-      "uploadDate": "2024-07-19T08:00:00+08:00",
-      "thumbnailUrl": "https://www.example.com/daily-workout.jpg",
-      "description": "My daily workout!",
-      "embedUrl": "https://example.com/daily-workout"
+      "image": [
+        "https://example.com/photos/1x1/photo.jpg",
+        "https://example.com/photos/4x3/photo.jpg",
+        "https://example.com/photos/16x9/photo.jpg"
+       ],
+      "description": "The Adventures of Kira and Morrison is coming to Snickertown in a can't miss performance.",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.example.com/event_offer/12345_202403180430",
+        "price": 30,
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2024-05-21T12:00"
+      },
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "Kira and Morrison"
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Kira and Morrison Music",
+        "url": "https://kiraandmorrisonmusic.com"
+      }
     }
     </script>
   </head>
   <body>
   </body>
 </html>
+```
 
-Microdata
+## Region and language availability
 
-<html itemscope itemprop="VideoObject" itemtype="https://schema.org/VideoObject"> <head> <title itemprop="name">John Smith (@johnsmith123) on VideoApp: My daily workout! #stayingfit</title> </head> <body> <meta itemprop="uploadDate" content="2024-07-19" /> <p itemprop="description">My daily workout!</p> <div itemprop="potentialAction" itemtype="https://schema.org/SeekToAction" itemscope> <meta itemprop="target" content="https://video.example.com/watch/videoID?t={seek\_to\_second\_number}" /> <meta itemprop="startOffset-input" content="required name=seek\_to\_second\_number" /> </div> <link itemprop="embedUrl" href="https://example.com/daily-workout" /> <meta itemprop="thumbnailUrl" content="https://www.example.com/daily-workout.jpg" /> </body> </html>
+We are excited to bring the event search experience on Google to more regions around the world. The experience is available in the following regions and languages.
 
-  
-
-<html itemscope itemprop="VideoObject" itemtype="https://schema.org/VideoObject">
-<head>
-  <title itemprop="name">John Smith (@johnsmith123) on VideoApp: My daily workout! #stayingfit</title>
-</head>
-<body>
-  <meta itemprop="uploadDate" content="2024-07-19" />
-  <p itemprop="description">My daily workout!</p>
-  <div itemprop="potentialAction" itemtype="https://schema.org/SeekToAction" itemscope>
-    <meta itemprop="target" content="https://video.example.com/watch/videoID?t={seek\_to\_second\_number}" />
-    <meta itemprop="startOffset-input" content="required name=seek\_to\_second\_number" />
-  </div>
-  <link itemprop="embedUrl" href="https://example.com/daily-workout" />
-  <meta itemprop="thumbnailUrl" content="https://www.example.com/daily-workout.jpg" />
-</body>
-</html>
+| Region | Available languages |
+| --- | --- |
+| Australia | English |
+| Brazil | Portuguese |
+| Canada | English |
+| Germany | German |
+| India | English |
+| Latin America | Spanish |
+| Spain | Spanish |
+| United Kingdom | English |
+| United States | English |
 
 ## Guidelines
 
-For your video structured data to be eligible for usage in Google Search, you must follow the [Search Essentials](/search/docs/essentials), [general structured data guidelines](/search/docs/appearance/structured-data/sd-policies), and [video indexing requirements](/search/docs/appearance/video#indexing-criteria).
+You must follow these guidelines to be eligible to appear in the event search experience on Google.
 
-**Warning:** If Google detects that some of the markup on your pages may be using techniques that are outside our structured data guidelines, your site may receive a [manual action](https://support.google.com/webmasters/answer/9044175).
+**Warning:** If your site violates one or more of these guidelines, then Google may take [manual action](https://support.google.com/webmasters/answer/2604824) against it. Once you have remedied the problem, you can submit your site for [reconsideration](https://support.google.com/webmasters/answer/35843).
 
-In addition, we recommend that you check out these guidelines if they apply to your video content:
+- [Technical guidelines](#technical-guidelines)
+- [Content guidelines](#content-guidelines)
+- [Date and time guidelines](#date-time-best-guidelines)
+- [Search Essentials](/search/docs/essentials)
+- [General structured data guidelines](/search/docs/appearance/structured-data/sd-policies)
 
--   [Livestream guidelines](#livestream-guidelines)
--   [`Clip` and `SeekToAction` guidelines](#clip-guidelines)
--   [Best practices for marking timestamps on YouTube](#best-practices-youtube)
+### Technical guidelines
 
-### LIVE badge guidelines
+- The target page must contain structured data items from [event types on schema.org](https://schema.org/Event).
+- Each event MUST have a unique URL (a leaf page) and markup on that URL.
+- The event experience on Google only supports pages that focus on a single event. We recommend focusing on adding markup to your event posting pages instead of pages that list schedules or multiple events.
+- **Mark up multi-day events correctly:**
+  - If your event or ticket info is for an event that runs over several days, specify both the start and end dates of the event.
+  - If there are several different performances across different days, each with individual tickets, add a separate `Event` element for each performance.
 
-If you're adding [`BroadcastEvent`](#broadcast-event) to livestream videos, follow these guidelines:
+### Content guidelines
 
--   Don't use vulgar or potentially offensive language in the structured data.
--   To make sure Google crawls your livestream video at the right time, use the [Indexing API](/search/apis/indexing-api/v3/quickstart). Call the API for the following events:
-    
-    -   When the video goes live
-    -   When the video has stopped streaming, and the page's markup has been updated to indicate the `endDate`
-    -   Whenever a change has happened in the markup and Google needs to be notified
-    
-    The Indexing API only supports livestream videos.
-    
+- Each event must accurately describe the event name, start date, and location.
+- **Avoid marking non-events as events:**
+  - Don't promote non-event products or services such as "Trip package: San Diego/LA, 7 nights" as events.
+  - Don't add short-term discounts or purchase opportunities, such as: "Concert — buy your tickets now," or "Concert - 50% off until Saturday."
+  - Don't mark business hours as events, such as: "Adventure park open 8 AM to 5PM."
+  - Don't mark coupons or vouchers as events, such as: "5% off your first order."
+- Events must be bookable to the general public. Events that require a membership, or invitation prior to purchasing the ticket or attending the event are ineligible for the event experience.
+- Spectator events where the primary participants and audience are minors and occur on-premise of a school aren't eligible for the event experience. For example, student events occurring on school premises.
+- Virtual experiences that have no real-world component aren't supported. Events must take place in a physical location.
 
-### Best practices for marking timestamps on YouTube
+### Date and time guidelines
 
-If your video is hosted on YouTube, Google Search may automatically enable key moments for your video based on the video description on YouTube, and you may not have to mark specific timestamps in your YouTube description. However, you can tell us more explicitly about the important points in your video and we will prefer that information. The following diagram shows how timestamps and labels in a YouTube video description can appear in search results:
+When implementing the [`startDate`](#startdate), [`endDate`](#enddate), and [`previousStartDate`](#previous-start-date) properties, follow these date and time guidelines.
 
-![A video in search results with timestamps and labels](/static/search/docs/images/video-timestamps-on-youtube.png)
+#### How to specify timezones
 
-**1\. Label**: The name of the clip.  
-**2\. Timestamp**: When a clip starts.
+Specify the timezone by including the UTC or GMT time offset. If the event starts at 7pm on September 5 in New York, the `startDate` value would be GMT/UTC-5 during standard time and GMT/UTC-4 during daylight savings time. During standard time, `startDate` value would be `"2019-09-05T19:00:00-05:00"` or `"2019-09-05T19:00:00-04:00"` respectively. If no timezone is provided, Google uses the timezone of the event's location as specified in `location`.
 
-Keep in mind the following guidelines when formatting timestamps and labels for YouTube descriptions:
+#### Best practices
 
--   Format the timestamp in the following format: `[hour]:[minute]:[second]`. If there's no hour, you don't need to include it.
--   Specify the label of the timestamp on the same line as the timestamp.
--   Place each timestamp on a new line in the video description.
--   Link the timestamp to the specified point in the video.
--   Make sure the label contains at least one word.
--   List the timestamps in chronological order.
+- **Event takes place over a range of dates**: If the event takes place over the course of multiple days, indicate both the start and end date. Don't indicate the time if you don't know the time.
 
-If you want to enable Video Chapters on YouTube, follow these [additional guidelines](https://support.google.com/youtube/answer/9884579).
+  **Recommended**
 
-### `Clip` and `SeekToAction` guidelines
+  ```json
+  "startDate": "2019-07-01T10:00:00-05:00",
+  "endDate": "2019-07-26T17:00:00-05:00"
+  ```
 
-If you're adding [`Clip`](#clip) or [`SeekToAction`](#seek) structured data to mark video segments, follow these guidelines:
+  **Recommended**
 
--   The video must have the ability to deep link into some point other than the start point in the video URL. For example, `https://www.example.com/example?t=30` starts 30 seconds into a video.
--   `VideoObject` structured data must be added to a page where users can watch the video. It's a bad user experience to point users to a page where they can't watch the video.
--   The total video duration must be a minimum of 30 seconds.
--   The video must include the required properties that are listed in the [`VideoObject`](#video-object) structured data documentation.
--   **For `Clip` structured data only**: Make sure that no two clips on the same video defined on the same page share a start time.
--   **For `SeekToAction` structured data only**: Google must be able to [fetch your video content files](/search/docs/appearance/video#allow-fetch).
+  ```json
+  "startDate": "2019-07-01",
+  "endDate": "2019-07-26"
+  ```
+
+  **Not recommended**
+
+  ```json
+  "startDate": "2019-07-01T00:00:00+00:00",
+  "endDate": "2019-07-26T23:59:59+00:00"
+  ```
+- **Event starts at a specific hour**: If the event starts at a specific time, such as 5pm locally, use `2019-07-20T17:00:00`. Include the appropriate UTC offset (for example, use `2019-07-20T17:00:00-07:00` if the event is in California).
+- **Event is a day long event**: If the event is happening all day, don't specify a granular hour for the start date. For example, you can use `2019-08-15` as both the `startDate` and `endDate` for a day-long event.
+- **Event start hour isn't known**: If you don't know the hour for the start time, don't specify a granular hour. For example, you can use `2019-08-15` as both the `startDate` and `endDate`.
+
+  **Recommended**: `"startDate": "2025-07-21"`
+
+  **Not recommended**: `"startDate": "2019-08-15T00:00:00+00:00"`
+
+  **Not recommended**: `"startDate": "2019-07-20T00:00:00"`
+
+#### Examples of how Google interprets dates
+
+Here are some examples of how Google interprets start date and time:
+
+| Start date and time interpretations | |
+| --- | --- |
+| `2019-08-15T00:00:00+00:00` | Google interprets the `startTime` to be `2019-08-14T17:00:00-07:00` (if `location` is set to California) or `2019-08-15T09:00:00` (if `location` is set to Korea). |
+| `2019-08-15T23:59:59+00:00` | This doesn't mean the end of `2019-08-15` unless the event happens in the GMT timezone. Google interprets the `startTime` to be `2019-08-15T16:59:59-07:00` (if `location` is set to California) or `2019-08-16T08:59:59` (if `location` is set to Korea). |
+| `2019-07-10` | This means the date regardless of the timezone. When used in `startDate`, it means the event starts in the `location` from sometime in that day. When used in `endDate`, it means the event ends in the `location` from sometime in that day. |
+| `2019-07-20T00:00:00` | This means midnight on `2019-07-20` for the timezone where the event happens. This is also likely wrong unless the event was meant to start at midnight. |
 
 ## Structured data type definitions
 
-This section describes the structured data types related to video features in Google Search. You must include the required [`VideoObject`](#video-object) properties for your markup to be eligible for usage in Google Search. You can also include the recommended properties to add more information about your `VideoObject`, which could provide a better user experience. In addition to [`VideoObject`](#video-object), you can add the following data types to enable video enhancements in Google Search:
+The full definition of `Event` is available at [schema.org/Event](https://schema.org/Event).
 
--   **[`BroadcastEvent`](#broadcast-event)**: Mark up livestream videos to enable a LIVE badge on your video.
--   **[`Clip`](#clip)**: Mark important segments in your video to help users quickly navigate to specific points in a video.
--   **[`SeekToAction`](#seek)**: Enable key moments by indicating how your URL structure works, so that Google can automatically identify key moments and link users to those points within the video.
+You must include the required properties for your content to be eligible for display in enhanced search results. You can also include the recommended properties to add more information about your content, which could provide a better user experience.
 
-### `VideoObject`
+| Required properties | |
+| --- | --- |
+| `location` | `Place`  The location of the event. Set the `@type` to `Place`. Add the [`location.address`](#location-address) and [`location.name`](#location-name) properties. |
+| `location.address` | `PostalAddress`  The venue's detailed street address.  **Not recommended**: Sydney  **Recommended**: Bennelong Point, Sydney NSW 2000, Australia  **United States example**    **Japan examples**  You can write addresses for Japan in different ways, and Google still understands the address. Here's an example with the street address, locality, and country in different fields.    Here's an example of the street address and address country in different fields.    Here's an example of the entire address on one line.    **Best practices for addresses**: |
+| `name` | `Text`  The full title of the event. DO NOT put the name of the event location. Instead, use [`location.name`](#location-name) to specify the name of the location where the event is being held. **Not recommended**: Bill Graham Civic Auditorium  **Not recommended**: **LIMITED TIME SALE - Kesha and Macklemore Concert - $25**  **Recommended**: The Adventures of Kesha and Macklemore  **Recommended**: Meet and Greet: Kesha and Macklemore  **Best practices**: |
+| `startDate` | `DateTime`  The start date and start time of the event in [ISO-8601 format](https://en.wikipedia.org/wiki/ISO_8601). Add both the date and time so users can find events that fit into their schedule.  Make sure to follow the [Date and time guidelines](#date-time-best-guidelines). |
 
-The full definition of `VideoObject` is available at [schema.org/VideoObject](https://schema.org/VideoObject). If you don't include the required properties, Google may not be able to extract any information about the video. You can also include the recommended properties to add more information about your content, which could provide a better user experience.
-
-Required properties
-
-`name`
-
-`[Text](https://schema.org/Text)`
-
-The title of the video. Make sure to use unique text in the `name` property for each video on your site.
-
-`thumbnailUrl`
-
-Repeated `[URL](https://schema.org/URL)`
-
-A URL pointing to the video's unique thumbnail image file. Follow the [thumbnail image guidelines](/search/docs/appearance/video#valid-thumbnail).
-
-`uploadDate`
-
-`[DateTime](https://schema.org/DateTime)`
-
-The date and time the video was first published, in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601). We recommend that you provide timezone information; otherwise, we will default to [the timezone used by Googlebot](/search/docs/crawling-indexing/googlebot#timezone).
-
-Recommended properties
-
-`contentUrl`
-
-`[URL](https://schema.org/URL)`
-
-We recommend that your provide the `contentUrl` property, if possible. This is the most effective way for Google to fetch your video content files. If `contentUrl` isn't available, provide `embedUrl` as an alternative.
-
-A URL pointing to the video file's actual content bytes, in one of the [supported file types](/search/docs/appearance/video#supported-video-files). Don't link to the page where the video lives; this must be the URL of the video file's actual content bytes itself.
-
-"contentUrl": "https://www.example.com/video/123/file.mp4"
-
-Make sure to follow our [video best practices](/search/docs/appearance/video).
-
-**Tip**: You can ensure that only Googlebot accesses your content by using a [reverse DNS lookup](/search/docs/crawling-indexing/verifying-googlebot).
-
-`description`
-
-`[Text](https://schema.org/Text)`
-
-The description of the video. Make sure to use unique text in the `description` property for each video on your site. HTML tags are ignored.
-
-`duration`
-
-`[Duration](https://schema.org/Duration)`
-
-The duration of the video in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601#Durations). For example, `PT00H30M5S` represents a duration of "thirty minutes and five seconds".
-
-`embedUrl`
-
-`[URL](https://schema.org/URL)`
-
-We recommend that your provide the `contentUrl` property, if possible. This is the most effective way for Google to fetch your video content files. If `contentUrl` isn't available, provide `embedUrl` as an alternative.
-
-A URL pointing to a player for the specific video. Don't link to the page where the video lives; this must be the URL of the video player itself. Usually this is the information in the `src` attribute of an `<embed>` element.
-
-"embedUrl": "https://www.example.com/embed/123"
-
-Make sure to follow our [Video best practices](/search/docs/appearance/video).
-
-**Tip**: You can ensure that only Googlebot accesses your content by using a [reverse DNS lookup](/search/docs/crawling-indexing/verifying-googlebot).
-
-`expires`
-
-`[DateTime](https://schema.org/DateTime)`
-
-If applicable, the date and time after which the video will no longer be available, in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601). Don't supply this information if your video does not expire. We recommend that you provide timezone information; otherwise, we will default to [the timezone used by Googlebot](/search/docs/crawling-indexing/googlebot#timezone).
-
-`hasPart`
-
-If your video has important segments, nest the [required `Clip` properties](#clip) in your `VideoObject`. For example:
-
-<script type\="application/ld+json"\>
-{
-  "@context": "https://schema.org/",
-  "@type": "VideoObject",
-  "name": "Cat video",
-  **"hasPart": {
-    "@type": "Clip",
-    "name": "Cat jumps",
-    "startOffset": 30,
-    "url": "https://www.example.com/example?t=30"
-  }**
-}
-</script\>
-
-`ineligibleRegion`
-
-`[Place](https://schema.org/Place)`
-
-The region where the video isn't allowed, if applicable. If not specified, then Google assumes the video is allowed everywhere. Specify the countries in [two- or three-letter ISO 3166-1 format](https://en.wikipedia.org/wiki/ISO_3166-1). For multiple values, use multiple country codes (for example, a JSON-LD array or multiple `meta` tags in Microdata).
-
-We also support the [`regionsAllowed`](#regions-allowed) property. Add either `ineligibleRegion` or `regionsAllowed`, whichever makes sense for your site.
-
-`interactionStatistic`
-
-`[InteractionCounter](https://schema.org/InteractionCounter)`
-
-The number of times the video has been watched. For example:
-
-"interactionStatistic":
-  {
-    "@type": "InteractionCounter",
-    "interactionType": { "@type": "WatchAction" },
-    "userInteractionCount": 12345
+```json
+"location": {
+  "@type": "Place",
+  "name": "Snickerpark Stadium",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "100 West Snickerpark Dr",
+    "addressLocality": "Snickertown",
+    "postalCode": "19019",
+    "addressRegion": "PA",
+    "addressCountry": "US"
   }
-
-Starting October 2019, we changed our documentation to recommend `interactionStatistic` instead of `interactionCount`. While we continue to support `interactionCount`, we recommend `interactionStatistic` moving forward.
-
-`publication`
-
-If your video is happening live and you want to be eligible for the LIVE badge, nest the [`BroadcastEvent` properties](#broadcast-event) in your `VideoObject`. For example:
-
-<script type\="application/ld+json"\>
-{
-  "@context": "https://schema.org/",
-  "@type": "VideoObject",
-  "name": "Cat video",
-  **"publication": {
-    "@type": "BroadcastEvent",
-    "name": "First scheduled broadcast",
-    "isLiveBroadcast": true,
-    "startDate": "2018-10-27T14:00:00+00:00",
-    "endDate": "2018-10-27T14:37:14+00:00"
-  }**
 }
-</script\>
+```
 
-`regionsAllowed`
+```json
+"location": {
+  "@type": "Place",
+  "name": "ダイバーシティ東京",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "江東区青海1-10",
+    "addressLocality": "東京",
+    "addressCountry": "日本"
+  }
+}
+```
 
-`[Place](https://schema.org/Place)`
+```json
+"location": {
+  "@type": "Place",
+  "name": "ダイバーシティ東京",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "東京都江東区青海1-10",
+    "addressCountry": "日本"
+  }
+}
+```
 
-The regions where the video is allowed, if applicable. If not specified, then Google assumes the video is allowed everywhere. Specify the countries in [two- or three-letter ISO 3166-1 format](https://en.wikipedia.org/wiki/ISO_3166-1). For multiple values, use multiple country codes (for example, a JSON-LD array or multiple `meta` tags in Microdata).
+```json
+"location": {
+  "@type": "Place",
+  "name": "ダイバーシティ東京",
+  "address": {
+    "@type": "PostalAddress",
+    "name": "東京都江東区青海 1-1-10 ダイバーシティ東京プラザ"
+   }
+}
+```
 
-We also support the [`ineligibleRegion`](#ineligible-region) property. Add either `ineligibleRegion` or `regionsAllowed`, whichever makes sense for your site.
+- If the event happens across several streets, define the starting location and mention the full details in description.
+- If the event happens without a well-defined location, use the city name or the most representative location.
+- If the event happens at multiple locations at the same time, create different events for each location.
 
-### `BroadcastEvent`
+- Don't use the type of event as the name of the event. For example, "Concert" is not a descriptive name for an event.
+- Don't include extraneous information like URLs, prices, or performers. Instead, use the appropriate properties for those values.
+- Highlight a unique aspect of the event in the title. This helps users make faster decisions (for example, "feat. Q&A with the artist").
+- Don't add short-term promotions (for example, "buy your tickets now").
 
-To be eligible for display with a LIVE badge, nest the following properties in your [VideoObject](#video-object). While `BroadcastEvent` properties aren't required, you must add the following properties if you want your video to display with a LIVE badge.
+```json
+"startDate": "2025-07-21T19:00"
+```
 
-The full definition of `BroadcastEvent` is available at [schema.org/BroadcastEvent](https://schema.org/BroadcastEvent).
+| Recommended properties | |
+| --- | --- |
+| `description` | `Text`  Description of the event. Describe all details of the event to make it easier for users to understand and attend the event.  **Best practices**:   Google only shows a snippet of the full description. |
+| `endDate` | `DateTime`  The end date and end time of the event in [ISO-8601 format](https://en.wikipedia.org/wiki/ISO_8601). Use the same format as `startDate`. Add both the date and time so users can find events that fit into their schedule.  Make sure to follow the [Date and time guidelines](#date-time-best-guidelines). |
+| `eventStatus` | `EventStatusType` **Warning**: When the event status changes, **DON'T** remove the [`startDate`](#startdate). The `startDate` property is required to help identify the unique event. The status of the event. If you don't use this field, Google understands the `eventStatus` to be `EventScheduled`. You can use multiple statuses, if applicable. Here are the supported values.   |  |  | | --- | --- | | [`EventCancelled`](https://schema.org/EventCancelled) | The event has been canceled. Don't remove or change other properties (for example, don't remove `startDate` or `location`); instead, keep all values as the same as they were before the cancelation, and update the `eventStatus` to `EventCancelled`.     **Why?** Properties like `startDate` and `location` help identify the unique event and make sure people understand the new status of the event. | | [`EventPostponed`](https://schema.org/EventPostponed) | The event has been postponed to a later date, but the date isn't known yet. Keep the original date in the [`startDate`](#startdate) of the event until you know when the event will take place. Once you know the new date information, change the `eventStatus` to `EventRescheduled` and update the [`startDate`](#startdate) and [`endDate`](#enddate) with the new date information. Don't remove or change other properties (for example, don't remove the `startDate` or `location`); instead, keep all values as the same as they were before the postponement, and update the `eventStatus` to `EventPostponed`.     **Why?** Properties like `startDate` and `location` help identify the unique event and make sure people understand the new status of the event. | | [`EventRescheduled`](https://schema.org/EventRescheduled) | The event has been rescheduled to a later date. Update the [`startDate`](#startdate) and [`endDate`](#enddate) with the relevant new dates. Optionally, you can also mark the `eventStatus` field as rescheduled and add the `previousStartDate`. | | [`EventScheduled`](https://schema.org/EventScheduled) | The event is scheduled to happen. This value is the default status for events. If you don't set `eventStatus`, Google understands the event to be happening on schedule. |  ```json {   "@context": "https://schema.org",   "@type": "Event",   "eventStatus": "https://schema.org/EventCancelled",   "startDate": "2020-07-21T19:00" } ```  ```json {   "@context": "https://schema.org",   "@type": "Event",   "eventStatus": "https://schema.org/EventPostponed",   "startDate": "2020-07-21T19:00" } ```  ```json {   "@context": "https://schema.org",   "@type": "Event",   "eventStatus": "https://schema.org/EventRescheduled",   "startDate": "2020-07-21T19:00",   "endDate": "2025-07-21T23:00",   "previousStartDate": "2025-03-21T19:00" } ```  ```json {   "@context": "https://schema.org",   "@type": "Event",   "eventStatus": "https://schema.org/EventScheduled",   "startDate": "2020-07-21T19:00" } ``` |
+| `image` | Repeated `ImageObject` or `URL`  URL of an image or logo for the event or tour. Including an image helps users understand and engage with your event. We recommend that images are 1920px wide (the minimum width is 720px).  Additional image guidelines:  For example: |
+| `location.name` | `Text`  The detailed name of the place or venue where the event is being held. This property is only recommended for events that take place at a physical location. DO NOT put the title of the event in this field. Instead, use [`name`](#event-name) to specify the name of the event. **Not recommended**: San Francisco, CA  **Recommended**: Bill Graham Civic Auditorium  **Best practices**: |
+| `offers` | `Offer` A nested `Offer`, one for each ticket type. |
+| `offers.availability` | `Text`  One of the following:   **Note:** If the ticket is not yet on sale to the general public, you can omit availability and specify `validFrom`. |
+| `offers.price` | `Number`  The lowest available price available for your tickets, including service charges and fees. Don't forget to update it as prices change or tickets sell out.  If the event is available without payment, fees, or service charges, set the `price` to `0`. |
+| `offers.priceCurrency` | `Text`  The 3-letter ISO 4217 currency code. |
+| `offers.validFrom` | `DateTime`  The date and time when tickets go on sale (only required on date-restricted offers), in [ISO-8601 format](https://en.wikipedia.org/wiki/ISO_8601). |
+| `offers.url` | [URL](https://schema.org/URL)  The URL of a page providing the ability to buy tickets.    This URL must meet the following requirements: |
+| `organizer` | `Organization` or `Person`  The person or organization that is hosting the event. If you include `organizer`, we encourage you to add the following properties: |
+| `organizer.name` | `Text`  The name of the person or organization that's hosting the event. |
+| `organizer.url` | `URL`  The event host's domain URL. |
+| `performer` | `Person`  The participants performing at the event, such as artists and comedians. Use a nested `PerformingGroup` or `Person`, one for each performer. |
+| `performer.name` | [Text](https://schema.org/Text)  The name of the participant performing at the event, such as the name of the artist or comedian. |
+| `previousStartDate` | [DateTime](https://schema.org/DateTime)  The previously scheduled start date for the event if an event has been rescheduled. If you add `previousStartDate`, you must also add the [`eventStatus`](#eventstatus) property and set the `eventStatus` to `EventRescheduled`. Don't use other event statuses.  Make sure to follow the [Date and time guidelines](#date-time-best-guidelines).  For rescheduled events, the [`startDate`](#startdate) property must only be used for the newly scheduled start date. In the (rare) case of an event that has been postponed and rescheduled multiple times, this field may be repeated. |
 
-Required properties
+- Add a clear and concise description of the specific event.
+- Focus on the event details and not your site's features.
+- Don't repeat other facts like date and location; instead, add that information to the respective properties.
 
-`publication`
+```json
+"description": "The Adventures of Kira and Morrison is coming to Snickertown in a can't miss performance."
+```
 
-`[BroadcastEvent](https://schema.org/BroadcastEvent)`
+```json
+"endDate": "2025-07-21T23:00"
+```
 
-Describes when the video is to be streamed live. Can be a list or a single instance.
+- Image URLs must be crawlable and indexable. To check if Google can access your URLs, use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289).
+- Images must represent the marked up content.
+- Images must be in a file format that's [supported by Google Images](/search/docs/appearance/google-images#supported-image-formats).
+- For best results, we recommend providing multiple high-resolution images (minimum of 50K pixels when multiplying width and height) with the following aspect ratios: 16x9, 4x3, and 1x1.
 
-`publication.endDate`
+```json
+"image": [
+  "https://example.com/photos/1x1/photo.jpg",
+  "https://example.com/photos/4x3/photo.jpg",
+  "https://example.com/photos/16x9/photo.jpg"
+]
+```
 
-`[DateTime](https://schema.org/DateTime)`
+- Don't include a city name unless it is a city-wide event.
+- The `location.name` property must be the name of the venue or location, not a repeat of the title of the event. If you don't know the name of the location, don't use this property.
 
-Time and date of when the livestream ends or is expected to end, in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601).
+- `InStock`: Event tickets are in stock.
+- `SoldOut`: Event tickets are sold out.
+- `PreOrder`: Event tickets are available for preorder.
 
-It's required to provide the `endDate` once the video has finished and is no longer live. If the expected `endDate` is unknown prior to the livestream starting, we recommend providing an approximate `endDate`.
+```json
+"offers": {
+  "@type": "Offer",
+  "availability": "https://schema.org/InStock"
+}
+```
 
-If `endDate` is in the past or present, it indicates stream actually ended and is no longer live. If `endDate` is in the future, it indicates stream is scheduled to end at that time.
+```json
+"offers": {
+  "@type": "Offer",
+  "price": 30
+}
+```
 
-`publication.isLiveBroadcast`
+```json
+"offers": {
+  "@type": "Offer",
+  "priceCurrency": "USD"
+}
+```
 
-Boolean
+```json
+"offers": {
+  "@type": "Offer",
+  "validFrom": "2024-05-21T12:00"
+}
+```
 
-Set to `true` if the video is, has been, or will be streamed live.
+```json
+"offers": {
+  "@type": "Offer",
+  "url": "https://www.example.com/event_offer/12345_201803180430"
+}
+```
 
-`publication.startDate`
+- Direct to a landing page that clearly and predominantly provides the opportunity to buy a ticket offering admittance to that specific event to any user from the general public.
+- Be a link that a user could click the web page that contains the event.
+- Be crawlable by Googlebot (not blocked by robots.txt).
 
-`[DateTime](https://schema.org/DateTime)`
+- [`organizer.name`](#organizer-name)
+- [`organizer.url`](#organizer-url)
 
-Time and date of when the livestream starts or is expected to start, in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601). If `startDate` is in the past or present, it indicates that the stream actually started. If `startDate` is in the future, it indicates stream is scheduled to start at that time.
+```json
+"performer": {
+  "@type": "PerformingGroup",
+  "name": "Kira and Morrison"
+}
+```
 
-### `Clip`
-
-To tell Google what timestamp and label to use for the key moments feature, nest the following properties in your [`VideoObject`](/search/docs/appearance/structured-data/video#video-object). While `Clip` properties aren't required, you must add the following properties if you want Google to show the timestamps and labels that you specify for your video, instead of the video segments that Google may automatically show for your video.
-
-The full definition of `Clip` is available at [schema.org/Clip](https://schema.org/Clip).
-
-Required properties
-
-`name`
-
-`[Text](https://schema.org/Text)`
-
-A descriptive title for the content of the clip.
-
-`startOffset`
-
-`[Number](https://schema.org/Number)`
-
-The start time of the clip expressed as the number of seconds from the beginning of the work.
-
-`url`
-
-`[URL](https://schema.org/URL)`
-
-A URL that points to the start time of the clip.
-
-The clip URL must point to the same URL path as the video with additional query parameters that specify the time.
-
-For example, the following URL means the video starts at 2:00 minutes:
-
-"url": "https://www.example.com/example?t=120"
-
-Recommended properties
-
-`endOffset`
-
-`[Number](https://schema.org/Number)`
-
-The end time of the clip expressed as the number of seconds from the beginning of the work.
-
-### `SeekToAction`
-
-To tell Google how your URL structure works (so that Google can display key moments that are automatically identified for your video), nest the following properties in your [`VideoObject`](#video-object). While `SeekToAction` properties aren't required, you must add the following properties if you want Google to understand how your URL structure works, so Google can link users to a point within the video.
-
-If you prefer to identify key moments in a video yourself, instead of letting Google automatically identify key moments, use [`Clip` markup](#clip) instead of `SeekToAction`.
-
-The full definition of `SeekToAction` is available at [schema.org/SeekToAction](https://schema.org/SeekToAction).
-
-Required properties
-
-`potentialAction`
-
-`[SeekToAction](https://schema.org/SeekToAction)`
-
-Indicates a potential action. Include the following nested properties
-
--   [`potentialAction.startOffset-input`](#start-offset-input)
--   [`potentialAction.target`](#target)
-
-For example:
-
+```json
 {
   "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "potentialAction" : {
-    "@type": "SeekToAction",
-    "target": "https://video.example.com/watch/videoID?t={seek\_to\_second\_number}",
-    "startOffset-input": "required name=seek\_to\_second\_number"
-  }
+  "@type": "Event",
+  "previousStartDate": ["2020-03-21T19:00-05:00", "2020-03-20T19:00-05:00", "2020-03-21T19:00-05:00"],
+  "eventStatus": "https://schema.org/EventRescheduled",
+  "startDate": "2020-07-21T19:00-05:00"
 }
-
-`potentialAction.startOffset-input`
-
-`[Text](https://schema.org/Text)`
-
-The placeholder string that Google will identify as your timestamp structure and then replace with the number of seconds to skip to. Use the following value:
-
-"startOffset-input": "**required name=seek\_to\_second\_number**"
-
-`startOffset-input` is an annotated property. See the [`Potential Actions`](https://schema.org/docs/actions.html#part-4) page for more information.
-
-`potentialAction.target`
-
-`[EntryPoint](https://schema.org/EntryPoint)`
-
-The URL of the page that contains this `VideoObject`, including a placeholder in the URL structure that indicates where Google can insert the number of seconds to skip to in the video. This is how Google understands your URL structure and how you format your timestamps. Replace the timestamp part of the URL with the following placeholder string:
-
-{seek\_to\_second\_number}
-
-For example, replace the timestamp part of the URL:
-
-"target": "https://video.example.com/watch/videoID?t=**30**"
-
-So that the timestamp now looks like this:
-
-"target": "https://video.example.com/watch/videoID?t=**{seek\_to\_second\_number}**"
+```
 
 ## Monitor rich results with Search Console
 
 Search Console is a tool that helps you monitor how your pages perform in Google Search. You don't have to sign up for Search Console to be included in Google Search results, but it can help you understand and improve how Google sees your site. We recommend checking Search Console in the following cases:
 
-1.  [After deploying structured data for the first time](#after-deploying)
-2.  [After releasing new templates or updating your code](#after-releasing)
-3.  [Analyzing traffic periodically](#analyzing-periodically)
+1. [After deploying structured data for the first time](#after-deploying)
+2. [After releasing new templates or updating your code](#after-releasing)
+3. [Analyzing traffic periodically](#analyzing-periodically)
 
 ### After deploying structured data for the first time
 
 After Google has indexed your pages, look for issues using the relevant [Rich result status report](https://support.google.com/webmasters/answer/7552505). Ideally, there will be an increase of valid items, and no increase in invalid items. If you find issues in your structured data:
 
-1.  [Fix the invalid items](#troubleshooting).
-2.  [Inspect a live URL](https://support.google.com/webmasters/answer/9012289#test_live_page) to check if the issue persists.
-3.  [Request validation](https://support.google.com/webmasters/answer/13300208) using the status report.
+1. [Fix the invalid items](#troubleshooting).
+2. [Inspect a live URL](https://support.google.com/webmasters/answer/9012289#test_live_page) to check if the issue persists.
+3. [Request validation](https://support.google.com/webmasters/answer/13300208) using the status report.
 
 ### After releasing new templates or updating your code
 
 When you make significant changes to your website, monitor for increases in structured data invalid items.
 
--   If you see an **increase in invalid items**, perhaps you rolled out a new template that doesn't work, or your site interacts with the existing template in a new and bad way.
--   If you see a **decrease in valid items** (not matched by an increase in invalid items), perhaps you are no longer embedding structured data in your pages. Use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289) to learn what is causing the issue.
+- If you see an **increase in invalid items**, perhaps you rolled out a new template that doesn't work, or your site interacts with the existing template in a new and bad way.
+- If you see a **decrease in valid items** (not matched by an increase in invalid items), perhaps you are no longer embedding structured data in your pages. Use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289) to learn what is causing the issue.
 
 ### Analyzing traffic periodically
 
@@ -728,11 +535,61 @@ Analyze your Google Search traffic using the [Performance Report](https://suppor
 
 If you're having trouble implementing or debugging structured data, here are some resources that may help you.
 
--   If you're using a content management system (CMS) or someone else is taking care of your site, ask them to help you. Make sure to forward any Search Console message that details the issue to them.
--   Google does not guarantee that features that consume structured data will show up in search results. For a list of common reasons why Google may not show your content in a rich result, see the [General Structured Data Guidelines](/search/docs/appearance/structured-data/sd-policies).
--   You might have an error in your structured data. Check the [list of structured data errors](https://support.google.com/webmasters/answer/13300873) and the [Unparsable structured data report](https://support.google.com/webmasters/answer/9166415).
--   If you received a structured data manual action against your page, the structured data on the page will be ignored (although the page can still appear in Google Search results). To fix [structured data issues](https://support.google.com/webmasters/answer/9044175#zippy=%2Cstructured-data-issue), use the [Manual Actions report](https://support.google.com/webmasters/answer/9044175).
--   Review the [guidelines](#guidelines) again to identify if your content isn't compliant with the guidelines. The problem can be caused by either spammy content or spammy markup usage. However, the issue may not be a syntax issue, and so the Rich Results Test won't be able to identify these issues.
--   [Troubleshoot missing rich results / drop in total rich results](https://support.google.com/webmasters/answer/13300208).
--   Allow time for re-crawling and re-indexing. Remember that it may take several days after publishing a page for Google to find and crawl it. For general questions about crawling and indexing, check the [Google Search crawling and indexing FAQ](/search/help/crawling-index-faq).
--   Post a question in the [Google Search Central forum](https://support.google.com/webmasters/community).
+- If you're using a content management system (CMS) or someone else is taking care of your site, ask them to help you. Make sure to forward any Search Console message that details the issue to them.
+- Google does not guarantee that features that consume structured data will show up in search results. For a list of common reasons why Google may not show your content in a rich result, see the [General Structured Data Guidelines](/search/docs/appearance/structured-data/sd-policies).
+- You might have an error in your structured data. Check the [list of structured data errors](https://support.google.com/webmasters/answer/13300873) and the [Unparsable structured data report](https://support.google.com/webmasters/answer/9166415).
+- If you received a structured data manual action against your page, the structured data on the page will be ignored (although the page can still appear in Google Search results). To fix [structured data issues](https://support.google.com/webmasters/answer/9044175#zippy=%2Cstructured-data-issue), use the [Manual Actions report](https://support.google.com/webmasters/answer/9044175).
+- Review the [guidelines](#guidelines) again to identify if your content isn't compliant with the guidelines. The problem can be caused by either spammy content or spammy markup usage. However, the issue may not be a syntax issue, and so the Rich Results Test won't be able to identify these issues.
+- Structured data issues can affect how your site's content appears in search results. Use this [Troubleshoot missing rich results / drop in total rich results](https://support.google.com/webmasters/answer/13300208) guide to review a step-by-step approach to identify, fix, and validate these issues in Search Console.
+- Allow time for re-crawling and re-indexing. Remember that it may take several days after publishing a page for Google to find and crawl it. For general questions about crawling and indexing, check the [Google Search crawling and indexing FAQ](/search/help/crawling-index-faq).
+- Post a question in the [Google Search Central forum](https://support.google.com/webmasters/community).
+
+If your event isn't appearing in the event experience on Google or if you've received a manual action for [Spammy Structured Markup](https://support.google.com/webmasters/answer/3498001?&ref_topic=6003164) in Search Console, resolve the most common issues and [review our guidelines](#guidelines). If you're still experiencing issues, check the [Event FAQ](https://support.google.com/webmasters/thread/10549347) or post in the [Google Search Central forum](https://support.google.com/webmasters/community).
+
+**Google does not guarantee that your structured data will show up in search results,** even if your page is marked up correctly according to the [Rich Results Test](https://search.google.com/test/rich-results). For a list of common reasons why Google may not show your structured data in search results, see the [General Structured Data Guidelines](/search/docs/appearance/structured-data/sd-policies).
+
+### Event location is missing or incorrect
+
+*error* **What caused the issue**: Google doesn't understand the values provided for the `eventLocation`, `addressLocality`, or `addressRegion` properties. Google tries to match the location information to a physical location, and the location provided is either missing or incorrect.
+
+*done* **Fix the issue**
+
+1. Make sure the structured data includes values for `eventLocation`, `addressLocality`, or `addressRegion` (depending on the location, since not all of the location properties are applicable).
+2. Check that the `location.name` field uses the location name, or leave it blank if it does not have a name. A common issue is accidentally placing the event name in the `location.name` field.
+3. Validate the fix:
+   1. Open the [Rich Results Test](https://search.google.com/test/rich-results).
+   2. Enter the event posting URL in the **Fetch URL** box.
+   3. Click **Validate**.
+   4. Click **Preview**.
+
+      **Success**: The Rich Results Test displays the correct `eventLocation` in the Google Search Preview Tool.
+
+      **Try again**: The Rich Results Test displays "false" for the event location in the Google Search Preview Tool. Make sure the location is a real location.
+
+### My site isn't showing up as an option for purchasing tickets
+
+*error* **What caused the issue**: The `offers.url` property is missing or doesn't meet the [URL requirements](#url-requirements).
+
+*done* **Fix the issue**
+
+1. Make sure that your structured data includes the `offers.url` property.
+2. Ensure that your URL meets the [URL requirements](#url-requirements) for `offers.url`.
+3. Ask Google to [recrawl your site](/search/docs/crawling-indexing/ask-google-to-recrawl).
+4. Submit a [request for (re)evaluation](https://docs.google.com/forms/d/e/1FAIpQLSeoRYNFmYPdoj81jJAl9wS_0RsU-y8b9rVjHgZ1hZzCFXJ8hw/viewform).
+
+### Time or date is incorrect
+
+*error* **What caused the issue**: The time or date is incorrect. Common errors include not offsetting for the time zone or specifying an incorrect start time (for example, midnight as a start time).
+
+*done* **Fix the issue**
+
+1. **Specify the correct local time offset**. For example, if your event starts at 7pm in New York (UTC - 5) and ends at 9pm, then the value for `startDate` is `2019-08-15T19:00:00-05:00` and the value for `endDate` is `2019-08-15T21:00:00-05:00`. If you are unable to fill in the offset for your events, don't offset the time (for example, use `2019-08-15T19:00:00`).
+2. **Make sure the start or end time is accurate**. One common mistake is setting an event to start at midnight when the event doesn't actually start at midnight. If the event is a day long event, or the start hour hasn't been announced, only specify the day. For example:
+
+   **Recommended**: `2019-07-20`
+
+   **Not recommended**: `2019-07-20T00:00:00`
+
+   **Not recommended**: `2019-08-15T00:00:01+00:00`
+
+   **Not recommended**: `2019-08-15T00:00:00+00:00`

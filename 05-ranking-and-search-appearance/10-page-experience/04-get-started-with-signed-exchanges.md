@@ -2,6 +2,9 @@
 
 > Source: https://developers.google.com/search/docs/appearance/signed-exchange
 > Last updated: 2026-07-24 UTC
+> Статус: УСТАРЕЛО (страница удалена Google)
+
+> **Устарело.** Исходная страница удалена Google. URL `https://developers.google.com/search/docs/appearance/signed-exchange` больше не существует и перенаправляет на https://developers.google.com/search/updates#updating-amp-documentation (материал перенесён в обновлённую документацию по AMP). Содержимое ниже сохранено только как исторический архив и больше не актуализируется.
 
 Signed exchanges (SXG) allow Google Search to prefetch your content while preserving the user's privacy. In practice, this means that both AMP and non-AMP results shown on Google Search may prefetch a few key resources (such as HTML, JavaScript, CSS, images, or fonts) in a privacy-preserving manner, if the associated website supports SXG.
 

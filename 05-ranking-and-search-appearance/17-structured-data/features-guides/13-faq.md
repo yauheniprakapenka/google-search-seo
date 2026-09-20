@@ -2,6 +2,9 @@
 
 > Source: https://developers.google.com/search/docs/appearance/structured-data/faqpage
 > Last updated: 2026-07-24 UTC.
+> Статус: УСТАРЕЛО (страница удалена Google)
+
+> **Устарело.** Исходная страница удалена Google. URL `https://developers.google.com/search/docs/appearance/structured-data/faqpage` больше не существует и перенаправляет на https://developers.google.com/search/updates#removing-faq-rich-result. FAQ rich results прекратили показываться 07.05.2026. Содержимое ниже сохранено только как исторический архив и больше не актуализируется — разметку `FAQPage` добавлять не нужно.
 
 **Upcoming deprecation:** As of May 7, 2026, FAQ rich results are no longer appearing in Google Search. We will be dropping the FAQ search appearance, rich result report, and support in the Rich results test in June 2026.
 

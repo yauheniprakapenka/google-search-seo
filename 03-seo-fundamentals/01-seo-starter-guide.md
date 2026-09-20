@@ -1,7 +1,7 @@
 # Search Engine Optimization (SEO) Starter Guide
 
 > Source: https://developers.google.com/search/docs/fundamentals/seo-starter-guide
-> Last updated: 2025-12-18 UTC
+> Last updated: 2025-12-10 UTC
 
 When you built your website, you likely created it with your users in mind, trying to make it easy for them to find and explore your content. One of those users is a search engine, which helps people discover your content. SEO—short for search engine optimization—is about helping search engines understand your content, and helping users find your site and make a decision about whether they should visit your site through a search engine.
 
@@ -117,13 +117,13 @@ The *title link* is the headline part of the search result and it can help peopl
 
 If you use a CMS, you might not need to do anything technical to your titles, beyond just focusing on writing good titles. Most CMSes can automatically turn the titles you write into a `<title>` element in the HTML.
 
-You can influence the title links in Search by writing good titles: a good title is unique to the page, clear and concise, and accurately describes the contents of the page. For example, your title could include the name of your website or business, other bits of important information like the physical location of the business, and maybe some information about what the particular page has to offer for users.
+You can influence the title links in Search by writing good titles: a good title is unique to the page, clear and concise, and accurately describes the contents of the page. For example, your title could include the name of your website or business, other bits of important information like the physical location of the business, and maybe some information about what the particular page has to offer for users. Our documentation about title links has more tips about how to create good titles and how to influence your site's search results' title links.
 
 ### Control your snippets
 
 Below the title link, a search result typically has a description of the target page to help users decide whether they should click the search result. This is called a *snippet*.
 
-The snippet is sourced from the actual content of the page the search result is linking to, thus you have complete control over the words that can be used to generate the snippet. Occasionally the snippet may be sourced from the contents of the meta description tag, which is typically a succinct, one- or two-sentence summary of the page. A good meta description is short, unique to one particular page, and includes the most relevant points of the page.
+The snippet is sourced from the actual content of the page the search result is linking to, thus you have complete control over the words that can be used to generate the snippet. Occasionally the snippet may be sourced from the contents of the meta description tag, which is typically a succinct, one- or two-sentence summary of the page. A good meta description is short, unique to one particular page, and includes the most relevant points of the page. Check out our tips for writing good meta descriptions for more inspiration.
 
 ## Add images to your site, and optimize them
 
@@ -141,7 +141,7 @@ For example, if the page is reviewing yarn shops in London, then it would make s
 
 ### Add descriptive alt text to the image
 
-Alt text is a short, but descriptive piece of text that explains the relationship between the image and your content. It helps search engines understand what your image is about and the context of how your image relates to your page, so writing good alt text is quite important. You can add this to your HTML with the `alt` attribute of the `img` element, or your CMS may have an easy way to specify a description for an image when you're uploading it to your site.
+Alt text is a short, but descriptive piece of text that explains the relationship between the image and your content. It helps search engines understand what your image is about and the context of how your image relates to your page, so writing good alt text is quite important. You can add this to your HTML with the `alt` attribute of the `img` element, or your CMS may have an easy way to specify a description for an image when you're uploading it to your site. Learn more about how to write good alt text, and how to add it to your images.
 
 ## Optimize your videos
 

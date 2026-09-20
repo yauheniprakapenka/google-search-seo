@@ -1,7 +1,9 @@
 # Course list (`Course`) structured data
 
 > Source: https://developers.google.com/search/docs/appearance/structured-data/course
-> Last updated: 2025-12-10 UTC
+> Last updated: 2026-09-08 UTC
+
+![An illustration of how a course list can appear in Google Search. It shows 3 different courses from the same website in a list format that users can explore and select a specific course](/static/search/docs/images/course-carousel-rich-result.png)
 
 With course list structured data, you can provide more information about your courses so that prospective students find your courses through Google Search. You can provide details including the course name, who's offering it, and a short description.
 
@@ -11,19 +13,25 @@ The course list rich result is available in English in all regions where Google 
 
 ## How to add structured data
 
-Structured data is a standardized format for providing information about a page and classifying the page content. Here's an overview of how to build, test, and release structured data.
+Structured data is a standardized format for providing information about a page and classifying the page content. If you're new to structured data, you can learn more about [how structured data works](/search/docs/appearance/structured-data/intro-structured-data).
 
-1. Add the required properties. Based on the format you're using, learn where to insert structured data on the page.
-2. Follow the guidelines.
-3. Validate your code using the Rich Results Test.
-4. Deploy a few pages and use the URL Inspection tool to test.
-5. Submit a sitemap to keep Google informed of future changes.
+Here's an overview of how to build, test, and release structured data.
+
+1. Add the [required properties](#structured-data-type-definitions). Based on the format you're using, learn where to [insert structured data on the page](/search/docs/appearance/structured-data/intro-structured-data#format-placement). **Using a CMS?** It may be easier to use a plugin that's integrated into your CMS.
+
+   **Using JavaScript?** Learn how to [generate structured data with JavaScript](/search/docs/appearance/structured-data/generate-structured-data-with-javascript).
+2. Follow the [guidelines](#guidelines).
+3. Validate your code using the [Rich Results Test](https://search.google.com/test/rich-results) and fix any critical errors. Consider also fixing any non-critical issues that may be flagged in the tool, as they can help improve the quality of your structured data (however, this isn't necessary to be eligible for rich results).
+4. Deploy a few pages that include your structured data and use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289) to test how Google sees the page. Be sure that your page is accessible to Google and not blocked by a robots.txt file, the `noindex` tag, or login requirements. If the page looks okay, you can [ask Google to recrawl your URLs](/search/docs/crawling-indexing/ask-google-to-recrawl). **Note**: Allow time for re-crawling and re-indexing. Remember that it may take several days after publishing a page for Google to find and crawl it.
+5. To keep Google informed of future changes, we recommend that you [submit a sitemap](/search/docs/crawling-indexing/sitemaps/build-sitemap). You can automate this with the [Search Console Sitemap API](/webmaster-tools/v1/sitemaps).
 
 ## Examples
 
 ### Single course details page
 
-Here's an example of a single course details page. This page must be paired with a summary page that contains the `ItemList` markup.
+Here's an example of a single course details page. This page must be paired with a [summary page](/search/docs/appearance/structured-data/carousel#summary-page) that contains the [`ItemList` markup](#item-list).
+
+You may see errors for other rich result types in the Rich Results Test. To be eligible for the course list feature, pay attention to any warnings or errors that are in the **Course list item** section; you can ignore the other errors.
 
 ```html
 <html>
@@ -50,7 +58,9 @@ Here's an example of a single course details page. This page must be paired with
 
 ### Single, all-in-one page
 
-Here's an example of a single, all-in-one page. This page setup includes both the list markup and the details for each course on the same page.
+Here's an example of a [single, all-in-one page](/search/docs/appearance/structured-data/carousel#all-in-one). This page setup includes both the list markup and the details for each course on the same page.
+
+You may see errors for other rich result types in the Rich Results Test. To be eligible for the course list feature, pay attention to any warnings or errors that are in the **Course list item** and **Carousels** sections; you can ignore the other errors.
 
 ```html
 <html>
@@ -73,7 +83,7 @@ Here's an example of a single, all-in-one page. This page setup includes both th
               "@type": "Organization",
               "name": "University of Technology - Example",
               "sameAs": "https://www.example.com"
-            }
+           }
           }
         },
         {
@@ -88,8 +98,8 @@ Here's an example of a single, all-in-one page. This page setup includes both th
               "@type": "Organization",
               "name": "University of Technology - Example",
               "sameAs": "https://www.example.com"
-            }
-          }
+           }
+         }
         },
         {
           "@type": "ListItem",
@@ -103,7 +113,7 @@ Here's an example of a single, all-in-one page. This page setup includes both th
               "@type": "Organization",
               "name": "University of Technology - Eureka",
               "sameAs": "https://www.example.com"
-            }
+           }
           }
         }
       ]
@@ -119,11 +129,13 @@ Here's an example of a single, all-in-one page. This page setup includes both th
 
 You must follow these guidelines to be eligible to appear in a course list.
 
-- Content guidelines
-- Technical guidelines
-- Carousel guidelines
-- Search Essentials
-- General structured data guidelines
+**Warning:** If your site violates one or more of these guidelines, then Google may take [manual action](https://support.google.com/webmasters/answer/2604824) against it. Once you have remedied the problem, you can submit your site for [reconsideration](https://support.google.com/webmasters/answer/35843).
+
+- [Content guidelines](#content-guidelines)
+- [Technical guidelines](#technical-guidelines)
+- [Carousel guidelines](/search/docs/appearance/structured-data/carousel#guidelines)
+- [Search Essentials](/search/docs/essentials)
+- [General structured data guidelines](/search/docs/appearance/structured-data/sd-policies)
 
 ### Content guidelines
 
@@ -133,41 +145,57 @@ You must follow these guidelines to be eligible to appear in a course list.
 
 ### Technical guidelines
 
-- You must mark up at least three courses. The courses can be on separate detail pages, or in an all-in-one page.
-- You must add Carousel markup to either a summary page or an all-in-one page.
-- Each course must have valid `name` and `provider` properties. For example, the following naming practices are not valid:
-  - Promotional phrases: "Best school in the world"
-  - Prices in course titles: "Learn ukulele - only $30!"
-  - Using something other than a course for a title
-  - Discounts or purchase opportunities
+You must mark up at least three courses. The courses can be on separate [detail pages](/search/docs/appearance/structured-data/carousel#details-page), or in an [all-in-one page](/search/docs/appearance/structured-data/carousel#all-in-one).
+
+You must add [Carousel markup](/search/docs/appearance/structured-data/carousel#details-page) to either a [summary page](/search/docs/appearance/structured-data/carousel#summary) or an [all-in-one page](/search/docs/appearance/structured-data/carousel#all-in-one).
+
+Each course must have valid [name](https://schema.org/name) and [provider](https://schema.org/provider) properties. For example, the following naming practices are not valid:
+
+- Promotional phrases: "Best school in the world"
+- Prices in course titles: "Learn ukulele - only $30!"
+- Using something other than a course for a title, such as: "Make money fast with this class!"
+- Discounts or purchase opportunties, such as: "Leaders in their fields share their secrets — 25% off!"
 
 ## Structured data type definitions
 
+You must include the required properties for your content to be eligible for display as a rich result. You can also include the recommended properties to add more information about your content, which could provide a better user experience.
+
 ### `Course`
 
-Use the following properties to mark up at least three courses. The full definition of `Course` is available at schema.org/Course.
+Use the following properties to mark up at least three courses. The courses can be on separate [detail pages](/search/docs/appearance/structured-data/carousel#details-page), or in an [all-in-one page](/search/docs/appearance/structured-data/carousel#all-in-one).
 
-**Required properties:**
+The full definition of `Course` is available at [schema.org/Course](https://schema.org/Course). The Google-supported properties are the following:
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `description` | `Text` | A description of the course. Display limit of 60 characters. |
-| `name` | `Text` | The title of the course. |
+| Required properties | |
+| --- | --- |
+| `description` | `Text`  A description of the course. Display limit of 60 characters. |
+| `name` | `Text`  The title of the course. |
 
-**Recommended properties:**
-
-| Property | Type | Description |
-|----------|------|-------------|
-| `provider` | `Organization` | The organization that publishes the source content of the course. For example, UC Berkeley. |
+| Recommended properties | |
+| --- | --- |
+| `provider` | `Organization`  The organization that publishes the source content of the course. For example, UC Berkeley. |
 
 ### `ItemList`
 
-In addition to `Course` properties, add the following properties to specify the list. The full definition of `ItemList` is available at schema.org/ItemList.
+In addition to [`Course` properties](#course), add the following properties to specify the list. You can add these properties to either a [summary page](/search/docs/appearance/structured-data/carousel#summary) or an [all-in-one page](/search/docs/appearance/structured-data/carousel#all-in-one).
 
-**Required properties:**
+The full definition of `ItemList` is available at [schema.org/ItemList](https://schema.org/ItemList).
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `itemListElement` | `ListItem` | Annotation for a single item page. |
-| `ListItem.position` | `Integer` | Ordinal position of the item page in the list. |
-| `ListItem.url` | `URL` | The canonical URL of the item page. Every item must have a unique URL. |
+| Required properties | |
+| --- | --- |
+| `itemListElement` | `ListItem`  Annotation for a single item page. |
+| `ListItem.position` | `Integer`  Ordinal position of the item page in the list. |
+| `ListItem.url` | `URL`  The canonical URL of the item page. Every item must have a unique URL. |
+
+## Troubleshooting
+
+If you're having trouble implementing or debugging structured data, here are some resources that may help you.
+
+- If you're using a content management system (CMS) or someone else is taking care of your site, ask them to help you. Make sure to forward any Search Console message that details the issue to them.
+- Google does not guarantee that features that consume structured data will show up in search results. For a list of common reasons why Google may not show your content in a rich result, see the [General Structured Data Guidelines](/search/docs/appearance/structured-data/sd-policies).
+- You might have an error in your structured data. Check the [list of structured data errors](https://support.google.com/webmasters/answer/13300873) and the [Unparsable structured data report](https://support.google.com/webmasters/answer/9166415).
+- If you received a structured data manual action against your page, the structured data on the page will be ignored (although the page can still appear in Google Search results). To fix [structured data issues](https://support.google.com/webmasters/answer/9044175#zippy=%2Cstructured-data-issue), use the [Manual Actions report](https://support.google.com/webmasters/answer/9044175).
+- Review the [guidelines](#guidelines) again to identify if your content isn't compliant with the guidelines. The problem can be caused by either spammy content or spammy markup usage. However, the issue may not be a syntax issue, and so the Rich Results Test won't be able to identify these issues.
+- Structured data issues can affect how your site's content appears in search results. Use this [Troubleshoot missing rich results / drop in total rich results](https://support.google.com/webmasters/answer/13300208) guide to review a step-by-step approach to identify, fix, and validate these issues in Search Console.
+- Allow time for re-crawling and re-indexing. Remember that it may take several days after publishing a page for Google to find and crawl it. For general questions about crawling and indexing, check the [Google Search crawling and indexing FAQ](/search/help/crawling-index-faq).
+- Post a question in the [Google Search Central forum](https://support.google.com/webmasters/community).

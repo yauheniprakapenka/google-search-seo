@@ -1,48 +1,159 @@
 # Help your readers find your site through preferred sources in Google Search
 
 > Source: https://developers.google.com/search/docs/appearance/preferred-sources
-> Last updated: 2026-05-27 UTC
+> Last updated: 2026-09-18 UTC
 
-If you're a website owner, you can help your audience find your publication as a preferred source in Google Search. When a user selects your site as a preferred source, your content is more likely to appear in "Top Stories", highlighted with a "preferred" badge. In AI Mode and AI Overviews, your content can be highlighted with a "preferred" badge for users who have selected your site as a preferred source.
+If you're a website owner, you can help your audience find your publication as a preferred source in Google Search. When a user selects your site as a preferred source, your content is more likely to appear in "[Top Stories](https://support.google.com/websearch/answer/16379181)", highlighted with a "preferred" badge. In AI Mode and AI Overviews, your content can be highlighted with a "preferred" badge for users who have selected your site as a preferred source.
+
+![Preferred sources in AI Mode](/static/search/docs/images/preferred-sources-ai-mode.png) ![Preferred sources in Top Stories](/static/search/docs/images/preferred-sources-site.png)
 
 ## Feature availability
 
-The preferred sources feature is available globally for the "Top Stories" feature in all languages where Google Search is available. Preferred sources can also appear in AI Mode and AI Overviews in all languages and locales where those features are available.
+The preferred sources feature is available globally for the "Top Stories" feature in all languages where Google Search is available.
 
-Only domain-level and subdomain-level sites are eligible to appear in the source preferences tool. For example, `https://www.example.com/` and `https://code.example.com/` are eligible for preferred sources, but the subdirectory `https://www.example.com/blog` isn't eligible.
+Preferred sources can also appear in AI Mode and AI Overviews in all languages and locales where those features are available. To make your site eligible for display as a preferred source in these features, you must make sure your site is [included in Search generative AI features in Search Console](https://support.google.com/webmasters/answer/16908024).
+
+Only domain-level and subdomain-level sites are eligible to appear in the [source preferences tool](https://www.google.com/preferences/source). For example, `https://www.example.com/` and `https://code.example.com/` are eligible for preferred sources, but the subdirectory `https://www.example.com/blog` isn't eligible.
 
 ## How to help users find your site as a preferred source
 
-If your site appears in the source preferences tool (to check, enter your site in the tool's search box), you can use the following methods to guide your readers to select your site as a preferred source:
+If your site appears in the [source preferences tool](https://www.google.com/preferences/source) (to check, enter your site in the tool's search box), you can use the following methods to guide your readers to select your site as a preferred source:
 
-These methods are examples on how you can build your audience and help people find your site as a preferred source. It's not required to do them in order to appear as a preferred source.
+- [**Standard JavaScript implementation**](#standard-javascript) **(recommended)**: Embed an interactive button to your web pages, which lets readers seamlessly add your site as a preferred source and returns them to your page. By adding only two lines to your HTML, this option renders an automatically localized, Google-styled button that supports device and language customization.
+- [**Advanced JavaScript implementation with custom design assets**](#advanced-javascript): If you want to use your own design assets and customize the standard JavaScript button, follow the advanced JavaScript implementation instructions. The end-user UI flow remains the same as the standard JavaScript implementation.
+- [**Deeplink implementation**](#deeplink): If you can't implement the interactive button (for example, your CMS doesn't support it), you can use a deeplink to direct people to adding your site as a preferred source. You can do this by adding a text link or a clickable image on your web pages. You can also use the deeplink in your social posts, email newsletters, or promotions.
 
-- **Add the deeplink to your social posts or promotions.** Use the following URL format, which takes users directly to your site in the source preferences tool:
+These methods are examples of how you can build your audience and help people find your site as a preferred source. It's not required to do them in order to appear as a preferred source.
 
-    https://google.com/preferences/source?q=Your_Website's_URL
+### Standard JavaScript implementation (recommended)
 
-    For example, if your site is `https://example.com`, use the following URL:
+By adding only two lines to your HTML, you can add an automatically translated, interactive button, which lets readers seamlessly add your site as a preferred source and return to where they left off on your page. You can also set the theme of the button (dark or light), plus override the button language. We recommend this implementation because it provides the best user experience for readers.
 
-    https://google.com/preferences/source?q=example.com
+Here's how it'll look:
 
-- **Add a button to your site alongside your other social CTAs.** You may use your own design or download the button assets that Google provides for some languages.
+![Add to preferred sources button with JavaScript](/static/search/docs/images/preferred-sources-javascript.png)
 
-    Button assets by language:
+To embed the JavaScript button on your web page, do the following:
 
-    - All listed languages: Download (all_listed_languages) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip
-    - Danish: Download (da) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_da.zip
-    - English: Download (en) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_en.zip
-    - Estonian: Download (et) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_et.zip
-    - Finnish: Download (fi) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_fi.zip
-    - French: Download (fr) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_fr.zip
-    - German: Download (de) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_de.zip
-    - Hebrew: Download (iw) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_iw.zip
-    - Hindi: Download (hi) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_hi.zip
-    - Japanese: Download (ja) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_ja.zip
-    - Korean: Download (ko) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_ko.zip
-    - Portuguese (Brazil): Download (pt-br) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_pt-br.zip
-    - Russian: Download (ru) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_ru.zip
-    - Spanish: Download (es) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_es.zip
-    - Swedish: Download (sv) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_sv.zip
-    - Turkish: Download (tr) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_tr.zip
-    - Ukrainian: Download (uk) — https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_uk.zip
+1. Add the following `<script>` tag to your web page (preferably in the `<head>` element), which loads the preferred sources library.
+
+   ```html
+   <script async src="https://news.google.com/swg/js/v1/publisher.js"></script>
+   ```
+2. Add the following `<div>` tag anywhere you'd like the button to appear in the body of your web page.
+
+   ```html
+   <div google-add-preferred-source-btn></div>
+   ```
+
+#### Set the button theme
+
+By default, the "Add to preferred sources" button appears in a light theme. To adjust the theme, add the `data-theme` data attribute to your `<div>` element and set it to either `light` or `dark`:
+
+```html
+<div google-add-preferred-source-btn data-theme="dark"></div>
+```
+
+#### Override the button language
+
+By default, the "Add to preferred sources" button displays in the user's language based on their browser settings. To override this behavior, add the `data-lang` data attribute to your `<div>` element and set it to the language code you'd prefer (download the [list of supported language codes](/static/search/docs/appearance/preferred-sources-languages.csv)):
+
+```html
+<div google-add-preferred-source-btn data-lang="en"></div>
+```
+
+[Download supported language codes](/static/search/docs/appearance/preferred-sources-languages.csv)
+
+### Advanced JavaScript implementation with custom design assets
+
+By default, the standard JavaScript button automatically scans the DOM for elements with the `google-add-preferred-source-btn` attribute and renders the standard badge. However, for custom integrations where you want to trigger the flow from your own UI elements or application milestones, you can initialize the client programmatically and bind the flow to custom triggers.
+
+When integrating the preferred sources library into custom user interfaces, application milestones, or modern framework applications, you can take full programmatic control over runtime settings and flow initiation using our JavaScript SDK. We provide two distinct integration approaches depending on your tooling and architecture: ES Module imports (ESM) and standard script callback queues (IIFE). Both distribution models expose identical capabilities and methods.
+
+#### ES Module imports
+
+For modern build setups and module-based environments, import the library directly into your code.
+
+```text
+import { preferredSource } from
+  "https://news.google.com/swg/js/v1/publisher.mjs";
+
+// 1. Initialize directly using the imported module instance
+preferredSource.init({
+  theme: 'light', // Theme choice: "light" or "dark" (default "light")
+  lang: 'en'      // Optional: override language (defaults to page language)
+});
+
+// 2. Programmatically bind flow invocation using a click handler
+const button = document.querySelector('#myButton');
+button.onclick = () => {
+  preferredSource.addPreferredSource();
+};
+```
+
+#### Standard script callback queues
+
+For standard script tag integrations, load the following script in the `<head>` of your document with the `preferred-sources-control="manual"` attribute to prevent automatic button rendering:
+
+```html
+<script async preferred-sources-control="manual" src="https://news.google.com/swg/js/v1/publisher.js"></script>
+```
+
+**Note**: If the `preferred-sources-control="manual"` attribute is omitted, it'll search for and immediately initialize any elements with the `google-add-preferred-source-btn` attribute.
+
+Then use the global `PREFERRED_SOURCE` callback queue to initialize options and bind custom triggers:
+
+```html
+<script>
+  (self.PREFERRED_SOURCE = self.PREFERRED_SOURCE || []).push(
+    function(preferredSource) {
+      // 1. Initialize with options
+      preferredSource.init({
+        theme: 'light',
+        lang: 'en'
+      });
+
+      // 2. Programmatically bind trigger button
+      const button = document.querySelector('#myButton');
+      button.addEventListener('click', () => {
+        preferredSource.addPreferredSource();
+      });
+  });
+</script>
+```
+
+For interactive frontend and backend implementations showcasing live usage across buttons, declarative containers, IIFE scripts, and ES Module bundles, explore the [preferred sources demo](https://reader-revenue-demo.ue.r.appspot.com/preferred-sources/esm).
+
+### Deeplink implementation
+
+If you can't use JavaScript on your website, you can alternatively use a deeplink to direct your users to the [source preferences tool](https://www.google.com/preferences/source), where they can add your site as a preferred source and confirm their selection.
+
+Use the following URL format and replace `example.com` with your publication's domain name, which takes users directly to your site in the [source preferences tool](https://www.google.com/preferences/source):
+
+```text
+https://www.google.com/preferences/source?q=Your_Website's_URL
+```
+
+#### Example text link
+
+```html
+<a
+  href="https://www.google.com/preferences/source?q=example.com">
+  Add as Preferred Source
+</a>
+```
+
+#### Example clickable image link
+
+```html
+<a
+  href="https://www.google.com/preferences/source?q=example.com">
+  <img src="path/to/your/button.png" alt="Add as Preferred Source">
+</a>
+```
+
+#### Button image assets
+
+You can design your own custom promotion badge or download official translated graphic assets provided by Google:
+
+[Download button assets](https://services.google.com/fh/files/helpcenter/google_preferred_source_badge_all_languages.zip)

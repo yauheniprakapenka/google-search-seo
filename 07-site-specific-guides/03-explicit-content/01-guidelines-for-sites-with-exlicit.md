@@ -1,11 +1,11 @@
 # Guidelines for sites with explicit content
 
 > Source: https://developers.google.com/search/docs/specialty/explicit/guidelines
-> Last updated: 2025-12-10
+> Last updated: 2026-09-17
 
 Many users prefer not to have explicit content shown in their search results, and Google has systems in place to help users filter explicit content. If your site hosts explicit or adult content, you can help Google understand the nature of your site and content, which can help Google to more accurately categorize your site and ensure user preference regarding explicit content.
 
-**Is your site being incorrectly flagged as explicit?** Check our [troubleshooting guide](https://developers.google.com/search/docs/specialty/explicit/troubleshooting) for more on how to confirm if your site has been incorrectly categorized and how to fix the issue.
+**Is your site being incorrectly flagged as explicit?** Check our [troubleshooting guide](/search/docs/specialty/explicit/troubleshooting) for more on how to confirm if your site has been incorrectly categorized and how to fix the issue.
 
 ## How Google handles explicit content in Search results
 
@@ -35,7 +35,7 @@ If we process a significant volume of valid removal requests involving a particu
 - **CSAM removals**: We always remove child sexual abuse material (CSAM) when it's identified, either automatically or through the legal removals process. We also demote all content from sites with a significant proportion of CSAM content.
 - **Explicit personal information removals**: We demote all pages from sites that receive a significant volume of personal removals of content involving [explicit personal imagery created or shared without consent](https://support.google.com/websearch/answer/6302812) or [explicit non-consensual fake content](https://support.google.com/websearch/answer/9116649).
 
-For more information on our ranking systems, check out our [removal-based demotion systems](https://developers.google.com/search/docs/appearance/ranking-systems-guide#removals) and [spam policies](https://developers.google.com/search/docs/essentials/spam-policies#other-behaviors-that-can-lead-to-demotion-or-removal).
+For more information on our ranking systems, check out our [removal-based demotion systems](/search/docs/appearance/ranking-systems-guide#removals) and [spam policies](/search/docs/essentials/spam-policies#other-behaviors-that-can-lead-to-demotion-or-removal).
 
 ## Best practices
 
@@ -46,6 +46,7 @@ By following these best practices, you not only help ensure that users see the r
 3. [Allow Googlebot to crawl without age gate](#allow-googlebot-to-crawl).
 4. [Group explicit pages in a separate domain or subdomain](#group-explicit-pages).
 5. [Mark specific pages as explicit with metadata](#mark-specific-pages).
+6. [For ecommerce sites: label adult products in ecommerce feeds or markup](#label-adult-products).
 
 ### Prevent user-generated harmful content on your platform
 
@@ -59,15 +60,15 @@ Learn more about our content safety tools and [Google's commitment to fighting c
 
 ### Allow Google to fetch your video content files
 
-Allowing Googlebot to [fetch your video files](https://developers.google.com/search/docs/appearance/video#allow-fetch) enables Google to understand the video content and reduces the chance of exposing users to violative explicit content, such as CSAM and non-consensual explicit content.
+Allowing Googlebot to [fetch your video files](/search/docs/appearance/video#allow-fetch) enables Google to understand the video content and reduces the chance of exposing users to violative explicit content, such as CSAM and non-consensual explicit content.
 
 If you don't allow Google to fetch your video content files, Google can't run automated protections against [egregious violations such as CSAM](https://support.google.com/websearch/answer/10622781#zippy=%2Cchild-sexual-abuse-imagery-or-exploitation-material). Content that can't be fetched may pose a risk to our users, so Google may demote or filter such pages where the embedded video content is unavailable and our automated systems determine that the page may contain explicit content. Not allowing Googlebot to fetch your video files may significantly affect the ranking of your explicit pages on Google Search, and especially in Video mode.
 
-If you're concerned about exposing your video file too broadly, you can also verify if Googlebot requests to your server [really are from Google](https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot).
+If you're concerned about exposing your video file too broadly, you can also verify if Googlebot requests to your server [really are from Google](/search/docs/crawling-indexing/verifying-googlebot).
 
 ### Allow Googlebot to crawl without age gate
 
-If you have content behind an age gate or other access restriction, be sure to allow Googlebot to crawl your content without triggering the age gate. You can do this by [verifying Googlebot requests](https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot) and serving the content without age gate.
+If you have content behind an age gate or other access restriction, be sure to allow Googlebot to crawl your content without triggering the age gate. You can do this by [verifying Googlebot requests](/search/docs/crawling-indexing/verifying-googlebot) and serving the content without age gate.
 
 If you don't allow Googlebot to crawl without triggering the age gate, it may cause your site to rank poorly on Google Search. Google might not be able to fetch your content, including image or video bytes, and therefore not be able to effectively rank that page for relevant queries. Additionally, if you host some non-explicit content behind age-gate and Googlebot cannot see it, there is a higher chance that this content or even the whole site gets classified automatically as explicit, which will make it ineligible to appear when the SafeSearch filter is on.
 
@@ -81,14 +82,14 @@ It's not necessary to use the word "explicit" in the domain. It only matters tha
 
 ### Mark specific pages as explicit with metadata
 
-Google has algorithms to automatically detect explicit pages, including text, images, and videos. While not necessary, adding metadata can be a practical way for you to tag a few explicit pages on your site or if you want to be sure that a particular page is filtered for SafeSearch users:
+Google has algorithms to automatically detect explicit pages, including text, images, and videos. While not necessary, adding metadata can be be a practical way for you to tag a few explicit pages on your site or if you want to be sure that a particular page is filtered for SafeSearch users:
 
 - [Add metadata to pages with explicit content](#add-metadata).
 - [Use the `<video:family_friendly>` tag in your video sitemap](#use-video-family-friendly-tag).
 
 #### Add metadata to pages with sexually explicit content
 
-To mark a particular page as explicit, add [rating markup](https://developers.google.com/search/docs/crawling-indexing/special-tags#rating) with the `adult` value either as a [`meta` tag](https://developers.google.com/search/docs/crawling-indexing/special-tags#rating) or an HTTP response header. We recommend adding this tag to any page with sexually explicit content.
+To mark a particular page as explicit, add [rating markup](/search/docs/crawling-indexing/special-tags#rating) with the `adult` value either as a [`meta` tag](/search/docs/crawling-indexing/special-tags#rating) or an HTTP response header. We recommend adding this tag to any page with sexually explicit content.
 
 ```html
 <meta name="rating" content="adult">
@@ -100,4 +101,8 @@ If you use a CMS, such as Wix, WordPress, or Blogger, you might not be able to e
 
 #### Use the `<video:family_friendly>` tag in your video sitemap
 
-If you have a range of videos on your site, including content appropriate for all ages as well as sexually explicit or content that contains graphic violence, make use of the [`<video:family_friendly>` tag in your video sitemap](https://developers.google.com/search/docs/crawling-indexing/sitemaps/video-sitemaps#family-friendly). You only need to use this tag (set to `no`) for videos that are explicit. This helps Google understand which videos on your site shouldn't appear when SafeSearch filtering is enabled.
+If you have a range of videos on your site, including content appropriate for all ages as well as sexually explicit or content that contains graphic violence, make use of the [`<video:family_friendly>` tag in your video sitemap](/search/docs/crawling-indexing/sitemaps/video-sitemaps#family-friendly). You only need to use this tag (set to `no`) for videos that are explicit. This helps Google understand which videos on your site shouldn't appear when SafeSearch filtering is enabled.
+
+### For Google Shopping features: label adult products in ecommerce feeds or markup
+
+If you're optimizing your product listings to appear in Google Shopping features and your products are considered adult-oriented according to Google's [adult-oriented content policy](https://support.google.com/merchants/answer/12073010#res), label them in your Merchant Center feeds with the [`adult` attribute](https://support.google.com/merchants/answer/6324508) or with [`hasAdultConsideration`](/search/docs/appearance/structured-data/merchant-listing#hasAdultConsideration) structured data markup. This label doesn't affect your site's visibility in organic web search results.

@@ -1,6 +1,6 @@
 # Overview of Crawling and Indexing Topics
 
-> Source: https://developers.google.com/search/docs/crawling-indexing/overview
+> Source: https://developers.google.com/search/docs/crawling-indexing
 > Last updated: 2025-12-10
 
 The topics in this section describe how you can control Google's ability to find and parse your content in order to show it in Search and other Google properties, as well as how to prevent Google from crawling specific content on your site.

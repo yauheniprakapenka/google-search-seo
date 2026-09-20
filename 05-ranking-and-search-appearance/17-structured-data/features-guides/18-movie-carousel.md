@@ -1,24 +1,35 @@
 # Movie carousel (`Movie`) structured data
 
-> Source: <https://developers.google.com/search/docs/appearance/structured-data/movie>
+> Source: https://developers.google.com/search/docs/appearance/structured-data/movie
+> Last updated: 2026-09-08 UTC
 
-> Last updated: 2025-12-10 UTC
+![An illustration of how a movie rich result can appear in Google Search. It shows 3 different movies from the same website in a carousel format that users can explore and select a specific movie](/static/search/docs/images/movie-rich-result.png)
 
 Mark up your movie lists with structured data so users can explore movies on Google Search in new ways. You can provide details about the movies, such as the title of the movie, director of the movie, and an image of the movie. The movie carousel is only available on mobile devices.
 
+**Do you want to claim a specific movie in the knowledge panel?** [Get verified on Google](https://support.google.com/knowledgepanel/answer/7534902).
+
+**Do you want to enable a watch button?** [Get started with Media Actions](/actions/media).
+
 ## How to add structured data
 
-1. Add the [required properties](#structured-data-type-definitions). Based on the format you're using, learn where to [insert structured data on the page](/search/docs/appearance/structured-data/intro-structured-data#format-placement).
+Structured data is a standardized format for providing information about a page and classifying the page content. If you're new to structured data, you can learn more about [how structured data works](/search/docs/appearance/structured-data/intro-structured-data).
+
+Here's an overview of how to build, test, and release structured data.
+
+1. Add the [required properties](#structured-data-type-definitions). Based on the format you're using, learn where to [insert structured data on the page](/search/docs/appearance/structured-data/intro-structured-data#format-placement). **Using a CMS?** It may be easier to use a plugin that's integrated into your CMS.
+
+   **Using JavaScript?** Learn how to [generate structured data with JavaScript](/search/docs/appearance/structured-data/generate-structured-data-with-javascript).
 2. Follow the [guidelines](#guidelines).
-3. Validate your code using the [Rich Results Test](https://search.google.com/test/rich-results).
-4. Deploy a few pages that include your structured data and use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289) to test how Google sees the page.
-5. To keep Google informed of future changes, we recommend that you [submit a sitemap](/search/docs/crawling-indexing/sitemaps/build-sitemap).
+3. Validate your code using the [Rich Results Test](https://search.google.com/test/rich-results) and fix any critical errors. Consider also fixing any non-critical issues that may be flagged in the tool, as they can help improve the quality of your structured data (however, this isn't necessary to be eligible for rich results).
+4. Deploy a few pages that include your structured data and use the [URL Inspection tool](https://support.google.com/webmasters/answer/9012289) to test how Google sees the page. Be sure that your page is accessible to Google and not blocked by a robots.txt file, the `noindex` tag, or login requirements. If the page looks okay, you can [ask Google to recrawl your URLs](/search/docs/crawling-indexing/ask-google-to-recrawl). **Note**: Allow time for re-crawling and re-indexing. Remember that it may take several days after publishing a page for Google to find and crawl it.
+5. To keep Google informed of future changes, we recommend that you [submit a sitemap](/search/docs/crawling-indexing/sitemaps/build-sitemap). You can automate this with the [Search Console Sitemap API](/webmaster-tools/v1/sitemaps).
 
 ## Examples
 
 ### Summary page + multiple full details pages
 
-The summary page has a short description of each item in the list, and each description points to a separate details page that is focused entirely on one item.
+The summary page has a short description of each item in the list, and each description points to a separate details page that is focused entirely on one item. Here's an example of the summary movie list in JSON-LD:
 
 ```html
 <html>
@@ -55,6 +66,8 @@ The summary page has a short description of each item in the list, and each desc
 
 ### Single, all-in-one-page list
 
+A single, all-in-one-page list hosts all list information, including full text of each item. Here's an example of a single, all-in-one movie list in JSON-LD:
+
 ```html
 <html>
   <head>
@@ -76,7 +89,7 @@ The summary page has a short description of each item in the list, and each desc
             "director": {
                 "@type": "Person",
                 "name": "Bradley Cooper"
-            },
+              },
             "review": {
               "@type": "Review",
               "reviewRating": {
@@ -88,14 +101,14 @@ The summary page has a short description of each item in the list, and each desc
                 "name": "John D."
               }
             },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": 90,
-              "bestRating": 100,
-              "ratingCount": 19141
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": 90,
+                "bestRating": 100,
+                "ratingCount": 19141
+              }
             }
-          }
-        },
+          },
         {
           "@type": "ListItem",
           "position": 2,
@@ -108,7 +121,7 @@ The summary page has a short description of each item in the list, and each desc
             "director": {
                 "@type": "Person",
                 "name": "Bryan Singer"
-            },
+              },
             "review": {
               "@type": "Review",
               "reviewRating": {
@@ -120,14 +133,14 @@ The summary page has a short description of each item in the list, and each desc
                 "name": "Vin S."
               }
             },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": 61,
-              "bestRating": 100,
-              "ratingCount": 21985
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": 61,
+                "bestRating": 100,
+                "ratingCount": 21985
+              }
             }
-          }
-        },
+          },
         {
           "@type": "ListItem",
           "position": 3,
@@ -140,7 +153,7 @@ The summary page has a short description of each item in the list, and each desc
             "director": {
                 "@type": "Person",
                 "name": "Ryan Coogler"
-            },
+              },
             "review": {
               "@type": "Review",
               "reviewRating": {
@@ -152,14 +165,14 @@ The summary page has a short description of each item in the list, and each desc
                 "name": "Trevor R."
               }
             },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": 96,
-              "bestRating": 100,
-              "ratingCount": 88211
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": 96,
+                "bestRating": 100,
+                "ratingCount": 88211
+              }
             }
           }
-        }
       ]
     }
     </script>
@@ -171,28 +184,59 @@ The summary page has a short description of each item in the list, and each desc
 
 ## Guidelines
 
+You must follow these guidelines to be eligible to appear in a movie carousel.
+
+**Warning:** If Google detects that some of the markup on your pages may be using techniques that are outside our structured data guidelines, your site may receive a [manual action](https://support.google.com/webmasters/answer/2604824).
+
 - [Carousel guidelines](/search/docs/appearance/structured-data/carousel#guidelines)
 - [Search Essentials](/search/docs/essentials)
 - [General structured data guidelines](/search/docs/appearance/structured-data/sd-policies)
 
 ## Structured data type definitions
 
+You must include the required properties for your content to be eligible for display as a rich result. You can also include the recommended properties to add more information about your content, which could provide a better user experience.
+
 ### `Movie`
 
 In addition to the [Carousel properties](/search/docs/appearance/structured-data/carousel), define the following properties in your Carousel object.
 
-**Required properties:**
+The full definition of `Movie` is available at [schema.org/Movie](https://schema.org/Movie).
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `image` | `URL` or `ImageObject` | An image that represents the movie. Must have a high resolution and 6:9 aspect ratio. |
-| `name` | `Text` | The name of the movie. |
+The Google-supported properties are the following:
 
-**Recommended properties:**
+| Required properties | |
+| --- | --- |
+| `image` | `URL` or `ImageObject` An image that represents the movie. Additional image guidelines: |
+| `name` | `Text` The name of the movie. |
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `aggregateRating` | `AggregateRating` | Annotation for the average review score. Follow the [Review snippet guidelines](/search/docs/appearance/structured-data/review-snippet#guidelines). |
-| `dateCreated` | `Date` or `DateTime` | The date the movie was released. |
-| `director` | `Person` | The director of the movie. |
-| `review` | `Review` | A nested `Review` of the movie. Follow the [Review snippet guidelines](/search/docs/appearance/structured-data/review-snippet#guidelines). |
+- Image URLs must be [crawlable and indexable](/search/docs/crawling-indexing/sitemaps/image-sitemaps).
+- Images must represent the marked up content.
+- Images must be in .jpg, .png, or .gif format.
+- Images must have a high resolution and have a 6:9 aspect ratio. While Google can crop images that are close to a 6:9 aspect ratio, images largely deviating from this ratio aren't eligible for the feature.
+
+| Recommended properties | |
+| --- | --- |
+| `aggregateRating` | `AggregateRating`  Annotation for the average review score assigned to the movie. Follow the [Review snippet guidelines](/search/docs/appearance/structured-data/review-snippet#guidelines) and list of required and recommended [AggregateRating properties](/search/docs/appearance/structured-data/review-snippet#aggregate-rating). |
+| `dateCreated` | `Date` or `DateTime` The date the movie was released. |
+| `director` | `Person` The director of the movie. For example: |
+| `review` | `Review`  A nested `Review` of the movie. Follow the [Review snippet guidelines](/search/docs/appearance/structured-data/review-snippet#guidelines) and the list of required and recommended [review properties](/search/docs/appearance/structured-data/review-snippet#review-properties). |
+
+```json
+"director": {
+  "@type": "Person",
+  "name": "Bradley Cooper"
+}
+```
+
+## Troubleshooting
+
+If you're having trouble implementing or debugging structured data, here are some resources that may help you.
+
+- If you're using a content management system (CMS) or someone else is taking care of your site, ask them to help you. Make sure to forward any Search Console message that details the issue to them.
+- Google does not guarantee that features that consume structured data will show up in search results. For a list of common reasons why Google may not show your content in a rich result, see the [General Structured Data Guidelines](/search/docs/appearance/structured-data/sd-policies).
+- You might have an error in your structured data. Check the [list of structured data errors](https://support.google.com/webmasters/answer/13300873) and the [Unparsable structured data report](https://support.google.com/webmasters/answer/9166415).
+- If you received a structured data manual action against your page, the structured data on the page will be ignored (although the page can still appear in Google Search results). To fix [structured data issues](https://support.google.com/webmasters/answer/9044175#zippy=%2Cstructured-data-issue), use the [Manual Actions report](https://support.google.com/webmasters/answer/9044175).
+- Review the [guidelines](#guidelines) again to identify if your content isn't compliant with the guidelines. The problem can be caused by either spammy content or spammy markup usage. However, the issue may not be a syntax issue, and so the Rich Results Test won't be able to identify these issues.
+- Structured data issues can affect how your site's content appears in search results. Use this [Troubleshoot missing rich results / drop in total rich results](https://support.google.com/webmasters/answer/13300208) guide to review a step-by-step approach to identify, fix, and validate these issues in Search Console.
+- Allow time for re-crawling and re-indexing. Remember that it may take several days after publishing a page for Google to find and crawl it. For general questions about crawling and indexing, check the [Google Search crawling and indexing FAQ](/search/help/crawling-index-faq).
+- Post a question in the [Google Search Central forum](https://support.google.com/webmasters/community).
