@@ -1,7 +1,7 @@
 # Creating helpful, reliable, people-first content
 
 > Source: https://developers.google.com/search/docs/fundamentals/creating-helpful-content
-> Last updated: 2025-12-10 UTC
+> Last updated: 2026-10-01 UTC
 
 Google's automated ranking systems are designed to prioritize helpful, reliable information that's created to benefit people, and not content that's created to manipulate search engine rankings. This page is designed to help creators evaluate if they're producing such content.
 
@@ -35,7 +35,7 @@ Also consider an audit of the drops you may have experienced. What pages were mo
 
 ## Provide a great page experience
 
-Google's core ranking systems look to reward content that provides a good page experience. Site owners seeking to be successful with our systems should not focus on only one or two aspects of page experience. Instead, check if you're providing an overall great page experience across many aspects.
+Google's core ranking systems look to reward content that provides a good page experience. Site owners seeking to be successful with our systems should not focus on only one or two aspects of page experience. Instead, check if you're providing an overall great page experience across many aspects. For more advice, see our page, Understanding page experience in Google Search results.
 
 ## Focus on people-first content
 
@@ -81,6 +81,25 @@ Search raters have no control over how pages rank. Rater data is not used direct
 
 Reading the guidelines may help you self-assess how your content is doing from an E-E-A-T perspective, improvements to consider, and help align it conceptually with the different signals that our automated systems use to rank content.
 
+Beyond E-E-A-T, the Search Quality Evaluator Guidelines emphasize that one of the most critical factors for assessing page quality is the quality of the main content, specifically how effectively it allows the page to achieve its purpose and provide a satisfying user experience.
+
+## Main content
+
+Google Search defines "main content" as any part of the webpage that directly helps the page achieve its purpose. Depending on the primary intent of the page, the main content directly fulfills the page's purpose and could include:
+
+- **Primary text and media:** The main text, articles, images, audio, or video files on the page.
+- **Interactive features:** Built-in functionality such as calculators, online tools, games, or search functionality.
+- **User-generated contributions:** Forum discussions, customer reviews, comments, or user-uploaded media when they directly fulfill the page's purpose (for example, when the page is about discussing a particular user question).
+- **Tabbed or expanded sections:** Information housed behind interactive tabs (such as product specifications, safety notes, or user reviews).
+- **Page titles and headings:** The visible title and headings throughout a page that summarize its topic and helps users make informed decisions about visiting.
+
+When reviewing content quality, Search Quality raters are trained to evaluate these fundamental attributes of the main content:
+
+- **Effort:** The extent to which human work went into creating the content or the systems powering it. For example, writing original analysis, translating a poem manually, or building a custom interactive map for a game represents high effort. Conversely, automatically generating pages from feeds or using generative AI to produce large amounts of text without manual oversight or curation represents little to no effort. Attribution or giving credit to other sources doesn't replace the need for original effort.
+- **Originality:** The extent to which the content offers unique, original information or perspectives that aren't already available on other websites.
+- **Talent or skill:** Whether the content shows the talent, skill, or expertise necessary to provide a satisfying experience for visitors (such as clear writing, well-produced video, or functional page tools). Keep in mind that not all content requires specialized expertise. For example, a person sharing their experience about finding a new way to clear their driveway of snow generally doesn't necessarily require specialized expertise.
+- **Accuracy:** For informational pages, the content should be factually accurate. For topics that could significantly impact people's lives or well-being (YMYL topics), the content must be highly accurate and consistent with established expert consensus.
+
 ## Ask "Who, How, and Why" about your content
 
 Consider evaluating your content in terms of "Who, How, and Why" as a way to stay on course with what our systems seek to reward.
@@ -95,11 +114,13 @@ Something that helps people intuitively understand the E-E-A-T of content is whe
 
 If you're clearly indicating who created the content, you're likely aligned with the concepts of E-E-A-T and on a path to success. We strongly encourage adding accurate authorship information, such as bylines to content where readers might expect it.
 
+However, avoid using deceptive authorship information. Fabricating creator profiles (such as by using AI-generated headshots, made-up names, or false credentials to make content appear as if it was written by human experts) is a form of deception. Any form of deception makes a page untrustworthy to both users and our automated quality systems, and is a signal of a low-quality page.
+
 ### How (the content was created)
 
 It's helpful to readers to know how a piece of content was produced: this is the **"How"** to consider including in your content.
 
-For example, with product reviews, it can build trust with readers when they understand the number of products that were tested, what the test results were, and how the tests were conducted, all accompanied by evidence of the work involved, such as photographs.
+For example, with product reviews, it can build trust with readers when they understand the number of products that were tested, what the test results were, and how the tests were conducted, all accompanied by evidence of the work involved, such as photographs. It's advice we share more about in our Write high quality product reviews help page.
 
 Many types of content may have a "How" component to them. That can include automated, AI-generated, and AI-assisted content. Sharing details about the processes involved can help readers and visitors better understand any unique and useful role automation may have served.
 
@@ -109,7 +130,7 @@ If automation is used to substantially generate content, here are some questions
 - Are you providing background about how automation or AI-generation was used to create content?
 - Are you explaining why automation or AI was seen as useful to produce content?
 
-Overall, AI or automation disclosures are useful for content where someone might think "How was this created?" Consider adding these when it would be reasonably expected.
+Overall, AI or automation disclosures are useful for content where someone might think "How was this created?" Consider adding these when it would be reasonably expected. For more, see our blog post and FAQ: How Google Search views AI-generated content.
 
 ### Why (was the content created)
 

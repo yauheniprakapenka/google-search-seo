@@ -1,7 +1,7 @@
 # Video (`VideoObject`, `Clip`, `BroadcastEvent`) structured data
 
 > Source: https://developers.google.com/search/docs/appearance/structured-data/video
-> Last updated: 2026-09-08
+> Last updated: 2026-09-24 UTC
 
 While Google tries to automatically understand details about your video, you can influence the information that's shown in video results, such as the description, thumbnail URL, upload date, and duration, by marking up your video with [`VideoObject`](#video-object). Adding video structured data to your [watch pages](/search/docs/appearance/video#watch-page) can also make it easier for Google to find your video. Videos can appear in several different places on Google, including the main search results page, Video mode, Google Images, and [Google Discover](/search/docs/appearance/google-discover).
 
@@ -70,6 +70,11 @@ JSON-LD
         "interactionType": { "@type": "WatchAction" },
         "userInteractionCount": 5647018
       },
+      "creator": {
+        "@type": "Organization",
+        "name": "Google Netherlands",
+        "url": "https://www.example.com"
+      },
       "regionsAllowed": ["US", "NL"]
     }
     </script>
@@ -94,6 +99,10 @@ Microdata
     <meta itemprop="userInteractionCount" content="5647018" />
     <meta itemprop="interactionType" itemtype="https://schema.org/WatchAction" />
   </div>
+  <span itemprop="creator" itemscope itemtype="https://schema.org/Organization">
+    <meta itemprop="name" content="Google Netherlands" />
+    <link itemprop="url" href="https://www.example.com" />
+  </span>
   <link itemprop="embedUrl" href="https://www.example.com/embed/123" />
   <meta itemprop="contentUrl" content="https://www.example.com/video/123/file.mp4" />
   <meta itemprop="regionsAllowed" content="US" />
@@ -394,13 +403,18 @@ The full definition of `VideoObject` is available at [schema.org/VideoObject](ht
 | Recommended properties | |
 | --- | --- |
 | `contentUrl` | `URL` We recommend that your provide the `contentUrl` property, if possible. This is the most effective way for Google to fetch your video content files. If `contentUrl` isn't available, provide `embedUrl` as an alternative. A URL pointing to the video file's actual content bytes, in one of the [supported file types](/search/docs/appearance/video#supported-video-files). Don't link to the page where the video lives; this must be the URL of the video file's actual content bytes itself.    Make sure to follow our [video best practices](/search/docs/appearance/video). **Tip**: You can ensure that only Googlebot accesses your content by using a [reverse DNS lookup](/search/docs/crawling-indexing/verifying-googlebot). |
+| `creator` (or `author`) | `Person` or `Organization`  The person or organization that created or published the video. For example: |
+| `creator.name` (or `author.name`) | `Text`  The name of the creator or organization. If a person or organization is specified, you must provide either `name` or `alternateName`. |
+| `creator.url` (or `author.url`) | `URL`  A link to a web page that uniquely identifies the creator or organization (such as a profile page or homepage). |
 | `description` | `Text`  The description of the video. Make sure to use unique text in the `description` property for each video on your site. HTML tags are ignored. |
 | `duration` | `Duration`  The duration of the video in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601#Durations). For example, `PT00H30M5S` represents a duration of "thirty minutes and five seconds". |
 | `embedUrl` | `URL` We recommend that your provide the `contentUrl` property, if possible. This is the most effective way for Google to fetch your video content files. If `contentUrl` isn't available, provide `embedUrl` as an alternative. A URL pointing to a player for the specific video. Don't link to the page where the video lives; this must be the URL of the video player itself. Usually this is the information in the `src` attribute of an `<embed>` element.    Make sure to follow our [Video best practices](/search/docs/appearance/video). **Tip**: You can ensure that only Googlebot accesses your content by using a [reverse DNS lookup](/search/docs/crawling-indexing/verifying-googlebot). |
 | `expires` | `DateTime` If applicable, the date and time after which the video will no longer be available, in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601). Don't supply this information if your video does not expire. We recommend that you provide timezone information; otherwise, we will default to [the timezone used by Googlebot](/search/docs/crawling-indexing/googlebot#timezone). |
 | `hasPart` | If your video has important segments, nest the [required `Clip` properties](#clip) in your `VideoObject`. For example: |
 | `ineligibleRegion` | `Place`  The region where the video isn't allowed, if applicable. If not specified, then Google assumes the video is allowed everywhere. Specify the countries in [two- or three-letter ISO 3166-1 format](https://en.wikipedia.org/wiki/ISO_3166-1). For multiple values, use multiple country codes (for example, a JSON-LD array or multiple `meta` tags in Microdata). We also support the [`regionsAllowed`](#regions-allowed) property. Add either `ineligibleRegion` or `regionsAllowed`, whichever makes sense for your site. |
-| `interactionStatistic` | `InteractionCounter`  The number of times the video has been watched. For example:   Starting October 2019, we changed our documentation to recommend `interactionStatistic` instead of `interactionCount`. While we continue to support `interactionCount`, we recommend `interactionStatistic` moving forward. |
+| `interactionStatistic` | `InteractionCounter`  User statistics applied to the video, if applicable. For example:   Starting October 2019, we changed our documentation to recommend `interactionStatistic` instead of `interactionCount`. While we continue to support `interactionCount`, we recommend `interactionStatistic` moving forward. |
+| `interactionStatistic.interactionType` | Subtype of `Action`  The type of interaction. Google supports the following `interactionTypes`: [`WatchAction`](https://schema.org/WatchAction): the number of times the video has been watched; [`LikeAction`](https://schema.org/LikeAction): the number of likes or upvotes; [`CommentAction`](https://schema.org/CommentAction): the number of comments; [`ShareAction`](https://schema.org/ShareAction): the number of reshares. |
+| `interactionStatistic.userInteractionCount` | `Integer`  The number of times this interaction was performed. |
 | `publication` | If your video is happening live and you want to be eligible for the LIVE badge, nest the [`BroadcastEvent` properties](#broadcast-event) in your `VideoObject`. For example: |
 | `regionsAllowed` | `Place`  The regions where the video is allowed, if applicable. If not specified, then Google assumes the video is allowed everywhere. Specify the countries in [two- or three-letter ISO 3166-1 format](https://en.wikipedia.org/wiki/ISO_3166-1). For multiple values, use multiple country codes (for example, a JSON-LD array or multiple `meta` tags in Microdata). We also support the [`ineligibleRegion`](#ineligible-region) property. Add either `ineligibleRegion` or `regionsAllowed`, whichever makes sense for your site. |
 
@@ -410,6 +424,14 @@ The full definition of `VideoObject` is available at [schema.org/VideoObject](ht
 
 ```json
 "embedUrl": "https://www.example.com/embed/123"
+```
+
+```json
+"creator": {
+  "@type": "Person",
+  "name": "Jane Doe",
+  "url": "https://www.example.com/users/janedoe"
+}
 ```
 
 ```html

@@ -1,7 +1,7 @@
 # Tell Google About Localized Versions of Your Page
 
 > Source: https://developers.google.com/search/docs/specialty/international/localized-versions
-> Last updated: 2025-12-22
+> Last updated: 2026-09-21
 
 If you have multiple versions of a page for different languages or regions, tell Google about these different variations. Doing so will help Google Search point users to the most appropriate version of your page by language or region.
 
@@ -43,7 +43,7 @@ Use `hreflang` to tell Google about the variations of your content, so that we c
 
 Add `<link rel="alternate" hreflang="lang_code"... >` elements to your page header to tell Google all of the language and region variants of a page. This is useful if you don't have a sitemap or the ability to specify HTTP response headers for your site.
 
-For each variation of the page, include a set of `<link>` elements in the `<head>` element, one link for each page variant **including itself**. The set of links is identical for every version of the page.
+For each variation of the page, include a set of `<link>` elements in the `<head>` element, one link for each page variant **including itself**. The set of links is identical for every version of the page. See the [additional guidelines](#guidelines-for-all-methods).
 
 Here is the syntax of each `link` element:
 
@@ -77,9 +77,9 @@ Here is the HTML that would be in the `<head>` section of all the pages listed a
 ```html
 <head>
  <title>Widgets, Inc</title>
-  <link rel="alternate" hreflang="en-gb"
+  <link rel="alternate" hreflang="en-GB"
        href="https://en-gb.example.com/page.html" />
-  <link rel="alternate" hreflang="en-us"
+  <link rel="alternate" hreflang="en-US"
        href="https://en-us.example.com/page.html" />
   <link rel="alternate" hreflang="en"
        href="https://en.example.com/page.html" />
@@ -105,7 +105,7 @@ Link: <url1>; rel="alternate"; hreflang="lang_code_1", <url2>; rel="alternate"; 
 | `<url_x>` | The fully-qualified URL of the alternate page corresponding to the locale string assigned to the associated `hreflang` attribute. The URL must include surrounding `<` and `>` marks. **Example:** `<https://www.google.com>` |
 | `lang_code_x` | A [supported language/region code](#supported-language-and-region-codes) targeted by this version of the page, or `x-default` to match any language not explicitly listed by an `hreflang` tag on the page. |
 
-You must specify a set of `<url>`, `rel="alternate"`, and `hreflang` values for every version of the page **including the requested version**, separated by a comma as shown in the following example. The `Link:` header returned for every version of a page is identical.
+You must specify a set of `<url>`, `rel="alternate"`, and `hreflang` values for every version of the page **including the requested version**, separated by a comma as shown in the following example. The `Link:` header returned for every version of a page is identical. See the [additional guidelines](#guidelines-for-all-methods).
 
 ### Example
 
@@ -113,7 +113,7 @@ Here is an example `Link:` header returned by a site that has three versions of 
 
 ```
 Link: <https://example.com/file.pdf>; rel="alternate"; hreflang="en",
-      <https://de-ch.example.com/file.pdf>; rel="alternate"; hreflang="de-ch",
+      <https://de-ch.example.com/file.pdf>; rel="alternate"; hreflang="de-CH",
       <https://de.example.com/file.pdf>; rel="alternate"; hreflang="de"
 ```
 
@@ -130,6 +130,7 @@ You can use an [XML sitemap](https://developers.google.com/search/docs/crawling-
 - Each `<url>` element must have a child element `<xhtml:link rel="alternate" hreflang="supported_language-code">` that lists every alternate version of the page, **including itself**. The order of these child `<xhtml:link>` elements doesn't matter, though you might want to keep them in the same order to make them easier for you to check for mistakes. Child elements don't count towards the URL limit for sitemaps.
 - Upload the sitemap to a directory on your site that the sitemap is applicable to. Keep in mind that a sitemap can only contain descendant URLs of the directory where the sitemap is hosted from.
 - Our [documentation on sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap) also applies to the sitemap extensions. Make sure to follow [general sitemap guidelines](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap#general-guidelines).
+- See the [additional guidelines](#guidelines-for-all-methods).
 
 ### Example
 
@@ -153,7 +154,7 @@ Here is the sitemap for those three pages:
                href="https://www.example.de/deutsch/page.html"/>
     <xhtml:link
                rel="alternate"
-               hreflang="de-ch"
+               hreflang="de-CH"
                href="https://www.example.de/schweiz-deutsch/page.html"/>
     <xhtml:link
                rel="alternate"
@@ -168,7 +169,7 @@ Here is the sitemap for those three pages:
                href="https://www.example.de/deutsch/page.html"/>
     <xhtml:link
                rel="alternate"
-               hreflang="de-ch"
+               hreflang="de-CH"
                href="https://www.example.de/schweiz-deutsch/page.html"/>
     <xhtml:link
                rel="alternate"
@@ -183,7 +184,7 @@ Here is the sitemap for those three pages:
                href="https://www.example.de/deutsch/page.html"/>
     <xhtml:link
                rel="alternate"
-               hreflang="de-ch"
+               hreflang="de-CH"
                href="https://www.example.de/schweiz-deutsch/page.html"/>
     <xhtml:link
                rel="alternate"
@@ -195,15 +196,15 @@ Here is the sitemap for those three pages:
 
 ## Supported language and region codes
 
-The `hreflang` attribute's value is comprised of one or optionally two values, separated by a dash. For example, `en-US`. The first code of the `hreflang` attribute is the language code (in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format) followed by an optional second code that represents the region code (in [ISO 3166-1 Alpha 2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) of an alternate URL. Only language codes listed in ISO 639-1 and region codes listed in ISO 3166-1 Alpha 2 are supported; other codes that aren't listed in those standards, such as es-419, aren't supported.
+The `hreflang` attribute's value is comprised of one or optionally two values, separated by a dash. For example, `en-US`. The first code of the `hreflang` attribute is the language code (in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format) followed by an optional second code that represents the region code (in [ISO 3166-1 Alpha 2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format) of an alternate URL. Only language codes listed in ISO 639-1 and region codes listed in ISO 3166-1 Alpha 2 are supported; other codes that aren't listed in those standards, such as es-419, aren't supported. The `hreflang` value is case-insensitive; Google accepts lowercase and uppercase codes, but formatting region codes in uppercase (for example, `en-GB`) follows ISO 3166-1 Alpha 2 convention.
 
 **Warning**: You can't specify the country code by itself. The first code stands for the language and Google doesn't automatically derive the language from a country code.
 
 To target different language speakers in Belgium, you might use the following language and region codes:
 
-- **Good (German for users in Belgium)**: `de-be`
-- **Good (Dutch for users in Belgium)**: `nl-be`
-- **Good (French for users in Belgium)**: `fr-be`
+- **Good (German for users in Belgium)**: `de-BE`
+- **Good (Dutch for users in Belgium)**: `nl-BE`
+- **Good (French for users in Belgium)**: `fr-BE`
 - **Bad because the first code is for language (`be` is the Belarusian language code)**: `be`
 
 To simplify your labeling, you can specify a language code by itself. For example:
@@ -228,9 +229,9 @@ There's no need to specify a language code for the `x-default` value; the page i
 To implement the `hreflang="x-default"` annotation, add an additional `link` tag to the existing `hreflang` annotations, and set the `href` attribute to the URL where you want your users to land if your site doesn't support their language. For example, an HTML implementation may look like this:
 
 ```html
-<link rel="alternate" href="https://example.com/en-gb" hreflang="en-gb" />
-<link rel="alternate" href="https://example.com/en-us" hreflang="en-us" />
-<link rel="alternate" href="https://example.com/en-au" hreflang="en-au" />
+<link rel="alternate" href="https://example.com/en-gb" hreflang="en-GB" />
+<link rel="alternate" href="https://example.com/en-us" hreflang="en-US" />
+<link rel="alternate" href="https://example.com/en-au" hreflang="en-AU" />
 <link rel="alternate" href="https://example.com/country-selector" hreflang="x-default" />
 ```
 
@@ -243,7 +244,7 @@ Here are the most common mistakes with `hreflang` usage:
 - **Missing return links**: If page X links to page Y, page Y must link back to page X. If this is not the case for all pages that use `hreflang` annotations, those annotations may be ignored or not interpreted correctly. For example, considering this link on `https://de.example.com/index.html`:
 
   ```html
-  <link rel="alternate" hreflang="en-gb" href="https://en-gb.example.com/index.html" />
+  <link rel="alternate" hreflang="en-GB" href="https://en-gb.example.com/index.html" />
   ```
 
   You must also have a `hreflang` link on `https://en-gb.example.com/index.html` that points back to the `de` version of the content:

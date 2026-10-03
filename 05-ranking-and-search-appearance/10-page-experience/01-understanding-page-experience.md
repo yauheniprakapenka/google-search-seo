@@ -1,7 +1,7 @@
 # Understanding page experience in Google Search results
 
 > Source: https://developers.google.com/search/docs/appearance/page-experience
-> Last updated: 2025-12-10 UTC
+> Last updated: 2026-09-22 UTC
 
 Google's core ranking systems look to reward content that provides a good page experience. Site owners seeking to be successful with our systems should not focus on only one or two aspects of page experience. Instead, check if you're providing an overall great page experience across many aspects.
 
@@ -20,11 +20,14 @@ These questions don't encompass all page experience aspects to consider. However
 
 ## Page experience resources
 
-- **Core Web Vitals**: Learn more about Core Web Vitals and how they work in Google Search results.
-- **Search Console's HTTPS report**: Check if you're serving secure HTTPS pages and what to fix.
-- **Check if a site's connection is secure**: Learn how to check if your site's connection is secure. If the page isn't served over HTTPS, learn how to secure your site with HTTPS.
-- **Avoid intrusive interstitials and dialogs**: Learn how to avoid interstitials that can make content less accessible.
-- **Chrome Lighthouse**: This toolset from Chrome can help you identify a range of improvements related to page experience, including mobile usability.
+Here are some resources that can help you measure, monitor, and optimize your page experience:
+
+- **Understanding Core Web Vitals and Google Search results**: Learn more about Core Web Vitals and how they work in Google Search results.
+- **Search Console's HTTPS report**: Check if you're serving secure HTTPS pages and what to fix, if you're not.
+- **Check if a site's connection is secure**: Learn how to check if your site's connection is secure, as reported by Chrome. If the page isn't served over HTTPS, learn how to secure your site with HTTPS.
+- **Avoid intrusive interstitials and dialog**: Learn how to avoid interstitials that can make content less accessible.
+- **Chrome Lighthouse**: This toolset from Chrome can help you identify a range of improvements to make related to page experience, including mobile usability.
+- **CrUX ad metrics**: These experimental CrUX metrics from Chrome can help you understand your site's ad count, ad density, and ad weight metrics. They provide insight into real users' ad experiences on your site, as seen and reported by Chrome.
 
 ## FAQ
 
@@ -34,7 +37,7 @@ There is no single signal. Our core ranking systems look at a variety of signals
 
 ### What aspects of page experience are used in ranking?
 
-Core Web Vitals are used by our ranking systems. We recommend site owners achieve good Core Web Vitals for success with Search and to ensure a great user experience generally. Keep in mind that getting good results in reports like Search Console's Core Web Vitals report or third-party tools doesn't guarantee that your pages will rank at the top of Google Search results; there's more to great page experience than Core Web Vitals scores alone.
+Core Web Vitals are used by our ranking systems. We recommend site owners achieve good Core Web Vitals for success with Search and to ensure a great user experience generally. Keep in mind that getting good results in reports like Search Console's Core Web Vitals report or third-party tools doesn't guarantee that your pages will rank at the top of Google Search results; there's more to great page experience than Core Web Vitals scores alone. These scores are meant to help you to improve your site for your users overall, and trying to get a perfect score just for SEO reasons may not be the best use of your time.
 
 Beyond Core Web Vitals, other page experience aspects don't directly help your website rank higher in search results. However, they can make your website more satisfying to use, which is generally aligned with what our ranking systems seek to reward. Therefore it's still worth working to improve page experience overall.
 
@@ -45,3 +48,7 @@ Our core ranking systems generally evaluate content on a page-specific basis, in
 ### How important is page experience to ranking success?
 
 Google Search always seeks to show the most relevant content, even if the page experience is sub-par. But for many queries, there is lots of helpful content available. Having a great page experience can contribute to success in Search, in such cases.
+
+## Recent updates on our blog
+
+Here's everything we've announced about page experience on the Google Search Central blog:
