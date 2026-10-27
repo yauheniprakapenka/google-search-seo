@@ -1,9 +1,9 @@
-# Prevent User-Generated Spam on Your Site and Platform
+# Prevent user-generated spam on your site and platform
 
 > Source: https://developers.google.com/search/docs/monitor-debug/prevent-abuse
-> Last updated: 2025-12-10
+> Last updated: 2026-10-26
 
-Spammers often take advantage of open comment forms and other user generated content inputs and generate spammy content on an unsuspecting victim site. Hosting platforms may be similarly open to abuse; spammers may create a large number of sites that violate our [spam policies](https://developers.google.com/search/docs/essentials/spam-policies) and add little or no value to the web.
+Spammers often take advantage of open comment forms and other user generated content inputs and generate spammy content on an unsuspecting victim site. Hosting platforms and tools that let users publish shared pages, generated content, or web apps may be similarly open to abuse; spammers may create a large number of pages or sites that violate our [spam policies](https://developers.google.com/search/docs/essentials/spam-policies) and add little or no value to the web.
 
 Preventing abuse on your platform or site is usually not hard. Even simple deterrents such as an unusual challenge users have to complete before interacting with your property may discourage spammers.
 
@@ -24,6 +24,12 @@ These signals may help you create a user reputation system, which can not only h
 
 Since oftentimes spammers are motivated by leaving a link to their site, consider adding a [`nofollow` or `ugc`](https://developers.google.com/search/docs/advanced/guidelines/qualify-outbound-links) `rel` attribute to all links in untrusted content.
 
+## Only index content meant for Search
+
+If your service lets users create shareable pages, generated outputs, or interactive tools, consider whether that content is meant to be found through search engines or only accessed directly by people with a link.
+
+When pages are created for direct sharing, collaboration, or utility rather than public search discovery, apply the [`noindex` rule](https://developers.google.com/search/docs/crawling-indexing/block-indexing) (using a robots `meta` tag or `X-Robots-Tag` HTTP response header) or block crawling in [robots.txt](https://developers.google.com/search/docs/crawling-indexing/robots/intro) by default.
+
 ## Use manual approval for suspicious user interactions
 
 Manual approval (or moderation) for certain user interactions can decrease spam on your platform considerably by preventing spammers to instantly create content that may be spam. Moderation adds overhead to your daily workflows, however it's a very effective way of fighting spam. Its efficacy is why, for example, comment moderation is a built-in feature in most CMSes.
@@ -38,6 +44,8 @@ In your sign-up form, consider using [reCAPTCHAs](https://www.google.com/recaptc
 
 ## Monitor your service for abuse
 
+- Verify your site or subdomain in [Search Console](https://developers.google.com/search/docs/monitor-debug/search-console-start) so you receive email alerts if Google issues a [manual action](https://support.google.com/webmasters/answer/9044175) against your site or detects [security issues](https://support.google.com/webmasters/answer/9044101). Also check the [Page Indexing report](https://support.google.com/webmasters/answer/7440203) and [Search performance report](https://support.google.com/webmasters/answer/7576553) regularly for unexpected spikes in indexed pages, impressions, or queries that don't match your platform's purpose.
+- Track platform-level creation and indexing metrics, and set up alerts for anomalies such as spikes in newly published public pages or a small number of users generating a large share of indexable URLs.
 - Monitor your property for spam signals such as redirects, large numbers of ad sections, certain spammy keywords, and large sections of encoded JavaScript code. The [`site:`](https://developers.google.com/search/docs/monitor-debug/search-operators/all-search-site) search operator or [Google Alerts](https://www.google.com/alerts) can help detect problems.
 - Keep an eye on your webserver log files for sudden traffic spikes.
 - Monitor your property for phishing and malware-infected pages. For example, you can use the [Google Safe Browsing API](https://developers.google.com/safe-browsing) to regularly test URLs from your service.
